@@ -22,6 +22,7 @@
 
 package com.sqatntu.stylechecker.injection;
 
+import dagger.Module;
 import dagger.ObjectGraph;
 
 /**
@@ -33,5 +34,10 @@ public class Dagger {
 
   public static void inject(Object object) {
     objectGraph.inject(object);
+  }
+
+  public static void changeModule(Object module) {
+    objectGraph = ObjectGraph.create(module);
+
   }
 }

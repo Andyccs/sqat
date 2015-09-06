@@ -64,6 +64,7 @@ public class MethodNameFormatListener extends JavaBaseListener {
     } catch (StyleCheckerException e) {
       // This means that no configuration for method name format is set,
       // so we don't do any check.
+      System.out.println(e.getMessage());
       return;
     }
 

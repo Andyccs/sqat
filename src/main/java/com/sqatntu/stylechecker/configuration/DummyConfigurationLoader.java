@@ -20,44 +20,23 @@
  *
  */
 
-package com.sqatntu.stylechecker.injection;
-
-import com.sqatntu.stylechecker.JavaStyleChecker;
-import com.sqatntu.stylechecker.configuration.Configuration;
-import com.sqatntu.stylechecker.configuration.ConfigurationLoader;
-import com.sqatntu.stylechecker.configuration.DummyConfigurationLoader;
-import com.sqatntu.stylechecker.listener.MethodNameFormatListener;
-import com.sqatntu.stylechecker.report.StyleReport;
-import dagger.Module;
-import dagger.Provides;
-
-import javax.inject.Singleton;
+package com.sqatntu.stylechecker.configuration;
 
 /**
  * Created by andyccs on 6/9/15.
  */
-@Module(
-    injects = {
-        MethodNameFormatListener.class,
-        JavaStyleChecker.class
-    })
-public class StyleCheckerModule {
+public class DummyConfigurationLoader implements ConfigurationLoader {
 
-  @Provides
-  @Singleton
-  ConfigurationLoader provideConfigurationLoader() {
-    return new DummyConfigurationLoader();
+  DefaultConfiguration configuration;
+
+  public DummyConfigurationLoader() {
+    configuration = new DefaultConfiguration();
+    configuration.addAttribute(
+        StyleName.METHOD_NAME_FORMAT,
+        StyleName.METHOD_NAME_FORMAT_CAMEL_CASE);
   }
 
-  @Provides
-  @Singleton
-  Configuration provideConfiguration(ConfigurationLoader configurationLoader) {
-    return configurationLoader.loadConfiguration();
-  }
-
-  @Provides
-  @Singleton
-  StyleReport provideStyleReport() {
-    return new StyleReport();
+  public Configuration loadConfiguration() {
+    return configuration;
   }
 }
