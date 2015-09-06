@@ -5,7 +5,7 @@ import com.sqatntu.stylechecker.api.JavaParser;
 import com.sqatntu.stylechecker.api.JavaParser.CompilationUnitContext;
 
 import com.sqatntu.stylechecker.injection.Dagger;
-import com.sqatntu.stylechecker.listener.MethodListener;
+import com.sqatntu.stylechecker.listener.MethodNameFormatListener;
 import com.sqatntu.stylechecker.report.ReportContent;
 import com.sqatntu.stylechecker.report.StyleReport;
 import org.antlr.v4.runtime.ANTLRFileStream;
@@ -29,7 +29,7 @@ public class Main {
 
         System.out.println("Hello World");
 
-        String testFilePath = "src/main/java/com/sqatntu/stylechecker/listener/MethodListener.java";
+        String testFilePath = "src/main/java/com/sqatntu/stylechecker/listener/MethodNameFormatListener.java";
 
         ANTLRFileStream stream = new ANTLRFileStream(testFilePath);
         JavaLexer lexer = new JavaLexer(stream);
@@ -38,7 +38,7 @@ public class Main {
         CompilationUnitContext tree = parser.compilationUnit(); // parse 
 
         ParseTreeWalker walker = new ParseTreeWalker(); // create standard walker
-        MethodListener extractor = new MethodListener();
+        MethodNameFormatListener extractor = new MethodNameFormatListener();
         walker.walk(extractor, tree); // initiate walk of tree with listener
 
         Main main = new Main();

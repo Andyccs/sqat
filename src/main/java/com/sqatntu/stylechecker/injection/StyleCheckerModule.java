@@ -3,7 +3,7 @@ package com.sqatntu.stylechecker.injection;
 import com.sqatntu.stylechecker.Main;
 import com.sqatntu.stylechecker.configuration.Configuration;
 import com.sqatntu.stylechecker.configuration.ConfigurationLoader;
-import com.sqatntu.stylechecker.listener.MethodListener;
+import com.sqatntu.stylechecker.listener.MethodNameFormatListener;
 import com.sqatntu.stylechecker.report.StyleReport;
 import dagger.Module;
 import dagger.Provides;
@@ -15,7 +15,7 @@ import javax.inject.Singleton;
  */
 @Module(
         injects = {
-                MethodListener.class,
+                MethodNameFormatListener.class,
                 Main.class
         }
 )

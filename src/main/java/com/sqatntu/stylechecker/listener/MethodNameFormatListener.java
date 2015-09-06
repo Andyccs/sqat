@@ -14,7 +14,7 @@ import javax.inject.Inject;
 /**
  * Created by andyccs on 6/9/15.
  */
-public class MethodListener extends JavaBaseListener {
+public class MethodNameFormatListener extends JavaBaseListener {
 
     @Inject
     Configuration configuration;
@@ -22,7 +22,7 @@ public class MethodListener extends JavaBaseListener {
     @Inject
     StyleReport report;
 
-    public MethodListener() {
+    public MethodNameFormatListener() {
         Dagger.inject(this);
     }
 
