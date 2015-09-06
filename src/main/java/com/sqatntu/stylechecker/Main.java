@@ -4,18 +4,22 @@ import com.sqatntu.stylechecker.JavaLexer;
 import com.sqatntu.stylechecker.JavaParser;
 import com.sqatntu.stylechecker.JavaParser.CompilationUnitContext;
 
+import com.sqatntu.stylechecker.configuration.Configuration;
 import org.antlr.v4.runtime.ANTLRFileStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
+import javax.inject.Inject;
 import java.io.IOException;
 
 /**
  * Main class for Style Checker
  */
+
 public class Main {
 
     public static void main(String[] args) throws IOException {
+
         System.out.println("Hello World");
 
         ANTLRFileStream stream = new ANTLRFileStream("src/main/java/com/sqatntu/stylechecker/MethodListener.java");

@@ -26,7 +26,7 @@ import java.util.Set;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.sqatntu.stylechecker.SQATException;
+import com.sqatntu.stylechecker.StyleCheckerException;
 
 /**
  * Default implementation of the Configuration interface.
@@ -63,9 +63,9 @@ public final class DefaultConfiguration implements Configuration {
     }
 
     @Override
-    public String getAttribute(String attributeName) throws SQATException {
+    public String getAttribute(String attributeName) throws StyleCheckerException {
         if (!attributeMap.containsKey(attributeName)) {
-            throw new SQATException(
+            throw new StyleCheckerException(
                     "missing key '" + attributeName + "' in " + name);
         }
         return attributeMap.get(attributeName);

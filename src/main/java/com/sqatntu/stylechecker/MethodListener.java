@@ -3,14 +3,24 @@ package com.sqatntu.stylechecker;
 import com.sqatntu.stylechecker.JavaListener;
 import com.sqatntu.stylechecker.JavaParser;
 
+import com.sqatntu.stylechecker.configuration.Configuration;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
+
+import javax.inject.Inject;
 
 /**
  * Created by andyccs on 6/9/15.
  */
 public class MethodListener implements JavaListener {
+
+    @Inject
+    Configuration configuration;
+
+    public MethodListener() {
+        Dagger.inject(this);
+    }
 
     @Override
     public void enterCompilationUnit(JavaParser.CompilationUnitContext ctx) {
@@ -224,8 +234,21 @@ public class MethodListener implements JavaListener {
 
     @Override
     public void enterMethodDeclaration(JavaParser.MethodDeclarationContext ctx) {
+        System.out.println(configuration != null);
+
+        String regex = null;
+
+        try {
+            if (configuration.getAttribute("methodName").equals("camelCase")) {
+                regex = "^([a-z])([a-zA-Z0-9])*";
+            }
+        } catch (StyleCheckerException e) {
+            // TODO(andyccs): usually this exception is cause by careless in development
+            regex = "";
+        }
+
         String methodName = ctx.getChild(1).getText();
-        if (methodName.matches("^([a-z])([a-zA-Z0-9])*")) {
+        if (methodName.matches(regex)) {
            System.out.println("OK!");
         } else {
             System.out.println("Not OK!");

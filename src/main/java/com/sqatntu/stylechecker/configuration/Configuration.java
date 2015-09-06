@@ -22,7 +22,7 @@ package com.sqatntu.stylechecker.configuration;
 import java.io.Serializable;
 
 import com.google.common.collect.ImmutableMap;
-import com.sqatntu.stylechecker.SQATException;
+import com.sqatntu.stylechecker.StyleCheckerException;
 
 /**
  * A Configuration is used to configure a Configurable component.  The general
@@ -41,7 +41,7 @@ public interface Configuration extends Serializable {
      * The attribute value for an attribute name.
      * @param name the attribute name
      */
-    String getAttribute(String name) throws SQATException;
+    String getAttribute(String name) throws StyleCheckerException;
 
     /**
      * The set of child configurations.

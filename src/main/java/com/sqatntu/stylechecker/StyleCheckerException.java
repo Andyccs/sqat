@@ -1,6 +1,6 @@
 package com.sqatntu.stylechecker;
 
-public class SQATException extends Exception {
+public class StyleCheckerException extends Exception {
     /** For Serialisation that will never happen. */
     private static final long serialVersionUID = -3517342299748221108L;
 
@@ -9,7 +9,7 @@ public class SQATException extends Exception {
      *
      * @param message a {@code String} value
      */
-    public SQATException(String message) {
+    public StyleCheckerException(String message) {
         super(message);
     }
 
@@ -20,7 +20,7 @@ public class SQATException extends Exception {
      * @param message a message that explains this exception
      * @param cause the Exception that is wrapped by this exception
      */
-    public SQATException(String message, Throwable cause) {
+    public StyleCheckerException(String message, Throwable cause) {
         super(message, cause);
     }
 }
