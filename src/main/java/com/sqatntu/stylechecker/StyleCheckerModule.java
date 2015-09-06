@@ -2,6 +2,7 @@ package com.sqatntu.stylechecker;
 
 import com.sqatntu.stylechecker.configuration.Configuration;
 import com.sqatntu.stylechecker.configuration.ConfigurationLoader;
+import com.sqatntu.stylechecker.listener.MethodListener;
 import com.sqatntu.stylechecker.report.StyleReport;
 import dagger.Module;
 import dagger.Provides;

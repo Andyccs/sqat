@@ -1,10 +1,10 @@
 package com.sqatntu.stylechecker;
 
-import com.sqatntu.stylechecker.JavaLexer;
-import com.sqatntu.stylechecker.JavaParser;
-import com.sqatntu.stylechecker.JavaParser.CompilationUnitContext;
+import com.sqatntu.stylechecker.api.JavaLexer;
+import com.sqatntu.stylechecker.api.JavaParser;
+import com.sqatntu.stylechecker.api.JavaParser.CompilationUnitContext;
 
-import com.sqatntu.stylechecker.configuration.Configuration;
+import com.sqatntu.stylechecker.listener.MethodListener;
 import com.sqatntu.stylechecker.report.ReportContent;
 import com.sqatntu.stylechecker.report.StyleReport;
 import org.antlr.v4.runtime.ANTLRFileStream;
@@ -28,7 +28,9 @@ public class Main {
 
         System.out.println("Hello World");
 
-        ANTLRFileStream stream = new ANTLRFileStream("src/main/java/com/sqatntu/stylechecker/MethodListener.java");
+        String testFilePath = "src/main/java/com/sqatntu/stylechecker/listener/MethodListener.java";
+
+        ANTLRFileStream stream = new ANTLRFileStream(testFilePath);
         JavaLexer lexer = new JavaLexer(stream);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         JavaParser parser = new JavaParser(tokens);
