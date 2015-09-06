@@ -20,44 +20,44 @@
  *
  */
 
-package com.sqatntu.stylechecker.injection;
+package com.sqatntu.stylechecker;
 
-import com.sqatntu.stylechecker.JavaStyleChecker;
-import com.sqatntu.stylechecker.Main;
-import com.sqatntu.stylechecker.configuration.Configuration;
-import com.sqatntu.stylechecker.configuration.ConfigurationLoader;
+import com.sqatntu.stylechecker.api.JavaLexer;
+import com.sqatntu.stylechecker.api.JavaParser;
+import com.sqatntu.stylechecker.injection.Dagger;
 import com.sqatntu.stylechecker.listener.MethodNameFormatListener;
 import com.sqatntu.stylechecker.report.StyleReport;
-import dagger.Module;
-import dagger.Provides;
+import org.antlr.v4.runtime.ANTLRFileStream;
+import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
-import javax.inject.Singleton;
+import java.io.IOException;
+
+import javax.inject.Inject;
 
 /**
  * Created by andyccs on 6/9/15.
  */
-@Module(
-    injects = {
-        MethodNameFormatListener.class,
-        JavaStyleChecker.class
-    })
-public class StyleCheckerModule {
+public class JavaStyleChecker {
 
-  @Provides
-  @Singleton
-  ConfigurationLoader provideConfigurationLoader() {
-    return new ConfigurationLoader();
+  @Inject
+  public StyleReport styleReport;
+
+  public JavaStyleChecker() {
+    Dagger.inject(this);
   }
 
-  @Provides
-  @Singleton
-  Configuration provideConfiguration(ConfigurationLoader configurationLoader) {
-    return configurationLoader.loadConfiguration();
-  }
+  public StyleReport check(String filePath) throws IOException {
+    ANTLRFileStream stream = new ANTLRFileStream(filePath);
+    JavaLexer lexer = new JavaLexer(stream);
+    CommonTokenStream tokens = new CommonTokenStream(lexer);
+    JavaParser parser = new JavaParser(tokens);
+    JavaParser.CompilationUnitContext tree = parser.compilationUnit(); // parse 
 
-  @Provides
-  @Singleton
-  StyleReport provideStyleReport() {
-    return new StyleReport();
+    ParseTreeWalker walker = new ParseTreeWalker(); // create standard walker
+    MethodNameFormatListener extractor = new MethodNameFormatListener();
+    walker.walk(extractor, tree); // initiate walk of tree with listener
+
+    return styleReport;
   }
 }
