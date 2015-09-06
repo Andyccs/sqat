@@ -1,6 +1,6 @@
 package com.sqatntu.stylechecker.listener;
 
-import com.sqatntu.stylechecker.Dagger;
+import com.sqatntu.stylechecker.injection.Dagger;
 import com.sqatntu.stylechecker.api.JavaBaseListener;
 import com.sqatntu.stylechecker.api.JavaParser;
 import com.sqatntu.stylechecker.StyleCheckerException;

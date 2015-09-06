@@ -1,5 +1,6 @@
-package com.sqatntu.stylechecker;
+package com.sqatntu.stylechecker.injection;
 
+import com.sqatntu.stylechecker.Main;
 import com.sqatntu.stylechecker.configuration.Configuration;
 import com.sqatntu.stylechecker.configuration.ConfigurationLoader;
 import com.sqatntu.stylechecker.listener.MethodListener;

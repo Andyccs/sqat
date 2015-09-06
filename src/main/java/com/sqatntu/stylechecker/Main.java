@@ -4,6 +4,7 @@ import com.sqatntu.stylechecker.api.JavaLexer;
 import com.sqatntu.stylechecker.api.JavaParser;
 import com.sqatntu.stylechecker.api.JavaParser.CompilationUnitContext;
 
+import com.sqatntu.stylechecker.injection.Dagger;
 import com.sqatntu.stylechecker.listener.MethodListener;
 import com.sqatntu.stylechecker.report.ReportContent;
 import com.sqatntu.stylechecker.report.StyleReport;

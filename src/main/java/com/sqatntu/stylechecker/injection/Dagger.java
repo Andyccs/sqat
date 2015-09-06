@@ -1,4 +1,4 @@
-package com.sqatntu.stylechecker;
+package com.sqatntu.stylechecker.injection;
 
 import dagger.ObjectGraph;
 
