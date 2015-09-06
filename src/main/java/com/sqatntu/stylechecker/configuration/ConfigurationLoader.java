@@ -5,14 +5,16 @@ package com.sqatntu.stylechecker.configuration;
  */
 public class ConfigurationLoader {
 
-    DefaultConfiguration configuration;
+  DefaultConfiguration configuration;
 
-    public ConfigurationLoader() {
-        configuration = new DefaultConfiguration("Default");
-        configuration.addAttribute(StyleName.METHOD_NAME_FORMAT, StyleName.METHOD_NAME_FORMAT_CAMEL_CASE);
-    }
+  public ConfigurationLoader() {
+    configuration = new DefaultConfiguration("Default");
+    configuration.addAttribute(
+        StyleName.METHOD_NAME_FORMAT,
+        StyleName.METHOD_NAME_FORMAT_CAMEL_CASE);
+  }
 
-    public Configuration loadConfiguration() {
-        return configuration;
-    }
+  public Configuration loadConfiguration() {
+    return configuration;
+  }
 }

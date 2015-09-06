@@ -14,28 +14,27 @@ import javax.inject.Singleton;
  * Created by andyccs on 6/9/15.
  */
 @Module(
-        injects = {
-                MethodNameFormatListener.class,
-                Main.class
-        }
-)
+    injects = {
+        MethodNameFormatListener.class,
+        Main.class
+    })
 public class StyleCheckerModule {
 
-    @Provides
-    @Singleton
-    ConfigurationLoader provideConfigurationLoader() {
-        return new ConfigurationLoader();
-    }
+  @Provides
+  @Singleton
+  ConfigurationLoader provideConfigurationLoader() {
+    return new ConfigurationLoader();
+  }
 
-    @Provides
-    @Singleton
-    Configuration provideConfiguration(ConfigurationLoader configurationLoader) {
-        return configurationLoader.loadConfiguration();
-    }
+  @Provides
+  @Singleton
+  Configuration provideConfiguration(ConfigurationLoader configurationLoader) {
+    return configurationLoader.loadConfiguration();
+  }
 
-    @Provides
-    @Singleton
-    StyleReport provideStyleReport() {
-        return new StyleReport();
-    }
+  @Provides
+  @Singleton
+  StyleReport provideStyleReport() {
+    return new StyleReport();
+  }
 }

@@ -5,6 +5,7 @@ apply plugin: 'java'
 apply plugin: 'application'
 apply plugin: 'antlr'
 apply plugin: 'idea'
+apply plugin: 'checkstyle'
 
 sourceCompatibility = 1.7
 mainClassName = "com.sqatntu.stylechecker.Main"

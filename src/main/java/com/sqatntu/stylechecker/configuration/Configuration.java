@@ -19,46 +19,53 @@
 
 package com.sqatntu.stylechecker.configuration;
 
-import java.io.Serializable;
-
 import com.google.common.collect.ImmutableMap;
+
 import com.sqatntu.stylechecker.StyleCheckerException;
+
+import java.io.Serializable;
 
 /**
  * A Configuration is used to configure a Configurable component.  The general
  * idea of Configuration/Configurable was taken from <a target="_top"
  * href="http://avalon.apache.org/closed.html">Jakarta's Avalon framework</a>.
+ *
  * @author lkuehne
  */
 public interface Configuration extends Serializable {
-    /**
-     * The set of attribute names.
-     * @return The set of attribute names, never null.
-     */
-    String[] getAttributeNames();
+  /**
+   * The set of attribute names.
+   *
+   * @return The set of attribute names, never null.
+   */
+  String[] getAttributeNames();
 
-    /**
-     * The attribute value for an attribute name.
-     * @param name the attribute name
-     */
-    String getAttribute(String name) throws StyleCheckerException;
+  /**
+   * The attribute value for an attribute name.
+   *
+   * @param name the attribute name
+   */
+  String getAttribute(String name) throws StyleCheckerException;
 
-    /**
-     * The set of child configurations.
-     * @return The set of child configurations, never null.
-     */
-    Configuration[] getChildren();
+  /**
+   * The set of child configurations.
+   *
+   * @return The set of child configurations, never null.
+   */
+  Configuration[] getChildren();
 
-    /**
-     * The name of this configuration.
-     * @return The name of this configuration.
-     */
-    String getName();
+  /**
+   * The name of this configuration.
+   *
+   * @return The name of this configuration.
+   */
+  String getName();
 
-    /**
-     * Returns an unmodifiable map instance containing the custom messages
-     * for this configuration.
-     * @return unmodifiable map containing custom messages
-     */
-    ImmutableMap<String, String> getMessages();
+  /**
+   * Returns an unmodifiable map instance containing the custom messages
+   * for this configuration.
+   *
+   * @return unmodifiable map containing custom messages
+   */
+  ImmutableMap<String, String> getMessages();
 }

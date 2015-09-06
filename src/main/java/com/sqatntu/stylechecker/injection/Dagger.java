@@ -7,9 +7,9 @@ import dagger.ObjectGraph;
  */
 public class Dagger {
 
-    private static ObjectGraph objectGraph = ObjectGraph.create(new StyleCheckerModule());
+  private static ObjectGraph objectGraph = ObjectGraph.create(new StyleCheckerModule());
 
-    public static void inject(Object o) {
-        objectGraph.inject(o);
-    }
+  public static void inject(Object object) {
+    objectGraph.inject(object);
+  }
 }

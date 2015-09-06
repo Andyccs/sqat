@@ -19,116 +19,133 @@
 
 package com.sqatntu.stylechecker.configuration;
 
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+
+import com.sqatntu.stylechecker.StyleCheckerException;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import com.sqatntu.stylechecker.StyleCheckerException;
-
 /**
  * Default implementation of the Configuration interface.
+ *
  * @author lkuehne
  */
 public final class DefaultConfiguration implements Configuration {
-    /** Required for serialization. */
-    private static final long serialVersionUID = 1157875385356127169L;
+  /**
+   * Required for serialization.
+   */
+  private static final long serialVersionUID = 1157875385356127169L;
 
-    /** The name of this configuration. */
-    private final String name;
+  /**
+   * The name of this configuration.
+   */
+  private final String name;
 
-    /** The list of child Configurations. */
-    private final List<Configuration> children = Lists.newArrayList();
+  /**
+   * The list of child Configurations.
+   */
+  private final List<Configuration> children = Lists.newArrayList();
 
-    /** The map from attribute names to attribute values. */
-    private final Map<String, String> attributeMap = Maps.newHashMap();
+  /**
+   * The map from attribute names to attribute values.
+   */
+  private final Map<String, String> attributeMap = Maps.newHashMap();
 
-    /** The map containing custom messages. */
-    private final Map<String, String> messages = Maps.newHashMap();
+  /**
+   * The map containing custom messages.
+   */
+  private final Map<String, String> messages = Maps.newHashMap();
 
-    /**
-     * Instantiates a DefaultConfiguration.
-     * @param name the name for this DefaultConfiguration.
-     */
-    public DefaultConfiguration(String name) {
-        this.name = name;
+  /**
+   * Instantiates a DefaultConfiguration.
+   *
+   * @param name the name for this DefaultConfiguration.
+   */
+  public DefaultConfiguration(String name) {
+    this.name = name;
+  }
+
+  @Override
+  public String[] getAttributeNames() {
+    final Set<String> keySet = attributeMap.keySet();
+    return keySet.toArray(new String[keySet.size()]);
+  }
+
+  @Override
+  public String getAttribute(String attributeName) throws StyleCheckerException {
+    if (!attributeMap.containsKey(attributeName)) {
+      throw new StyleCheckerException(
+          "missing key '" + attributeName + "' in " + name);
     }
+    return attributeMap.get(attributeName);
+  }
 
-    @Override
-    public String[] getAttributeNames() {
-        final Set<String> keySet = attributeMap.keySet();
-        return keySet.toArray(new String[keySet.size()]);
-    }
+  @Override
+  public Configuration[] getChildren() {
+    return children.toArray(
+        new Configuration[children.size()]);
+  }
 
-    @Override
-    public String getAttribute(String attributeName) throws StyleCheckerException {
-        if (!attributeMap.containsKey(attributeName)) {
-            throw new StyleCheckerException(
-                    "missing key '" + attributeName + "' in " + name);
-        }
-        return attributeMap.get(attributeName);
-    }
+  @Override
+  public String getName() {
+    return name;
+  }
 
-    @Override
-    public Configuration[] getChildren() {
-        return children.toArray(
-                new Configuration[children.size()]);
-    }
+  /**
+   * Makes a configuration a child of this configuration.
+   *
+   * @param configuration the child configuration.
+   */
+  public void addChild(Configuration configuration) {
+    children.add(configuration);
+  }
 
-    @Override
-    public String getName() {
-        return name;
-    }
+  /**
+   * Removes a child of this configuration.
+   *
+   * @param configuration the child configuration to remove.
+   */
+  public void removeChild(final Configuration configuration) {
+    children.remove(configuration);
+  }
 
-    /**
-     * Makes a configuration a child of this configuration.
-     * @param configuration the child configuration.
-     */
-    public void addChild(Configuration configuration) {
-        children.add(configuration);
+  /**
+   * Adds an attribute to this configuration.
+   *
+   * @param attributeName the name of the attribute.
+   * @param value         the value of the attribute.
+   */
+  public void addAttribute(String attributeName, String value) {
+    final String current = attributeMap.put(attributeName, value);
+    if (current == null) {
+      attributeMap.put(attributeName, value);
+    } else {
+      attributeMap.put(attributeName, current + "," + value);
     }
+  }
 
-    /**
-     * Removes a child of this configuration.
-     * @param configuration the child configuration to remove.
-     */
-    public void removeChild(final Configuration configuration) {
-        children.remove(configuration);
-    }
+  /**
+   * Adds a custom message to this configuration.
+   *
+   * @param key   the message key
+   * @param value the custom message pattern
+   */
+  public void addMessage(String key, String value) {
+    messages.put(key, value);
+  }
 
-    /**
-     * Adds an attribute to this configuration.
-     * @param attributeName the name of the attribute.
-     * @param value the value of the attribute.
-     */
-    public void addAttribute(String attributeName, String value) {
-        final String current = attributeMap.put(attributeName, value);
-        if (current == null) {
-            attributeMap.put(attributeName, value);
-        }
-        else {
-            attributeMap.put(attributeName, current + "," + value);
-        }
-    }
-
-    /**
-     * Adds a custom message to this configuration.
-     * @param key the message key
-     * @param value the custom message pattern
-     */
-    public void addMessage(String key, String value) {
-        messages.put(key, value);
-    }
-
-    /**
-     * Returns an unmodifiable map instance containing the custom messages
-     * for this configuration.
-     * @return unmodifiable map containing custom messages
-     */
-    @Override
-    public ImmutableMap<String, String> getMessages() {
-        return ImmutableMap.copyOf(messages);
-    }
+  /**
+   * Returns an unmodifiable map instance containing the custom messages
+   * for this configuration.
+   *
+   * @return unmodifiable map containing custom messages
+   */
+  @Override
+  public ImmutableMap<String, String> getMessages() {
+    return ImmutableMap.copyOf(messages);
+  }
 }
