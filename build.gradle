@@ -2,8 +2,9 @@ group 'com.sqatntu.stylechecker'
 version '0.1'
 
 apply plugin: 'java'
-apply plugin: 'idea'
 apply plugin: 'application'
+apply plugin: 'antlr'
+apply plugin: 'idea'
 
 sourceCompatibility = 1.7
 mainClassName = "com.sqatntu.stylechecker.Main"
@@ -13,5 +14,6 @@ repositories {
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.11'
+    antlr "org.antlr:antlr4:4.5" // use ANTLR version 4
+    testCompile'junit:junit:4.11'
 }
