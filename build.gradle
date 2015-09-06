@@ -16,4 +16,6 @@ repositories {
 dependencies {
     antlr "org.antlr:antlr4:4.5" // use ANTLR version 4
     testCompile'junit:junit:4.11'
+    compile 'commons-io:commons-io:2.4'
+    compile 'com.google.guava:guava:18.0'
 }
