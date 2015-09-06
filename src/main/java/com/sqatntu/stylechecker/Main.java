@@ -25,9 +25,6 @@ public class Main {
   public StyleReport styleReport;
 
   public static void main(String[] args) throws IOException {
-
-    System.out.println("Hello World");
-
     String testFilePath =
         "src/main/java/com/sqatntu/stylechecker/listener/MethodNameFormatListener.java";
 
@@ -46,11 +43,14 @@ public class Main {
 
     List<ReportContent> contents = main.styleReport.getReportContents();
 
+    Logger logger = new Logger(Main.class.getSimpleName());
+    logger.setLevel(Logger.Level.ALL);
+    logger.v("Hello World");
     for (ReportContent content : contents) {
-      System.out.println("Line: " + content.getLineNumber());
-      System.out.println("Column: " + content.getColumnNumber());
-      System.out.println("Message: " + content.getMessage());
-      System.out.println("Suggestion: " + content.getSuggestion());
+      logger.v("Line: " + content.getLineNumber());
+      logger.v("Column: " + content.getColumnNumber());
+      logger.v("Message: " + content.getMessage());
+      logger.v("Suggestion: " + content.getSuggestion());
     }
   }
 }
