@@ -8,7 +8,7 @@ public class ConfigurationLoader {
   DefaultConfiguration configuration;
 
   public ConfigurationLoader() {
-    configuration = new DefaultConfiguration("Default");
+    configuration = new DefaultConfiguration();
     configuration.addAttribute(
         StyleName.METHOD_NAME_FORMAT,
         StyleName.METHOD_NAME_FORMAT_CAMEL_CASE);
