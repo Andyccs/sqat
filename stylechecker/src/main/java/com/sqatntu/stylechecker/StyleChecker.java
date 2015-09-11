@@ -63,7 +63,7 @@ public class StyleChecker {
     JavaParser.CompilationUnitContext tree = parser.compilationUnit(); // parse 
 
     ParseTreeWalker walker = new ParseTreeWalker(); // create standard walker
-    MethodNameFormatListener extractor = new MethodNameFormatListener(configuration);
+    MethodNameFormatListener extractor = new MethodNameFormatListener(configuration, styleReport);
     walker.walk(extractor, tree); // initiate walk of tree with listener
 
     return styleReport;

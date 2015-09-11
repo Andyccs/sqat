@@ -38,7 +38,6 @@ import javax.inject.Singleton;
  */
 @Module(
     injects = {
-        MethodNameFormatListener.class,
         StyleChecker.class
     })
 public class StyleCheckerModule {
@@ -50,7 +49,6 @@ public class StyleCheckerModule {
   }
 
   @Provides
-  @Singleton
   StyleReport provideStyleReport() {
     return new StyleReport();
   }

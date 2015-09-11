@@ -40,13 +40,11 @@ import javax.inject.Inject;
 public class MethodNameFormatListener extends JavaBaseListener {
 
   private Configuration configuration;
+  private StyleReport report;
 
-  @Inject
-  StyleReport report;
-
-  public MethodNameFormatListener(Configuration configuration) {
+  public MethodNameFormatListener(Configuration configuration, StyleReport report) {
     this.configuration = configuration;
-    Dagger.inject(this);
+    this.report = report;
   }
 
   @Override
