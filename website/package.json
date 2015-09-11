@@ -16,7 +16,14 @@
   ],
   "author": "Andyccs",
   "license": "MIT",
-  "dependencies": { 
+  "dependencies": {
     "grpc": "0.10.1"
+  },
+  "devDependencies": {
+    "eslint": "^1.4.0",
+    "eslint-config-airbnb": "0.0.8",
+    "eslint-config-defaults": "^6.0.0",
+    "eslint-loader": "^1.0.0",
+    "eslint-plugin-react": "^3.3.2"
   }
 }
