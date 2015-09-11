@@ -24,6 +24,8 @@ package com.sqatntu.stylechecker;
 
 import com.sqatntu.stylechecker.api.JavaLexer;
 import com.sqatntu.stylechecker.api.JavaParser;
+import com.sqatntu.stylechecker.configuration.Configuration;
+import com.sqatntu.stylechecker.configuration.ConfigurationLoader;
 import com.sqatntu.stylechecker.injection.Dagger;
 import com.sqatntu.stylechecker.listener.MethodNameFormatListener;
 import com.sqatntu.stylechecker.report.StyleReport;
@@ -38,16 +40,22 @@ import javax.inject.Inject;
 /**
  * Created by andyccs on 6/9/15.
  */
-public class JavaStyleChecker {
+public class StyleChecker {
 
   @Inject
   public StyleReport styleReport;
 
-  public JavaStyleChecker() {
+  @Inject
+  ConfigurationLoader configurationLoader;
+
+  public StyleChecker() {
     Dagger.inject(this);
   }
 
-  public StyleReport check(String filePath) throws IOException {
+  public StyleReport check(String filePath, String configPath) throws IOException {
+    // Set up configuration loader
+    Configuration configuration = configurationLoader.loadConfiguration(configPath);
+
     ANTLRFileStream stream = new ANTLRFileStream(filePath);
     JavaLexer lexer = new JavaLexer(stream);
     CommonTokenStream tokens = new CommonTokenStream(lexer);
@@ -55,7 +63,7 @@ public class JavaStyleChecker {
     JavaParser.CompilationUnitContext tree = parser.compilationUnit(); // parse 
 
     ParseTreeWalker walker = new ParseTreeWalker(); // create standard walker
-    MethodNameFormatListener extractor = new MethodNameFormatListener();
+    MethodNameFormatListener extractor = new MethodNameFormatListener(configuration);
     walker.walk(extractor, tree); // initiate walk of tree with listener
 
     return styleReport;

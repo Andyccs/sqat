@@ -22,9 +22,11 @@
 
 package com.sqatntu.stylechecker.configuration;
 
+import java.io.IOException;
+
 /**
  * Created by andyccs on 6/9/15.
  */
 public interface ConfigurationLoader {
-  Configuration loadConfiguration();
+  Configuration loadConfiguration(String filePath) throws IOException;
 }

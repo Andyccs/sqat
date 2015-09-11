@@ -23,13 +23,14 @@
 package com.sqatntu.stylechecker;
 
 public class Logger {
-  enum Level {
+  public enum Level {
     ALL(0),
     VERBOSE(1),
     DEBUG(2),
     INFO(3),
     WARNING(4),
-    OFF(5);
+    ERROR(5),
+    OFF(6);
 
     private int numVal;
 
@@ -80,6 +81,13 @@ public class Logger {
       return;
     }
     formatPrint("WARNING", message);
+  }
+
+  public void e(String message) {
+    if (level.getNumVal() > Level.ERROR.getNumVal()) {
+      return;
+    }
+    formatPrint("ERROR", message);
   }
 
   private void formatPrint(String level, String message) {

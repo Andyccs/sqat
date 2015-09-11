@@ -20,23 +20,36 @@
  *
  */
 
-package com.sqatntu.stylechecker.injection;
+package com.sqatntu.stylechecker.configuration;
 
-import dagger.Module;
-import dagger.ObjectGraph;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+
+import java.lang.reflect.Type;
 
 /**
- * Created by andyccs on 6/9/15.
+ * Created by andyccs on 11/9/15.
  */
-public class Dagger {
+public class ConfigurationDeserializer implements JsonDeserializer<DefaultConfiguration> {
 
-  private static ObjectGraph objectGraph = ObjectGraph.create(new StyleCheckerModule());
+  @Override
+  public DefaultConfiguration deserialize(
+      JsonElement json,
+      Type typeOfT,
+      JsonDeserializationContext context)
+      throws JsonParseException {
 
-  public static void inject(Object object) {
-    objectGraph.inject(object);
-  }
+    JsonObject jsonObject = json.getAsJsonObject();
+    DefaultConfiguration configuration = new DefaultConfiguration();
 
-  public static void changeModule(Object module) {
-    objectGraph = ObjectGraph.create(module);
+    for (String styleName : StyleName.ALL_STYLE_NAMES) {
+      String value = jsonObject.get(styleName).getAsString();
+      configuration.addAttribute(styleName, value);
+    }
+
+    return configuration;
   }
 }

@@ -26,6 +26,7 @@ import com.sqatntu.stylechecker.StyleCheckerException;
 import com.sqatntu.stylechecker.api.JavaBaseListener;
 import com.sqatntu.stylechecker.api.JavaParser;
 import com.sqatntu.stylechecker.configuration.Configuration;
+import com.sqatntu.stylechecker.configuration.ConfigurationLoader;
 import com.sqatntu.stylechecker.configuration.StyleName;
 import com.sqatntu.stylechecker.injection.Dagger;
 import com.sqatntu.stylechecker.report.ReportContent;
@@ -38,13 +39,13 @@ import javax.inject.Inject;
  */
 public class MethodNameFormatListener extends JavaBaseListener {
 
-  @Inject
-  Configuration configuration;
+  private Configuration configuration;
 
   @Inject
   StyleReport report;
 
-  public MethodNameFormatListener() {
+  public MethodNameFormatListener(Configuration configuration) {
+    this.configuration = configuration;
     Dagger.inject(this);
   }
 

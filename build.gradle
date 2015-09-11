@@ -20,7 +20,5 @@ dependencies {
     compile 'commons-io:commons-io:2.4'
     compile 'com.squareup.dagger:dagger:1.2.2'
     compile 'com.squareup.dagger:dagger-compiler:1.2.2'
-//    compile 'com.fasterxml.jackson.core:jackson-core:2.5.3'
-//    compile 'com.fasterxml.jackson.core:jackson-databind:2.5.3'
-//    compile 'com.fasterxml.jackson.core:jackson-annotations:2.5.3'
+    compile 'com.google.code.gson:gson:2.3.1'
 }

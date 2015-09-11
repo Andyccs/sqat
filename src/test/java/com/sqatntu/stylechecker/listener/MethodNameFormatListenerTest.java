@@ -24,63 +24,23 @@ package com.sqatntu.stylechecker.listener;
 
 import static org.junit.Assert.assertEquals;
 
-import com.sqatntu.stylechecker.JavaStyleChecker;
-import com.sqatntu.stylechecker.configuration.Configuration;
-import com.sqatntu.stylechecker.configuration.ConfigurationLoader;
-import com.sqatntu.stylechecker.configuration.DefaultConfiguration;
-import com.sqatntu.stylechecker.configuration.StyleName;
-import com.sqatntu.stylechecker.injection.Dagger;
-import com.sqatntu.stylechecker.injection.StyleCheckerModule;
+import com.sqatntu.stylechecker.StyleChecker;
 import com.sqatntu.stylechecker.report.StyleReport;
-import dagger.Module;
-import dagger.Provides;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
-
-import javax.inject.Singleton;
 
 /**
  * Created by andyccs on 6/9/15.
  */
 public class MethodNameFormatListenerTest {
 
-  @Module(
-      injects = {
-          MethodNameFormatListenerTest.class,
-          MethodNameFormatListener.class,
-          JavaStyleChecker.class
-      },
-      includes = StyleCheckerModule.class,
-      overrides = true)
-  public class TestModule {
-
-    @Provides
-    @Singleton
-    ConfigurationLoader provideConfigurationLoader() {
-      return new ConfigurationLoader() {
-        @Override
-        public Configuration loadConfiguration() {
-          DefaultConfiguration configuration = new DefaultConfiguration();
-          configuration.addAttribute(
-              StyleName.METHOD_NAME_FORMAT,
-              StyleName.METHOD_NAME_FORMAT_CAMEL_CASE);
-          return configuration;
-        }
-      };
-    }
-  }
-
-  @Before
-  public void before() {
-    Dagger.changeModule(new TestModule());
-  }
-
   @Test
   public void methodNameFormatWithCamelCase() throws IOException {
-    JavaStyleChecker checker = new JavaStyleChecker();
-    StyleReport report = checker.check("src/test/resources/MethodNameFormatCamelCase.java");
+    StyleChecker checker = new StyleChecker();
+    StyleReport report = checker.check(
+        "src/test/resources/MethodNameFormatCamelCase.java",
+        "src/test/resources/MethodNameFormatListenerConfig.json");
     assertEquals(0, report.getReportContents().size());
   }
 }

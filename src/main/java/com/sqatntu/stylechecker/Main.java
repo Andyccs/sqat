@@ -22,26 +22,24 @@
 
 package com.sqatntu.stylechecker;
 
-import com.sqatntu.stylechecker.injection.Dagger;
 import com.sqatntu.stylechecker.report.ReportContent;
 import com.sqatntu.stylechecker.report.StyleReport;
 
 import java.io.IOException;
 import java.util.List;
 
-import javax.inject.Inject;
-
 /**
  * Main class for Style Checker
  */
 public class Main {
 
-
-  public static void main(String[] args) throws IOException {
+  public static void main(String[] args) throws IOException, StyleCheckerException {
     String testFilePath =
-        "src/main/java/com/sqatntu/stylechecker/listener/MethodNameFormatListener.java";
-    JavaStyleChecker checker = new JavaStyleChecker();
-    StyleReport styleReport = checker.check(testFilePath);
+        "src/test/resources/MethodNameFormatCamelCase.java";
+    String configFilePath =
+        "src/test/resources/MethodNameFormatListenerConfig.json";
+    StyleChecker checker = new StyleChecker();
+    StyleReport styleReport = checker.check(testFilePath, configFilePath);
 
     List<ReportContent> contents = styleReport.getReportContents();
 

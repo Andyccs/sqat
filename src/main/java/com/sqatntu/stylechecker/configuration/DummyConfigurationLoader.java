@@ -36,7 +36,7 @@ public class DummyConfigurationLoader implements ConfigurationLoader {
         StyleName.METHOD_NAME_FORMAT_CAMEL_CASE);
   }
 
-  public Configuration loadConfiguration() {
+  public Configuration loadConfiguration(String filePath) {
     return configuration;
   }
 }

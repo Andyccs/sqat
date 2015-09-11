@@ -20,23 +20,34 @@
  *
  */
 
-package com.sqatntu.stylechecker.injection;
+package com.sqatntu.stylechecker.configuration;
 
-import dagger.Module;
-import dagger.ObjectGraph;
+import static org.junit.Assert.assertEquals;
+
+import com.sqatntu.stylechecker.StyleCheckerException;
+import org.junit.Test;
+
+import java.io.IOException;
 
 /**
- * Created by andyccs on 6/9/15.
+ * Created by andyccs on 11/9/15.
  */
-public class Dagger {
+public class JsonConfigurationLoaderTest {
 
-  private static ObjectGraph objectGraph = ObjectGraph.create(new StyleCheckerModule());
-
-  public static void inject(Object object) {
-    objectGraph.inject(object);
+  @Test(expected = IOException.class)
+  public void loadConfigurationFromInvalidPath() throws IOException {
+    String configFilePath = "invalid_path/invalid.json";
+    JsonConfigurationLoader loader = new JsonConfigurationLoader();
+    loader.loadConfiguration(configFilePath);
   }
 
-  public static void changeModule(Object module) {
-    objectGraph = ObjectGraph.create(module);
+  @Test
+  public void loadOneConfiguration() throws StyleCheckerException, IOException {
+    String configFilePath = "src/test/resources/MethodNameFormatListenerConfig.json";
+    JsonConfigurationLoader loader = new JsonConfigurationLoader();
+
+    Configuration config = loader.loadConfiguration(configFilePath);
+    String methodNameFormatValue = config.getAttribute(StyleName.METHOD_NAME_FORMAT);
+    assertEquals(StyleName.METHOD_NAME_FORMAT_CAMEL_CASE, methodNameFormatValue);
   }
 }

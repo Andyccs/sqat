@@ -22,10 +22,10 @@
 
 package com.sqatntu.stylechecker.injection;
 
-import com.sqatntu.stylechecker.JavaStyleChecker;
-import com.sqatntu.stylechecker.configuration.Configuration;
+import com.sqatntu.stylechecker.StyleChecker;
 import com.sqatntu.stylechecker.configuration.ConfigurationLoader;
 import com.sqatntu.stylechecker.configuration.DummyConfigurationLoader;
+import com.sqatntu.stylechecker.configuration.JsonConfigurationLoader;
 import com.sqatntu.stylechecker.listener.MethodNameFormatListener;
 import com.sqatntu.stylechecker.report.StyleReport;
 import dagger.Module;
@@ -39,20 +39,14 @@ import javax.inject.Singleton;
 @Module(
     injects = {
         MethodNameFormatListener.class,
-        JavaStyleChecker.class
+        StyleChecker.class
     })
 public class StyleCheckerModule {
 
   @Provides
   @Singleton
   ConfigurationLoader provideConfigurationLoader() {
-    return new DummyConfigurationLoader();
-  }
-
-  @Provides
-  @Singleton
-  Configuration provideConfiguration(ConfigurationLoader configurationLoader) {
-    return configurationLoader.loadConfiguration();
+    return new JsonConfigurationLoader();
   }
 
   @Provides
