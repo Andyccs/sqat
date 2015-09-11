@@ -48,7 +48,6 @@ idea {
         sourceDirs += file('build/generated/source/proto/main/java')
         sourceDirs += file('build/generated-src/antlr/main')
         excludeDirs -= file('build')
-        excludeDirs += file('build/classes')
         excludeDirs += file('build/dependency-cache')
         excludeDirs += file('build/distributions')
         excludeDirs += file('build/extracted-include-protos')
