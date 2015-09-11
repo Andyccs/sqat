@@ -33,7 +33,7 @@ import java.lang.reflect.Type;
 /**
  * Created by andyccs on 11/9/15.
  */
-public class ConfigurationDeserializer implements JsonDeserializer<DefaultConfiguration> {
+class ConfigurationDeserializer implements JsonDeserializer<DefaultConfiguration> {
 
   @Override
   public DefaultConfiguration deserialize(

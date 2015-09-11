@@ -80,18 +80,22 @@ public class Logger {
     if (level.getNumVal() > Level.WARNING.getNumVal()) {
       return;
     }
-    formatPrint("WARNING", message);
+    formatErrorPrint("WARNING", message);
   }
 
   public void e(String message) {
     if (level.getNumVal() > Level.ERROR.getNumVal()) {
       return;
     }
-    formatPrint("ERROR", message);
+    formatErrorPrint("ERROR", message);
   }
 
   private void formatPrint(String level, String message) {
     System.out.printf("%-8s %-10s %s\n", level, className, message);
+  }
+
+  private void formatErrorPrint(String level, String message) {
+    System.err.printf("%-8s %-10s %s\n", level, className, message);
   }
 
 }
