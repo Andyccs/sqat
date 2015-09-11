@@ -1,3 +1,12 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.google.protobuf:protobuf-gradle-plugin:0.7.0'
+    }
+}
+
 group 'com.sqatntu.stylechecker'
 version '0.1'
 
@@ -6,6 +15,7 @@ apply plugin: 'application'
 apply plugin: 'antlr'
 apply plugin: 'idea'
 apply plugin: 'checkstyle'
+apply plugin: 'com.google.protobuf'
 
 sourceCompatibility = 1.7
 mainClassName = "com.sqatntu.stylechecker.Main"
@@ -21,4 +31,32 @@ dependencies {
     compile 'com.squareup.dagger:dagger:1.2.2'
     compile 'com.squareup.dagger:dagger-compiler:1.2.2'
     compile 'com.google.code.gson:gson:2.3.1'
+    compile 'com.google.protobuf:protobuf-java:3.0.0-beta-1'
+}
+
+
+protobuf {
+    // Configure the protoc executable
+    protoc {
+        // Download from repositories
+        artifact = 'com.google.protobuf:protoc:3.0.0-beta-1'
+    }
+}
+
+idea {
+    module {
+        sourceDirs += file('build/generated/source/proto/main/java')
+        sourceDirs += file('build/generated-src/antlr/main')
+        excludeDirs -= file('build')
+        excludeDirs += file('build/classes')
+        excludeDirs += file('build/dependency-cache')
+        excludeDirs += file('build/distributions')
+        excludeDirs += file('build/extracted-include-protos')
+        excludeDirs += file('build/libs')
+        excludeDirs += file('build/reports')
+        excludeDirs += file('build/resources')
+        excludeDirs += file('build/scripts')
+        excludeDirs += file('build/test-results')
+        excludeDirs += file('build/tmp')
+    }
 }
