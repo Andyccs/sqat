@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+option java_package = "com.sqatntu.stylechecker.proto";
+
+package stylechecker;
+
+service StyleCheck {
+  rpc Check (StyleCheckRequest) returns (StyleCheckReply) {}
+}
+
+message StyleCheckRequest {
+  string filePath = 1;
+  string configurationFilePath = 2;
+}
+
+message StyleCheckReply {
+  repeated StyleCheckReport reports = 1;
+}
+
+message StyleCheckReport {
+  uint32 lineNumber = 1;
+  uint32 columnNumber = 2;
+  string reportMessage = 3;
+  string suggestion = 4;
+}
