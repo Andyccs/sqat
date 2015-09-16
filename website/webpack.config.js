@@ -11,11 +11,12 @@ module.exports = {
   },
   module: {
     loaders: [{
-      test: /\.css$/, loader: 'style!css'
+      test: /\.css$/,
+      loader: 'style!css'
     }, {
       // tell webpack to use jsx-loader for all *.jsx files
       test: /\.jsx$/,
-      loader: 'jsx-loader?insertPragma=React.DOM&harmony'
+      loaders: ['jsx-loader?insertPragma=React.DOM&harmony', 'babel']
     }]
   },
   externals: {
@@ -24,6 +25,7 @@ module.exports = {
     'react': 'React'
   },
   resolve: {
+    // you can now require('file') instead of require('file.coffee')
     extensions: ['', '.js', '.jsx']
   }
 };

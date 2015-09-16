@@ -20,6 +20,7 @@ var VIEWS_PATH = path.join(__dirname, '../views');
 app.set('views', VIEWS_PATH);
 app.set('view engine', 'jade');
 
+// You can add exlude paths for jade auto routing using regex
 jadeAutoRouting(app);
 
 // Routing

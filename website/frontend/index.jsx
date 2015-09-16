@@ -1,6 +1,6 @@
-'use strict';
+// var HelloReact = require('./HelloReact');
+// var React = require('react');
+import React from 'react';
+import HelloReact from './HelloReact';
 
-var React = require('react');
-var Hello = require('./Hello');
-
-React.render(<Hello />, document.getElementById('content'));
+React.render(<HelloReact />, document.getElementById('content'));
