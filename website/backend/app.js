@@ -1,6 +1,7 @@
 var express = require('express');
 var http = require('http');
 var path = require('path');
+var jadeAutoRouting = require('./jadeAutoRouting');
 
 var PORT = process.env.PORT || 8080;
 var app = express();
@@ -14,10 +15,12 @@ var staticDir = express.static(PUBLIC_DIR);
 app.use(staticDir);
 
 // Setting view Engine
-var VIEWS_PATH = path.join(__dirname, 'views');
+var VIEWS_PATH = path.join(__dirname, '../views');
 
 app.set('views', VIEWS_PATH);
 app.set('view engine', 'jade');
+
+jadeAutoRouting(app);
 
 // Routing
 

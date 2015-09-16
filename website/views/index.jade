@@ -1,0 +1,16 @@
+doctype html
+html
+  head
+    title Basic Property Grid
+    // include react
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/react/0.13.0/react-with-addons.js')
+  body
+    #content
+    // this is where the root react component will get rendered
+    // include the webpack-dev-server script so our scripts get reloaded when we make a change
+    // we'll run the webpack dev server on port 8090, so make sure it is correct
+    script(src='http://localhost:8090/webpack-dev-server.js')
+    
+    // include the bundle that contains all our scripts, produced by webpack
+    // the bundle is served by the webpack-dev-server, so serve it also from localhost:8090
+    script(type='text/javascript', src='http://localhost:8090/assets/bundle.js')

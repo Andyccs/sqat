@@ -22,6 +22,7 @@
     "express": "^4.13.3",
     "grpc": "0.10.1",
     "jade": "^1.11.0",
+    "node-dir": "^0.1.9",
     "react": "^0.13.3"
   },
   "devDependencies": {
