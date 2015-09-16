@@ -12,7 +12,7 @@ class Title extends React.Component {
   }
 }
 
-class SubmitSourceCodeInputArea extends React.Component {
+class InputArea extends React.Component {
   constructor() {
     super();
   }
@@ -26,7 +26,22 @@ class SubmitSourceCodeInputArea extends React.Component {
   }
 }
 
-class SubmitSourceCodeButton extends React.Component {
+class ProgressBar extends React.Component {
+  constructor() {
+    super();
+  }
+
+  render() {
+    return  <div className='progress'>
+              <div
+                className='progress-bar'
+                style={{width: 60 + '%'}}>
+              </div>
+            </div>;
+  }
+}
+
+class SubmitButton extends React.Component {
   constructor() {
     super();
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -72,10 +87,13 @@ class SubmitSourceCode extends React.Component {
                 <Title data={this.state.data}/>
               </div>
               <div className='row'>
-                <SubmitSourceCodeInputArea />
+                <InputArea />
               </div>
               <div className='row'>
-                <SubmitSourceCodeButton
+                <ProgressBar />
+              </div>
+              <div className='row'>
+                <SubmitButton
                   data={this.state.data}
                   onSourceCodeSubmit={this.handleSourceCodeSubmit}/>
               </div>
