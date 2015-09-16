@@ -1,4 +1,4 @@
 import React from 'react';
-import HelloReact from './HelloReact';
+import SubmitSourceCode from './SubmitSourceCode';
 
-React.render(<HelloReact />, document.getElementById('content'));
+React.render(<SubmitSourceCode />, document.getElementById('content'));
