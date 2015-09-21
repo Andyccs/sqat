@@ -32,6 +32,10 @@ export default class SubmitSourceCode extends React.Component {
     SubmitSourceCodeAction.fetchStyleCheckerReport();
   }
 
+  _onSubmitAgain() {
+    SubmitSourceCodeAction.submitAgain();
+  }
+
   render() {
     return  <div>
 
@@ -56,6 +60,7 @@ export default class SubmitSourceCode extends React.Component {
                 <div className='row'>
                   <SubmitButton
                     data={this.state}
+                    onSubmitAgain={this._onSubmitAgain}
                     onSourceCodeSubmit={this._onSourceCodeSubmit} />
                 </div>
 

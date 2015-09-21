@@ -22,6 +22,10 @@ class SubmitSourceCodeAction {
   fetchStyleCheckerReportFailed(errorMessage) {
     this.dispatch(errorMessage);
   }
+
+  submitAgain() {
+    this.dispatch();
+  }
 }
 
 module.exports = alt.createActions(SubmitSourceCodeAction);

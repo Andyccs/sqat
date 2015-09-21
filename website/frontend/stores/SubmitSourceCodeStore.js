@@ -11,7 +11,8 @@ class SubmitSourceCodeStore {
     this.bindListeners({
       handleFetchStyleCheckerReport: SubmitSourceCodeAction.fetchStyleCheckerReport,
       handleSourceCodeSubmitSuccess: SubmitSourceCodeAction.fetchStyleCheckerReportSuccess,
-      handleFetchStyleCheckerReportFailed: SubmitSourceCodeAction.fetchStyleCheckerReportFailed
+      handleFetchStyleCheckerReportFailed: SubmitSourceCodeAction.fetchStyleCheckerReportFailed,
+      handleSubmitAgain: SubmitSourceCodeAction.submitAgain
     });
   }
 
@@ -29,6 +30,12 @@ class SubmitSourceCodeStore {
   handleFetchStyleCheckerReportFailed(errorMessage) {
     this.currentState = SubmitSourceCodeState.ERROR;
     this.errorMessage = errorMessage;
+  }
+
+  handleSubmitAgain() {
+    this.currentState = SubmitSourceCodeState.INITIAL;
+    this.errorMessage = null;
+    this.report = null;
   }
 }
 
