@@ -6,10 +6,13 @@ export default class ProgressBar extends React.Component {
   }
 
   render() {
+    var hidden = !this.props.data.loading;
+
     return  <div className='progress'>
               <div
-                className='progress-bar'
-                style={{width: 60 + '%'}}>
+                hidden={hidden}
+                className='progress-bar progress-bar-striped active'
+                style={{width: 99 + '%'}}>
               </div>
             </div>;
   }

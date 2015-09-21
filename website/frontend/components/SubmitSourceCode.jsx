@@ -29,7 +29,7 @@ export default class SubmitSourceCode extends React.Component {
   }
 
   _onSourceCodeSubmit() {
-    SubmitSourceCodeAction.updateClicked(true);
+    SubmitSourceCodeAction.fetchStyleCheckerReport();
   }
 
   render() {
@@ -48,13 +48,14 @@ export default class SubmitSourceCode extends React.Component {
                 </div>
 
                 <div className='row'>
-                  <ProgressBar />
+                  <ProgressBar
+                    data={this.state} />
                 </div>
 
                 <div className='row'>
                   <SubmitButton
                     data={this.state}
-                    onSourceCodeSubmit={this._onSourceCodeSubmit}/>
+                    onSourceCodeSubmit={this._onSourceCodeSubmit} />
                 </div>
 
               </div>

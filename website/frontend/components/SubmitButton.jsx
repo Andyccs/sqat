@@ -11,12 +11,12 @@ export default class SubmitButton extends React.Component {
   }
 
   render() {
-    var clicked = this.props.data.clicked;
+    var success = this.props.data.success;
 
     return  <button
               className='btn btn-material-blue primary'
               onClick={this.handleSubmit}
-              disabled={clicked}>
+              disabled={success}>
 
               Submit
 
