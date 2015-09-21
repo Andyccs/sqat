@@ -1,4 +1,5 @@
 import React from 'react';
+import Header from './Header';
 import InputArea from './InputArea';
 import ProgressBar from './ProgressBar';
 import SubmitButton from './SubmitButton';
@@ -31,21 +32,32 @@ export default class SubmitSourceCode extends React.Component {
   }
 
   render() {
-    return  <div className='container'>
-              <div className='row'>
-                <Title data={this.state}/>
+    return  <div className='mainContent'>
+
+              <Header />
+
+              <div className='container'>
+
+                <div className='row'>
+                  <Title data={this.state}/>
+                </div>
+
+                <div className='row'>
+                  <InputArea />
+                </div>
+
+                <div className='row'>
+                  <ProgressBar />
+                </div>
+
+                <div className='row'>
+                  <SubmitButton
+                    data={this.state}
+                    onSourceCodeSubmit={this._onSourceCodeSubmit}/>
+                </div>
+
               </div>
-              <div className='row'>
-                <InputArea />
-              </div>
-              <div className='row'>
-                <ProgressBar />
-              </div>
-              <div className='row'>
-                <SubmitButton
-                  data={this.state}
-                  onSourceCodeSubmit={this._onSourceCodeSubmit}/>
-              </div>
+
             </div>;
   }
 }
