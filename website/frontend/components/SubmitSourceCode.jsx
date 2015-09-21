@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from './Header';
+import Footer from './Footer';
 import InputArea from './InputArea';
 import ProgressBar from './ProgressBar';
 import SubmitButton from './SubmitButton';
@@ -32,7 +33,7 @@ export default class SubmitSourceCode extends React.Component {
   }
 
   render() {
-    return  <div className='mainContent'>
+    return  <div>
 
               <Header />
 
@@ -57,6 +58,8 @@ export default class SubmitSourceCode extends React.Component {
                 </div>
 
               </div>
+
+              <Footer />
 
             </div>;
   }
