@@ -1,6 +1,6 @@
 import React from 'react';
 import SubmitSourceCodeState from '../constants/SubmitSourceCodeState';
-import * as p from 'babel/polyfill';
+import from 'babel/polyfill';
 import TextAreaAutosize from 'react-textarea-autosize';
 
 export default class InputArea extends React.Component {
