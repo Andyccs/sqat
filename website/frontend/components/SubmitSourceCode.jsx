@@ -44,7 +44,8 @@ export default class SubmitSourceCode extends React.Component {
                 </div>
 
                 <div className='row'>
-                  <InputArea />
+                  <InputArea
+                    data={this.state} />
                 </div>
 
                 <div className='row'>
