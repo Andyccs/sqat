@@ -1,4 +1,5 @@
 import React from 'react';
+import SubmitSourceCodeState from '../constants/SubmitSourceCodeState';
 
 export default class InputArea extends React.Component {
   constructor() {
@@ -6,7 +7,8 @@ export default class InputArea extends React.Component {
   }
 
   render() {
-    var disable = this.props.data.loading || this.props.data.success;
+
+    var disable = this.props.data.currentState != SubmitSourceCodeState.INITIAL;
 
     return  <textarea
               disabled={disable}

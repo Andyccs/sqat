@@ -1,25 +1,39 @@
 import React from 'react';
+import SubmitSourceCodeState from '../constants/SubmitSourceCodeState';
 
 export default class SubmitButton extends React.Component {
   constructor() {
     super();
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleSubmit(e) {
-    this.props.onSourceCodeSubmit();
   }
 
   render() {
-    var success = this.props.data.success;
+    var handleSubmit = this.props.onSourceCodeSubmit;
+    var handleSubmitAgain = this.props.onSubmitAgain;
+    var currentState = this.props.data.currentState;
+    var disabled = currentState == SubmitSourceCodeState.SUBMITTING;
 
-    return  <button
-              className='btn btn-material-blue primary'
-              onClick={this.handleSubmit}
-              disabled={success}>
+    if(currentState == SubmitSourceCodeState.SUCCESS ||
+      currentState == SubmitSourceCodeState.ERROR) {
 
-              Submit
+      var buttonVariation =
+        currentState == SubmitSourceCodeState.ERROR ? 'btn-danger' : 'btn-success';
 
-            </button>;
+      return  <button
+                className={'btn ' + buttonVariation}
+                onClick={handleSubmitAgain}>
+
+                Submit Again
+
+              </button>;
+    } else {
+      return  <button
+                className='btn btn-primary'
+                onClick={handleSubmit}
+                disabled={disabled}>
+
+                Submit
+
+              </button>;
+    }
   }
 }

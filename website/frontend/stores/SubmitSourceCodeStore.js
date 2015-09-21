@@ -1,10 +1,10 @@
-var alt = require('../alt');
-var SubmitSourceCodeAction = require('../actions/SubmitSourceCodeAction');
+import alt from '../alt';
+import SubmitSourceCodeAction from '../actions/SubmitSourceCodeAction';
+import SubmitSourceCodeState from '../constants/SubmitSourceCodeState';
 
 class SubmitSourceCodeStore {
   constructor() {
-    this.success = false;
-    this.loading = false;
+    this.currentState = SubmitSourceCodeState.INITIAL;
     this.errorMessage = null;
     this.report = null;
 
@@ -16,24 +16,19 @@ class SubmitSourceCodeStore {
   }
 
   handleSourceCodeSubmitSuccess(report) {
-    this.success = true;
-    this.loading = false;
+    this.currentState = SubmitSourceCodeState.SUCCESS;
     this.report = report;
     console.log(this.report);
     // optionally return false to suppress the store change event
   }
 
   handleFetchStyleCheckerReport() {
-    // reset the array while we're fetching new locations so React can
-    // be smart and render a spinner for us since the data is empty.
-    if(!this.loading) {
-      this.loading = true;
-    }
+    this.currentState = SubmitSourceCodeState.SUBMITTING;
   }
 
   handleFetchStyleCheckerReportFailed(errorMessage) {
+    this.currentState = SubmitSourceCodeState.ERROR;
     this.errorMessage = errorMessage;
-    this.loading = false;
   }
 }
 
