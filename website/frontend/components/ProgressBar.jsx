@@ -1,5 +1,4 @@
 import React from 'react';
-import SubmitSourceCodeState from '../constants/SubmitSourceCodeState';
 
 export default class ProgressBar extends React.Component {
   constructor() {
@@ -7,9 +6,7 @@ export default class ProgressBar extends React.Component {
   }
 
   render() {
-    let hidden = this.props.data.currentState != SubmitSourceCodeState.SUBMITTING;
-
-    return  <div className='progress' hidden={hidden}>
+    return  <div className='progress'>
               <div
                 className='progress-bar progress-bar-striped active'
                 style={{width: 99 + '%'}}>

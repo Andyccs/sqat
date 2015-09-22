@@ -8,6 +8,7 @@ import Title from './Title';
 import StyleReport from './StyleReport';
 import SubmitSourceCodeStore from '../stores/SubmitSourceCodeStore';
 import SubmitSourceCodeAction from '../actions/SubmitSourceCodeAction';
+import SubmitSourceCodeState from '../constants/SubmitSourceCodeState';
 
 export default class SubmitSourceCode extends React.Component {
 
@@ -42,6 +43,10 @@ export default class SubmitSourceCode extends React.Component {
   }
 
   render() {
+    let renderInputArea = this.state.currentState == SubmitSourceCodeState.INITIAL;
+    let renderProgressBar = this.state.currentState == SubmitSourceCodeState.SUBMITTING;
+    let renderStyeReport = this.state.currentState == SubmitSourceCodeState.SUCCESS;
+
     return  <div>
 
               <Header />
@@ -52,21 +57,27 @@ export default class SubmitSourceCode extends React.Component {
                   <Title data={this.state}/>
                 </div>
 
+                { renderInputArea &&
                 <div className='row'>
                   <InputArea
                     data={this.state}
                     onTextChanged={this._onTextChange}/>
                 </div>
+                }
 
+                { renderProgressBar &&
                 <div className='row'>
                   <ProgressBar
                     data={this.state} />
                 </div>
+                }
 
+                { renderStyeReport &&
                 <div className='row'>
                   <StyleReport
                     data={this.state} />
                 </div>
+                }
 
                 <div className='row'>
                   <SubmitButton

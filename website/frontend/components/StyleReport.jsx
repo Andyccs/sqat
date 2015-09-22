@@ -44,16 +44,14 @@ export default class StyleReport extends React.Component {
     let currentState = this.props.data.currentState;
     let sourceCode = this.props.data.sourceCode;
     let report = this.props.data.report;
-    let hidden = currentState != SubmitSourceCodeState.SUCCESS;
 
     let aggregatedReports = [];
 
-    if(!hidden) {
+    if(currentState == SubmitSourceCodeState.SUCCESS) {
       aggregatedReports = this.aggregateSourceAndReport(sourceCode, report);
     }
 
-    return  <table 
-              hidden={hidden}>
+    return  <table>
               <tbody>
                 {aggregatedReports.map((report) => {
                   return  <tr key={report.lineNumber} style={[styles.row]}>
