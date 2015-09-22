@@ -49,7 +49,6 @@ export default class StyleReport extends React.Component {
 
     if(!hidden) {
       aggregatedReports = this.aggregateSourceAndReport(sourceCode, report);
-      console.log(aggregatedReports);
     }
 
     return  <table
