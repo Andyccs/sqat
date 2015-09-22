@@ -1,7 +1,8 @@
 import alt from '../alt';
-require('es6-promise').polyfill();
-require('isomorphic-fetch');
-// import SubmitSourceCodeAction from '../actions/SubmitSourceCodeAction';
+import 'isomorphic-fetch';
+import * as promise from 'es6-promise';
+
+promise.polyfill();
 
 const StyleCheckerReportSource = (alt) => {
   return {
