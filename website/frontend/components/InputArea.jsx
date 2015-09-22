@@ -9,9 +9,9 @@ export default class InputArea extends React.Component {
   }
 
   render() {
-    var handleTextChanged = this.props.onTextChanged;
-    var disable = this.props.data.currentState != SubmitSourceCodeState.INITIAL;
-    var hidden = this.props.data.currentState == SubmitSourceCodeState.SUCCESS;
+    let handleTextChanged = this.props.onTextChanged;
+    let disable = this.props.data.currentState != SubmitSourceCodeState.INITIAL;
+    let hidden = this.props.data.currentState == SubmitSourceCodeState.SUCCESS;
 
     return  <div hidden={hidden}>
               <TextAreaAutosize

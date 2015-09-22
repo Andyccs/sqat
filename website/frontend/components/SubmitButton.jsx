@@ -7,15 +7,15 @@ export default class SubmitButton extends React.Component {
   }
 
   render() {
-    var handleSubmit = this.props.onSourceCodeSubmit;
-    var handleSubmitAgain = this.props.onSubmitAgain;
-    var currentState = this.props.data.currentState;
-    var disabled = currentState == SubmitSourceCodeState.SUBMITTING;
+    let handleSubmit = this.props.onSourceCodeSubmit;
+    let handleSubmitAgain = this.props.onSubmitAgain;
+    let currentState = this.props.data.currentState;
+    let disabled = currentState == SubmitSourceCodeState.SUBMITTING;
 
     if(currentState == SubmitSourceCodeState.SUCCESS ||
       currentState == SubmitSourceCodeState.ERROR) {
 
-      var buttonVariation =
+      let buttonVariation =
         currentState == SubmitSourceCodeState.ERROR ? 'btn-danger' : 'btn-success';
 
       return  <button

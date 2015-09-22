@@ -7,11 +7,11 @@ export default class StyleReport extends React.Component {
   }
 
   aggregateSourceAndReport(sourceCode, reports) {
-    var lineSourceCodes = sourceCode.split('\n');
-    var lineReports = [];
+    let lineSourceCodes = sourceCode.split('\n');
+    let lineReports = [];
 
-    for(var i = 0; i < reports.length; i++) {
-      var report = reports[i];
+    for(let i = 0; i < reports.length; i++) {
+      let report = reports[i];
 
       lineReports[report.lineNumber] = {
         columnNumber: report.columnNumber,
@@ -20,15 +20,14 @@ export default class StyleReport extends React.Component {
       };
     }
 
-    var aggregatedReports = [];
+    let aggregatedReports = [];
 
-    for(var i = 0; i < lineSourceCodes.length; i++) {
-      var source = lineSourceCodes[i].replace(/ /g, '\u00a0');
+    for(let i = 0; i < lineSourceCodes.length; i++) {
+      let source = lineSourceCodes[i].replace(/ /g, '\u00a0');
 
       if(lineReports[i + 1] != null) {
-        var message = lineReports[i + 1].reportMessage;
-        var suggestion = lineReports[i + 1].suggestion;
-        var source = lineSourceCodes[i].replace(' ', '&nbsp;');
+        let message = lineReports[i + 1].reportMessage;
+        let suggestion = lineReports[i + 1].suggestion;
 
         aggregatedReports[i] = new Report(i + 1, source, message, suggestion);
       } else {
@@ -40,12 +39,12 @@ export default class StyleReport extends React.Component {
   }
 
   render() {
-    var currentState = this.props.data.currentState;
-    var sourceCode = this.props.data.sourceCode;
-    var report = this.props.data.report;
-    var hidden = currentState != SubmitSourceCodeState.SUCCESS;
+    let currentState = this.props.data.currentState;
+    let sourceCode = this.props.data.sourceCode;
+    let report = this.props.data.report;
+    let hidden = currentState != SubmitSourceCodeState.SUCCESS;
 
-    var aggregatedReports = [];
+    let aggregatedReports = [];
 
     if(!hidden) {
       aggregatedReports = this.aggregateSourceAndReport(sourceCode, report);

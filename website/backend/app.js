@@ -1,11 +1,13 @@
+'use strict';
+
 var express = require('express');
 var http = require('http');
 var path = require('path');
 var jadeAutoRouting = require('./jadeAutoRouting');
 var bodyParser = require('body-parser');
 
-var PORT = process.env.PORT || 8080;
-var app = express();
+const PORT = process.env.PORT || 8080;
+const app = express();
 
 app.set('port', PORT);
 
@@ -34,7 +36,7 @@ jadeAutoRouting(app);
 
 // Routing
 app.post('/submitSourceCode', function(req, resp) {
-  var sourceCode = req.body.sourceCode;
+  let sourceCode = req.body.sourceCode;
 
   setTimeout(function() {
     resp.setHeader('Content-Type', 'application/json');

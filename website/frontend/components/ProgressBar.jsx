@@ -7,7 +7,7 @@ export default class ProgressBar extends React.Component {
   }
 
   render() {
-    var hidden = this.props.data.currentState != SubmitSourceCodeState.SUBMITTING;
+    let hidden = this.props.data.currentState != SubmitSourceCodeState.SUBMITTING;
 
     return  <div className='progress' hidden={hidden}>
               <div
