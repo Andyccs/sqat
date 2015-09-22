@@ -1,6 +1,7 @@
 import alt from '../alt';
 import 'isomorphic-fetch';
 import * as promise from 'es6-promise';
+import axios from 'axios';
 
 promise.polyfill();
 
@@ -8,20 +9,14 @@ const StyleCheckerReportSource = (alt) => {
   return {
     performStyleCheck: {
       remote(state) {
-        return new Promise((resolve, reject) => {
-          fetch(`submitSourceCode?source=${state.sourceCode}`).
-            then((response) => {
-              if(response.status >= 400) {
-                throw new Error('Bad response from server');
-              }
-
-              return response.json();
-            }).
-            then((report) => {
-              resolve(report);
-            });
+        return axios.post('submitSourceCode', {
+          sourceCode: state.sourceCode
+        }).then((response) => {
+          console.log(response);
+          return response.json;
+        }).catch((response) => {
+          throw new Error('Bad response from server');
         });
-
       },
 
       // (optional)

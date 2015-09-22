@@ -38,6 +38,7 @@ class SubmitSourceCodeStore {
   handleFetchStyleCheckerReportFailed(errorMessage) {
     this.currentState = SubmitSourceCodeState.ERROR;
     this.errorMessage = errorMessage;
+    console.log(errorMessage);
   }
 
   handleSubmitAgain() {
