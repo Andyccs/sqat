@@ -1,7 +1,11 @@
 import alt from '../alt';
 import SubmitSourceCodeAction from '../actions/SubmitSourceCodeAction';
 import SubmitSourceCodeState from '../constants/SubmitSourceCodeState';
+import styleCheckerReportSource from '../sources/StyleCheckerReportSource';
+import {datasource} from 'alt/utils/decorators';
 
+// Only for es6
+// @datasource(StyleCheckerReportSource)
 class SubmitSourceCodeStore {
   constructor() {
     this.currentState = SubmitSourceCodeState.INITIAL;
@@ -14,17 +18,21 @@ class SubmitSourceCodeStore {
       handleFetchStyleCheckerReportFailed: SubmitSourceCodeAction.fetchStyleCheckerReportFailed,
       handleSubmitAgain: SubmitSourceCodeAction.submitAgain
     });
+
+    this.registerAsync(styleCheckerReportSource(alt));
   }
 
   handleSourceCodeSubmitSuccess(report) {
     this.currentState = SubmitSourceCodeState.SUCCESS;
     this.report = report;
-    console.log(this.report);
     // optionally return false to suppress the store change event
   }
 
   handleFetchStyleCheckerReport() {
     this.currentState = SubmitSourceCodeState.SUBMITTING;
+    if(!this.getInstance().isLoading()) {
+      this.getInstance().performStyleCheck();
+    }
   }
 
   handleFetchStyleCheckerReportFailed(errorMessage) {
