@@ -4,8 +4,7 @@ import SubmitSourceCodeState from '../constants/SubmitSourceCodeState';
 import styleCheckerReportSource from '../sources/StyleCheckerReportSource';
 import {datasource} from 'alt/utils/decorators';
 
-// Only for es6
-// @datasource(StyleCheckerReportSource)
+@datasource(styleCheckerReportSource)
 class SubmitSourceCodeStore {
   constructor() {
     this.currentState = SubmitSourceCodeState.INITIAL;
@@ -20,8 +19,6 @@ class SubmitSourceCodeStore {
       handleSubmitAgain: SubmitSourceCodeAction.submitAgain,
       handleSourceCodeChanged: SubmitSourceCodeAction.sourceCodeChanged
     });
-
-    this.registerAsync(styleCheckerReportSource(alt));
   }
 
   handleSourceCodeSubmitSuccess(report) {

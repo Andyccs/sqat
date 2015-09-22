@@ -19,7 +19,7 @@ module.exports = {
       loaders: ['jsx-loader?insertPragma=React.DOM&harmony', 'babel']
     }, {
       test: /\.js$/,
-      loaders: ['babel']
+      loaders: ['babel?stage=1']
     }]
   },
   externals: {
