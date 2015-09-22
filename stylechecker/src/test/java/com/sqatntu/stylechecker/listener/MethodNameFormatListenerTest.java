@@ -40,7 +40,7 @@ public class MethodNameFormatListenerTest {
     StyleChecker checker = new StyleChecker();
     StyleReport report = checker.check(
         "src/test/resources/MethodNameFormatCamelCase.java",
-        "src/test/resources/MethodNameFormatListenerConfig.json");
+        "src/test/resources/MethodNameCamelCase.json");
     assertEquals(0, report.getReportContents().size());
   }
 }

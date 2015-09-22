@@ -32,7 +32,12 @@ public class StyleName {
   public static final String METHOD_NAME_FORMAT = "methodNameFormat";
   public static final String METHOD_NAME_FORMAT_CAMEL_CASE = "camelCase";
 
+  public static final String WILD_CARD_IMPORT = "wildCardImport";
+  public static final String WILD_CARD_IMPORT_OK = "wildCard";
+  public static final String WILD_CARD_IMPORT_NO = "noWildCard";
+
   public static final String[] ALL_STYLE_NAMES = {
-      METHOD_NAME_FORMAT
+      METHOD_NAME_FORMAT,
+      WILD_CARD_IMPORT,
   };
 }

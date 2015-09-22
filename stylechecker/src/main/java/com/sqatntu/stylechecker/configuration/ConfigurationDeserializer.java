@@ -46,8 +46,11 @@ class ConfigurationDeserializer implements JsonDeserializer<DefaultConfiguration
     DefaultConfiguration configuration = new DefaultConfiguration();
 
     for (String styleName : StyleName.ALL_STYLE_NAMES) {
-      String value = jsonObject.get(styleName).getAsString();
-      configuration.addAttribute(styleName, value);
+      JsonElement element = jsonObject.get(styleName);
+      if (element != null) {
+        String value = element.getAsString();
+        configuration.addAttribute(styleName, value);
+      }
     }
 
     return configuration;

@@ -28,6 +28,7 @@ import com.sqatntu.stylechecker.configuration.Configuration;
 import com.sqatntu.stylechecker.configuration.ConfigurationLoader;
 import com.sqatntu.stylechecker.injection.Dagger;
 import com.sqatntu.stylechecker.listener.MethodNameFormatListener;
+import com.sqatntu.stylechecker.listener.WildCardImportStatementListener;
 import com.sqatntu.stylechecker.report.StyleReport;
 import org.antlr.v4.runtime.ANTLRFileStream;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -62,9 +63,14 @@ public class StyleChecker {
     JavaParser parser = new JavaParser(tokens);
     JavaParser.CompilationUnitContext tree = parser.compilationUnit(); // parse 
 
+    MethodNameFormatListener methodNameFormatListener =
+        new MethodNameFormatListener(configuration, styleReport);
+    WildCardImportStatementListener wildCardImportStatementListener =
+        new WildCardImportStatementListener(configuration, styleReport);
+
     ParseTreeWalker walker = new ParseTreeWalker(); // create standard walker
-    MethodNameFormatListener extractor = new MethodNameFormatListener(configuration, styleReport);
-    walker.walk(extractor, tree); // initiate walk of tree with listener
+    walker.walk(wildCardImportStatementListener, tree);
+    walker.walk(methodNameFormatListener, tree); // initiate walk of tree with listener
 
     return styleReport;
   }

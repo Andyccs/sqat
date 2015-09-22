@@ -43,11 +43,25 @@ public class JsonConfigurationLoaderTest {
 
   @Test
   public void loadOneConfiguration() throws StyleCheckerException, IOException {
-    String configFilePath = "src/test/resources/MethodNameFormatListenerConfig.json";
+    String configFilePath = "src/test/resources/MethodNameCamelCase.json";
     JsonConfigurationLoader loader = new JsonConfigurationLoader();
 
     Configuration config = loader.loadConfiguration(configFilePath);
     String methodNameFormatValue = config.getAttribute(StyleName.METHOD_NAME_FORMAT);
-    assertEquals(StyleName.METHOD_NAME_FORMAT_CAMEL_CASE, methodNameFormatValue);
+    assertEquals(methodNameFormatValue, StyleName.METHOD_NAME_FORMAT_CAMEL_CASE);
+  }
+
+  @Test
+  public void loadTwoConfiguration() throws StyleCheckerException, IOException {
+    String configFilePath = "src/test/resources/WildCardAllow.json";
+    JsonConfigurationLoader loader = new JsonConfigurationLoader();
+
+    Configuration config = loader.loadConfiguration(configFilePath);
+
+    String methodNameFormatValue = config.getAttribute(StyleName.METHOD_NAME_FORMAT);
+    assertEquals(methodNameFormatValue, StyleName.IGNORE_STYLE);
+
+    String wildCardValue = config.getAttribute(StyleName.WILD_CARD_IMPORT);
+    assertEquals(wildCardValue, StyleName.WILD_CARD_IMPORT_OK);
   }
 }
