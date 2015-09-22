@@ -8,20 +8,19 @@ export default class InputArea extends React.Component {
     super();
   }
 
-  _onTextChange() {
-    console.log('change');
-  }
-
   render() {
-
+    var handleTextChanged = this.props.onTextChanged;
     var disable = this.props.data.currentState != SubmitSourceCodeState.INITIAL;
+    var hidden = this.props.data.currentState == SubmitSourceCodeState.SUCCESS;
 
-    return  <TextAreaAutosize
-              disabled={disable}
-              className='form-control'
-              rows='10'
-              placeholder='Paste your source code here'
-              onChange={this._onTextChange}
-              useCacheForDOMMeasurements />;
+    return  <div hidden={hidden}>
+              <TextAreaAutosize
+                disabled={disable}
+                className='form-control'
+                rows='10'
+                placeholder='Paste your source code here'
+                onChange={handleTextChanged}
+                useCacheForDOMMeasurements />
+            </div>;
   }
 }

@@ -39,12 +39,12 @@ app.post('/submitSourceCode', function(req, resp) {
   setTimeout(function() {
     resp.setHeader('Content-Type', 'application/json');
     // Send a dummy data back
-    resp.send(JSON.stringify({
+    resp.send(JSON.stringify([{
       lineNumber: 1,
       columnNumber: 10,
       reportMessage: 'use javascript',
       suggestion: 'npm install all',
-    }));
+    }]));
   }, 3000);
 });
 

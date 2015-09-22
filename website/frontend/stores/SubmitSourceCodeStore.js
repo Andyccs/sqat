@@ -11,12 +11,14 @@ class SubmitSourceCodeStore {
     this.currentState = SubmitSourceCodeState.INITIAL;
     this.errorMessage = null;
     this.report = null;
+    this.sourceCode = null;
 
     this.bindListeners({
       handleFetchStyleCheckerReport: SubmitSourceCodeAction.fetchStyleCheckerReport,
       handleSourceCodeSubmitSuccess: SubmitSourceCodeAction.fetchStyleCheckerReportSuccess,
       handleFetchStyleCheckerReportFailed: SubmitSourceCodeAction.fetchStyleCheckerReportFailed,
-      handleSubmitAgain: SubmitSourceCodeAction.submitAgain
+      handleSubmitAgain: SubmitSourceCodeAction.submitAgain,
+      handleSourceCodeChanged: SubmitSourceCodeAction.sourceCodeChanged
     });
 
     this.registerAsync(styleCheckerReportSource(alt));
@@ -45,6 +47,10 @@ class SubmitSourceCodeStore {
     this.currentState = SubmitSourceCodeState.INITIAL;
     this.errorMessage = null;
     this.report = null;
+  }
+
+  handleSourceCodeChanged(sourceCode) {
+    this.sourceCode = sourceCode;
   }
 }
 

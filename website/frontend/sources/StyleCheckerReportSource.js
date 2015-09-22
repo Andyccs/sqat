@@ -12,8 +12,7 @@ const StyleCheckerReportSource = (alt) => {
         return axios.post('submitSourceCode', {
           sourceCode: state.sourceCode
         }).then((response) => {
-          console.log(response);
-          return response.json;
+          return response.data;
         }).catch((response) => {
           throw new Error('Bad response from server');
         });

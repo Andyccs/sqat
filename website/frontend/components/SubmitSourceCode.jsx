@@ -5,6 +5,7 @@ import InputArea from './InputArea';
 import ProgressBar from './ProgressBar';
 import SubmitButton from './SubmitButton';
 import Title from './Title';
+import StyleReport from './StyleReport';
 import SubmitSourceCodeStore from '../stores/SubmitSourceCodeStore';
 import SubmitSourceCodeAction from '../actions/SubmitSourceCodeAction';
 
@@ -36,6 +37,10 @@ export default class SubmitSourceCode extends React.Component {
     SubmitSourceCodeAction.submitAgain();
   }
 
+  _onTextChange(e) {
+    SubmitSourceCodeAction.sourceCodeChanged(e.target.value);
+  }
+
   render() {
     return  <div>
 
@@ -49,11 +54,17 @@ export default class SubmitSourceCode extends React.Component {
 
                 <div className='row'>
                   <InputArea
-                    data={this.state} />
+                    data={this.state}
+                    onTextChanged={this._onTextChange}/>
                 </div>
 
                 <div className='row'>
                   <ProgressBar
+                    data={this.state} />
+                </div>
+
+                <div className='row'>
+                  <StyleReport
                     data={this.state} />
                 </div>
 

@@ -18,6 +18,10 @@ class SubmitSourceCodeAction {
   submitAgain() {
     this.dispatch();
   }
+
+  sourceCodeChanged(sourceCode) {
+    this.dispatch(sourceCode);
+  }
 }
 
 module.exports = alt.createActions(SubmitSourceCodeAction);

@@ -9,9 +9,8 @@ export default class ProgressBar extends React.Component {
   render() {
     var hidden = this.props.data.currentState != SubmitSourceCodeState.SUBMITTING;
 
-    return  <div className='progress'>
+    return  <div className='progress' hidden={hidden}>
               <div
-                hidden={hidden}
                 className='progress-bar progress-bar-striped active'
                 style={{width: 99 + '%'}}>
               </div>
