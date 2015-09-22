@@ -47,7 +47,7 @@ app.post('/submitSourceCode', function(req, resp) {
       reportMessage: 'use javascript',
       suggestion: 'npm install all',
     }]));
-  }, 3000);
+  }, 500);
 });
 
 // Create and start the server
