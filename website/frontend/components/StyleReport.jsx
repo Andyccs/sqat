@@ -1,6 +1,8 @@
+import Radium from 'radium';
 import React from 'react';
 import SubmitSourceCodeState from '../constants/SubmitSourceCodeState';
 
+@Radium
 export default class StyleReport extends React.Component {
   constructor() {
     super();
@@ -50,21 +52,69 @@ export default class StyleReport extends React.Component {
       aggregatedReports = this.aggregateSourceAndReport(sourceCode, report);
     }
 
-    return  <table
+    return  <table 
               hidden={hidden}>
-
+              <tbody>
                 {aggregatedReports.map((report) => {
-                  return  <tr>
-                            <td>{report.lineNumber}</td>
-                            <td>{report.sourceCode}</td>
-                            <td>{report.message}</td>
-                            <td>{report.suggestion}</td>
+                  return  <tr key={report.lineNumber} style={[styles.row]}>
+                            <td style={[styles.columnBase, styles.lineNumber]}>
+                              {report.lineNumber}
+                            </td>
+                            <td style={[styles.columnBase, styles.code]}>
+                              {report.sourceCode}
+                            </td>
+                            <td style={[styles.columnBase, styles.message]}>
+                              {report.message}
+                            </td>
+                            <td style={[styles.columnBase, styles.suggestion]}>
+                              {report.suggestion}
+                            </td>
                           </tr>;
                 })}
-
+              </tbody>
             </table>;
   }
 }
+
+// You can create your style objects dynamically or share them for
+// every instance of the component.
+var styles = {
+  row: {
+    backgroundColor: 'white',
+    boxSizing: 'border-box',
+    color: 'black',
+    fontSize: 12,
+    wordWrap: 'break-word',
+  },
+  columnBase: {
+    paddingLeft: 10,
+    paddingRight: 10,
+    borderStyle: 'solid',
+    borderColor: '#eee',
+    borderWidth: '0 1px 0 0',
+    verticalAlign: 'top',
+    borderCollapse: 'collapse',
+  },
+  lineNumber: {
+    color: '#999',
+    cursor: 'pointer',
+    minWidth: 50,
+    textAlign: 'right',
+    width: '1%',
+  },
+  code: {
+    fontFamily: 'Consolas',
+    width: '50%',
+  },
+  message: {
+    color: 'red',
+    fontWeight: 'bold',
+  },
+  suggestion: {
+    color: 'green',
+    fontWeight: 'bold',
+  }
+};
 
 class Report {
 
