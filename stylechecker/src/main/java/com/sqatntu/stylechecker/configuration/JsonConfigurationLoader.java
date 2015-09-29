@@ -36,16 +36,21 @@ import java.io.IOException;
 public class JsonConfigurationLoader implements ConfigurationLoader {
 
   @Override
-  public Configuration loadConfiguration(String filePath) throws IOException {
+  public Configuration loadFileConfiguration(String filePath) throws IOException {
     File configurationFile = new File(filePath);
     String configurationJson = FileUtils.readFileToString(configurationFile);
 
+    return loadJsonConfiguration(configurationJson);
+  }
+
+  @Override
+  public Configuration loadJsonConfiguration(String json) {
     GsonBuilder gsonBuilder = new GsonBuilder();
     gsonBuilder.registerTypeAdapter(DefaultConfiguration.class, new ConfigurationDeserializer());
 
     Gson gson = gsonBuilder.create();
     DefaultConfiguration configuration =
-        gson.fromJson(configurationJson, DefaultConfiguration.class);
+        gson.fromJson(json, DefaultConfiguration.class);
 
     return configuration;
   }

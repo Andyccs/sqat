@@ -9,8 +9,8 @@ service StyleCheck {
 }
 
 message StyleCheckRequest {
-  string filePath = 1;
-  string configurationFilePath = 2;
+  string sourceCode = 1;
+  string configuration = 2;
 }
 
 message StyleCheckReply {

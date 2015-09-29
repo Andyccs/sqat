@@ -28,5 +28,7 @@ import java.io.IOException;
  * Created by andyccs on 6/9/15.
  */
 public interface ConfigurationLoader {
-  Configuration loadConfiguration(String filePath) throws IOException;
+  Configuration loadFileConfiguration(String filePath) throws IOException;
+
+  Configuration loadJsonConfiguration(String json);
 }

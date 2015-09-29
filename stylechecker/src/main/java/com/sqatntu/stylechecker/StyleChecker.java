@@ -31,6 +31,8 @@ import com.sqatntu.stylechecker.listener.MethodNameFormatListener;
 import com.sqatntu.stylechecker.listener.WildCardImportStatementListener;
 import com.sqatntu.stylechecker.report.StyleReport;
 import org.antlr.v4.runtime.ANTLRFileStream;
+import org.antlr.v4.runtime.ANTLRInputStream;
+import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
@@ -53,20 +55,32 @@ public class StyleChecker {
     Dagger.inject(this);
   }
 
-  public StyleReport check(String filePath, String configPath) throws IOException {
+  public StyleReport checkFile(String filePath, String configPath) throws IOException {
     // Set up configuration loader
-    Configuration configuration = configurationLoader.loadConfiguration(configPath);
-
+    Configuration configuration = configurationLoader.loadFileConfiguration(configPath);
     ANTLRFileStream stream = new ANTLRFileStream(filePath);
+
+    return check(stream, configuration);
+  }
+
+  public StyleReport checkSourceCode(String sourceCode, String jsonConfig) {
+    // Set up configuration loader
+    Configuration configuration = configurationLoader.loadJsonConfiguration(jsonConfig);
+    ANTLRInputStream stream = new ANTLRInputStream(sourceCode);
+
+    return check(stream, configuration);
+  }
+
+  private StyleReport check(CharStream stream, Configuration config) {
     JavaLexer lexer = new JavaLexer(stream);
     CommonTokenStream tokens = new CommonTokenStream(lexer);
     JavaParser parser = new JavaParser(tokens);
     JavaParser.CompilationUnitContext tree = parser.compilationUnit(); // parse 
 
     MethodNameFormatListener methodNameFormatListener =
-        new MethodNameFormatListener(configuration, styleReport);
+        new MethodNameFormatListener(config, styleReport);
     WildCardImportStatementListener wildCardImportStatementListener =
-        new WildCardImportStatementListener(configuration, styleReport);
+        new WildCardImportStatementListener(config, styleReport);
 
     ParseTreeWalker walker = new ParseTreeWalker(); // create standard walker
     walker.walk(wildCardImportStatementListener, tree);

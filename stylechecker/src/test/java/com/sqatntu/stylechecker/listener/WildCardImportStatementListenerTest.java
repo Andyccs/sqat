@@ -16,7 +16,7 @@ public class WildCardImportStatementListenerTest {
   @Test
   public void importStatementsWithoutWildCard() throws IOException {
     StyleChecker checker = new StyleChecker();
-    StyleReport report = checker.check(
+    StyleReport report = checker.checkFile(
         "src/test/resources/WildCardImportStatementNoWildCard.java",
         "src/test/resources/WildCardNotAllow.json");
     assertEquals(0, report.getReportContents().size());
@@ -25,7 +25,7 @@ public class WildCardImportStatementListenerTest {
   @Test
   public void importStatementsHasWildCard() throws IOException {
     StyleChecker checker = new StyleChecker();
-    StyleReport report = checker.check(
+    StyleReport report = checker.checkFile(
         "src/test/resources/WildCardImportStatementHasWildCard.java",
         "src/test/resources/WildCardNotAllow.json");
     assertEquals(2, report.getReportContents().size());
@@ -34,7 +34,7 @@ public class WildCardImportStatementListenerTest {
   @Test
   public void importStatementsAllowWildCard() throws IOException {
     StyleChecker checker = new StyleChecker();
-    StyleReport report = checker.check(
+    StyleReport report = checker.checkFile(
         "src/test/resources/WildCardImportStatementHasWildCard.java",
         "src/test/resources/WildCardAllow.json");
     assertEquals(0, report.getReportContents().size());

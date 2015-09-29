@@ -16,9 +16,12 @@ app.set('views', VIEWS_PATH);
 app.set('view engine', 'jade');
 
 // to support JSON-encoded bodies and URL-encoded bodies
-app.use(bodyParser.json());
+app.use(bodyParser.json({
+  limit: '5mb'
+}));
 app.use(bodyParser.urlencoded({
-  extended: true
+  extended: true,
+  limit: '5mb'
 }));
 
 // public folder

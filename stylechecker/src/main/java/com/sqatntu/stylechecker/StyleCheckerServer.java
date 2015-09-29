@@ -70,7 +70,7 @@ class StyleCheckerServer {
     });
   }
 
-  public  void stop() {
+  public void stop() {
     if (server != null) {
       server.shutdown();
     }
@@ -92,18 +92,12 @@ class StyleCheckerServer {
 
     @Override
     public void check(StyleCheckRequest request, StreamObserver<StyleCheckReply> responseObserver) {
-      String testFilePath = request.getFilePath();
-      String configFilePath = request.getConfigurationFilePath();
+      String sourceCode = request.getSourceCode();
+      String configuration = request.getConfiguration();
 
       StyleChecker checker = new StyleChecker();
       StyleReport styleReport;
-      try {
-        styleReport = checker.check(testFilePath, configFilePath);
-      } catch (IOException e) {
-        LOG.e(e.getMessage());
-        responseObserver.onError(e);
-        return;
-      }
+      styleReport = checker.checkSourceCode(sourceCode, configuration);
 
       List<ReportContent> contents = styleReport.getReportContents();
 

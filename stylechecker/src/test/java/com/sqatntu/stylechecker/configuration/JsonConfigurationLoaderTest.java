@@ -38,7 +38,7 @@ public class JsonConfigurationLoaderTest {
   public void loadConfigurationFromInvalidPath() throws IOException {
     String configFilePath = "invalid_path/invalid.json";
     JsonConfigurationLoader loader = new JsonConfigurationLoader();
-    loader.loadConfiguration(configFilePath);
+    loader.loadFileConfiguration(configFilePath);
   }
 
   @Test
@@ -46,7 +46,7 @@ public class JsonConfigurationLoaderTest {
     String configFilePath = "src/test/resources/MethodNameCamelCase.json";
     JsonConfigurationLoader loader = new JsonConfigurationLoader();
 
-    Configuration config = loader.loadConfiguration(configFilePath);
+    Configuration config = loader.loadFileConfiguration(configFilePath);
     String methodNameFormatValue = config.getAttribute(StyleName.METHOD_NAME_FORMAT);
     assertEquals(methodNameFormatValue, StyleName.METHOD_NAME_FORMAT_CAMEL_CASE);
   }
@@ -56,7 +56,7 @@ public class JsonConfigurationLoaderTest {
     String configFilePath = "src/test/resources/WildCardAllow.json";
     JsonConfigurationLoader loader = new JsonConfigurationLoader();
 
-    Configuration config = loader.loadConfiguration(configFilePath);
+    Configuration config = loader.loadFileConfiguration(configFilePath);
 
     String methodNameFormatValue = config.getAttribute(StyleName.METHOD_NAME_FORMAT);
     assertEquals(methodNameFormatValue, StyleName.IGNORE_STYLE);
