@@ -1,58 +1,40 @@
-'use strict';
+import express from 'express';
+import http from 'http';
+import path from 'path';
+import bodyParser from 'body-parser';
+import jadeAutoRouting from './jadeAutoRouting';
+import submitSourceCode from './submitSourceCode';
 
-var express = require('express');
-var http = require('http');
-var path = require('path');
-var jadeAutoRouting = require('./jadeAutoRouting');
-var bodyParser = require('body-parser');
+let app = express();
 
+// setting port and views
 const PORT = process.env.PORT || 8080;
-const app = express();
+const VIEWS_PATH = path.join(__dirname, '../views');
 
 app.set('port', PORT);
+app.set('views', VIEWS_PATH);
+app.set('view engine', 'jade');
 
-// to support JSON-encoded bodies
+// to support JSON-encoded bodies and URL-encoded bodies
 app.use(bodyParser.json());
-
-// to support URL-encoded bodies
 app.use(bodyParser.urlencoded({
   extended: true
 }));
 
 // public folder
-var PUBLIC_DIR = path.join(__dirname, '../public');
-var staticDir = express.static(PUBLIC_DIR);
+const PUBLIC_DIR = path.join(__dirname, '../public');
+const staticDir = express.static(PUBLIC_DIR);
 
 app.use(staticDir);
-
-// Setting view Engine
-var VIEWS_PATH = path.join(__dirname, '../views');
-
-app.set('views', VIEWS_PATH);
-app.set('view engine', 'jade');
 
 // You can add exlude paths for jade auto routing using regex
 jadeAutoRouting(app);
 
 // Routing
-app.post('/submitSourceCode', function(req, resp) {
-  let sourceCode = req.body.sourceCode;
-
-  setTimeout(function() {
-    resp.setHeader('Content-Type', 'application/json');
-    // Send a dummy data back
-    resp.send(JSON.stringify([{
-      lineNumber: 1,
-      columnNumber: 10,
-      reportMessage: 'use javascript',
-      suggestion: 'npm install all',
-    }]));
-  }, 500);
-});
+app.post('/submitSourceCode', submitSourceCode);
 
 // Create and start the server
-var server = http.createServer(app);
+let server = http.createServer(app);
 
-server.listen(PORT, function() {
-  console.info('Express server listening on port ' + PORT);
-});
+server.listen(PORT, () =>
+  console.info('Express server listening on port ' + PORT));

@@ -13,9 +13,6 @@
     "plugins": [
         "react"
     ],
-    "rules": {
-        "max-len": [1, 100]
-    },
     "parser": "babel-eslint",
     "rules": {
         "strict": 0

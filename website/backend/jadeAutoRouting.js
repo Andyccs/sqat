@@ -1,41 +1,42 @@
-var dir = require('node-dir');
-var path = require('path');
+import dir from 'node-dir';
+import path from 'path';
 
-function jadeAutoRouting(app, excludePattern) {
-  dir.readFilesStream(path.join(__dirname, '../views'), {
-    match: /.jade$/,
-  }, function(err, stream, filename, next) {
-    if(err) {
-      console.log(err);
-      return;
-    }
+const VIEWS_PATH = path.join(__dirname, '../views');
 
-    var fileNameWithExtension = path.basename(filename);
-    var fileNameWithoutExtension = path.basename(filename, '.jade');
+export default function jadeAutoRouting(app, excludePattern) {
+  dir.readFilesStream(VIEWS_PATH, {match: /.jade$/},
+    (err, stream, filename, next) => {
+      if(err) {
+        console.log(err);
+        return;
+      }
 
-    if(excludePattern != null && fileNameWithExtension.match(excludePattern)) {
-      return;
-    }
-    console.log('Auto route to: ./' + fileNameWithoutExtension);
+      let fileNameWithExtension = path.basename(filename);
+      let fileNameWithoutExtension = path.basename(filename, '.jade');
 
-    app.get('/' + fileNameWithoutExtension, function(req, resp) {
-      resp.render(fileNameWithoutExtension);
-    });
+      if(excludePattern != null &&
+        fileNameWithExtension.match(excludePattern)) {
+        return;
+      }
+      console.log('Auto route to: ./' + fileNameWithoutExtension);
 
-    if(fileNameWithoutExtension == 'index') {
-      app.get('/', function(req, resp) {
+      app.get('/' + fileNameWithoutExtension, function(req, resp) {
         resp.render(fileNameWithoutExtension);
       });
-    }
 
-    next();
-  }, function(err, files) {
-    if(err) {
-      console.log(err);
-      return;
+      if(fileNameWithoutExtension == 'index') {
+        app.get('/', function(req, resp) {
+          resp.render(fileNameWithoutExtension);
+        });
+      }
+
+      next();
+    }, (err, files) => {
+      if(err) {
+        console.log(err);
+        return;
+      }
+      console.log('✔ Jade auto routing done');
     }
-    console.log('✔ Jade auto routing done');
-  });
+  );
 }
-
-module.exports = jadeAutoRouting;
