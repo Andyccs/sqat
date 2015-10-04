@@ -1,16 +1,55 @@
-# Software Quality Analysis Tool: Style Checker
+# Software Quality Analysis Tool
 
-Check your Java code style using this tool! 
+Software Quality Analysis Tool (SQAT) allows you to:
+
+1. Check the style of your Java source code
+
+2. Analyze your Java source code and get object-oriented metric reports
+
+This tool is still under active development.
 
 # How To Run This Project
 
+This project is organized as:
+
 ```
+root
+|
+|-- stylechecker
+|
+|-- website
+|---- backend
+|---- frontend
+```
+
+Stylechecker folder contains ANTLR and java codes to check and analyze your source code. 
+
+Backend folder contatins a Node.js server that communicate with Stylechecker service and provides an API for clients.
+
+Frontend folder contains a React.js web application that communicate with Backend Node.js server and render webpage for users. 
+
+To run this project, first we need to run the stylechecker service:
+
+```
+cd stylechecker
 gradlew run
 ```
 
-# Contribution
+Second, we need to run webpack dev server:
 
-Contact Andyccs andy0017@e.ntu.edu.sg for more details
+```
+cd website
+npm run dev
+```
+
+Third, we need to run backend server:
+
+```
+cd webiste
+npm run serve
+```
+
+Finally, open your browser and go to `http://localhost:8080`. You should see a nice React application in your browser. 
 
 # License
 

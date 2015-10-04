@@ -1,6 +1,10 @@
 {
   "name": "sqat-website",
-  "version": "0.0.1",
+  "version": "0.1.0",
+  "engines": {
+    "node": "0.12.7",
+    "npm": "2.11.3"
+  },
   "description": "Software Quality Analysis Tool website",
   "main": "index.js",
   "scripts": {
