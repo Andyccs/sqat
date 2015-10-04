@@ -20,12 +20,3 @@ brew --prefix
 
 CXXFLAGS=-I/usr/local/include LDFLAGS=-L/usr/local/lib npm install --global grpc@0.10.2
 ```
-
-TODO List
-=========
-
-1. Use Protocol Buffer for API?
-
-2. Logger: Winston or Bunyan?
-
-3. Return error message for styleCheckServer
