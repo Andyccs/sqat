@@ -29,6 +29,8 @@ public class WildCardImportStatementListenerTest {
         "src/test/resources/WildCardImportStatementHasWildCard.java",
         "src/test/resources/WildCardNotAllow.json");
     assertEquals(2, report.getReportContents().size());
+    assertEquals(3, report.getReportContents().get(0).getLineNumber());
+    assertEquals(4, report.getReportContents().get(1).getLineNumber());
   }
 
   @Test

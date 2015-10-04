@@ -27,10 +27,10 @@ export default function submitSourceCode(request, response) {
 
     for(let i = 0; i < styleCheckResponse.reports.length; i++) {
       let report = {
-        lineNumber: styleCheckResponse.reports[0].lineNumber,
-        columnNumber: styleCheckResponse.reports[0].columnNumber,
-        reportMessage: styleCheckResponse.reports[0].reportMessage,
-        suggestion: styleCheckResponse.reports[0].suggestion,
+        lineNumber: styleCheckResponse.reports[i].lineNumber,
+        columnNumber: styleCheckResponse.reports[i].columnNumber,
+        reportMessage: styleCheckResponse.reports[i].reportMessage,
+        suggestion: styleCheckResponse.reports[i].suggestion,
       };
 
       result.push(report);
