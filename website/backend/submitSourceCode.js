@@ -23,6 +23,11 @@ export default function submitSourceCode(request, response) {
       return;
     }
 
+    if(styleCheckResponse.error) {
+      console.log(styleCheckResponse.error);
+      return;
+    }
+
     let result = [];
 
     for(let i = 0; i < styleCheckResponse.reports.length; i++) {

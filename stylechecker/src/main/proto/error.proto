@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "com.sqatntu.stylechecker.proto";
+
+package stylechecker;
+
+message Error {
+  uint32 code = 1;
+  string message = 2;
+}

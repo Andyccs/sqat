@@ -22,6 +22,7 @@
 
 package com.sqatntu.stylechecker;
 
+import com.sqatntu.stylechecker.proto.ErrorOuterClass;
 import com.sqatntu.stylechecker.proto.StyleCheckGrpc;
 import com.sqatntu.stylechecker.proto.StyleCheckOuterClass.StyleCheckReply;
 import com.sqatntu.stylechecker.proto.StyleCheckOuterClass.StyleCheckReport;
@@ -119,9 +120,15 @@ class StyleCheckerServer {
         responseObserver.onValue(reply);
         responseObserver.onCompleted();
       } catch (StyleCheckerException e) {
-        e.printStackTrace();
-        // TODO(andyccs): Reply with error here
-
+        ErrorOuterClass.Error error = ErrorOuterClass.Error.newBuilder()
+            .setCode(500)
+            .setMessage(e.getMessage())
+            .build();
+        StyleCheckReply reply = StyleCheckReply.newBuilder()
+            .setError(error)
+            .build();
+        responseObserver.onValue(reply);
+        responseObserver.onCompleted();
       }
     }
   }

@@ -80,7 +80,7 @@ public class StyleChecker {
     try {
       return check(stream, configuration);
     } catch (ParseCancellationException e) {
-      throw new StyleCheckerException("");
+      throw new StyleCheckerException(e.getMessage());
     }
   }
 
