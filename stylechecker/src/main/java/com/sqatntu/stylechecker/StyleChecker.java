@@ -54,6 +54,9 @@ public class StyleChecker {
   @Inject
   ConfigurationLoader configurationLoader;
 
+  @Inject
+  ThrowingErrorListener throwingErrorListener;
+
   public StyleChecker() {
     Dagger.inject(this);
   }
@@ -84,14 +87,12 @@ public class StyleChecker {
   private StyleReport check(CharStream stream, Configuration config) {
     JavaLexer lexer = new JavaLexer(stream);
     lexer.removeErrorListeners();
-    // TODO(andyccs): change to singleton
-    lexer.addErrorListener(new ThrowingErrorListener());
+    lexer.addErrorListener(throwingErrorListener);
 
     CommonTokenStream tokens = new CommonTokenStream(lexer);
     JavaParser parser = new JavaParser(tokens);
     parser.removeErrorListeners();
-    // TODO(andyccs): change to singleton
-    parser.addErrorListener(new ThrowingErrorListener());
+    parser.addErrorListener(throwingErrorListener);
 
     JavaParser.CompilationUnitContext tree = parser.compilationUnit(); // parse 
 
