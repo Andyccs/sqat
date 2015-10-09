@@ -97,26 +97,32 @@ class StyleCheckerServer {
 
       StyleChecker checker = new StyleChecker();
       StyleReport styleReport;
-      styleReport = checker.checkSourceCode(sourceCode, configuration);
+      try {
+        styleReport = checker.checkSourceCode(sourceCode, configuration);
 
-      List<ReportContent> contents = styleReport.getReportContents();
+        List<ReportContent> contents = styleReport.getReportContents();
 
-      List<StyleCheckReport> reports = new ArrayList<>();
-      for (ReportContent content : contents) {
-        StyleCheckReport report = StyleCheckReport.newBuilder()
-            .setLineNumber(content.getLineNumber())
-            .setColumnNumber(content.getColumnNumber())
-            .setReportMessage(content.getMessage())
-            .setSuggestion(content.getSuggestion())
+        List<StyleCheckReport> reports = new ArrayList<>();
+        for (ReportContent content : contents) {
+          StyleCheckReport report = StyleCheckReport.newBuilder()
+              .setLineNumber(content.getLineNumber())
+              .setColumnNumber(content.getColumnNumber())
+              .setReportMessage(content.getMessage())
+              .setSuggestion(content.getSuggestion())
+              .build();
+          reports.add(report);
+        }
+
+        StyleCheckReply reply = StyleCheckReply.newBuilder()
+            .addAllReports(reports)
             .build();
-        reports.add(report);
-      }
+        responseObserver.onValue(reply);
+        responseObserver.onCompleted();
+      } catch (StyleCheckerException e) {
+        e.printStackTrace();
+        // TODO(andyccs): Reply with error here
 
-      StyleCheckReply reply = StyleCheckReply.newBuilder()
-          .addAllReports(reports)
-          .build();
-      responseObserver.onValue(reply);
-      responseObserver.onCompleted();
+      }
     }
   }
 }

@@ -30,10 +30,13 @@ import com.sqatntu.stylechecker.injection.Dagger;
 import com.sqatntu.stylechecker.listener.MethodNameFormatListener;
 import com.sqatntu.stylechecker.listener.WildCardImportStatementListener;
 import com.sqatntu.stylechecker.report.StyleReport;
+import org.antlr.v4.runtime.ANTLRErrorListener;
 import org.antlr.v4.runtime.ANTLRFileStream;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.RecognitionException;
+import org.antlr.v4.runtime.misc.ParseCancellationException;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 import java.io.IOException;
@@ -55,6 +58,7 @@ public class StyleChecker {
     Dagger.inject(this);
   }
 
+  @Deprecated
   public StyleReport checkFile(String filePath, String configPath) throws IOException {
     // Set up configuration loader
     Configuration configuration = configurationLoader.loadFileConfiguration(configPath);
@@ -63,18 +67,32 @@ public class StyleChecker {
     return check(stream, configuration);
   }
 
-  public StyleReport checkSourceCode(String sourceCode, String jsonConfig) {
+  public StyleReport checkSourceCode(String sourceCode, String jsonConfig)
+      throws StyleCheckerException {
     // Set up configuration loader
     Configuration configuration = configurationLoader.loadJsonConfiguration(jsonConfig);
+
     ANTLRInputStream stream = new ANTLRInputStream(sourceCode);
 
-    return check(stream, configuration);
+    try {
+      return check(stream, configuration);
+    } catch (ParseCancellationException e) {
+      throw new StyleCheckerException("");
+    }
   }
 
   private StyleReport check(CharStream stream, Configuration config) {
     JavaLexer lexer = new JavaLexer(stream);
+    lexer.removeErrorListeners();
+    // TODO(andyccs): change to singleton
+    lexer.addErrorListener(new ThrowingErrorListener());
+
     CommonTokenStream tokens = new CommonTokenStream(lexer);
     JavaParser parser = new JavaParser(tokens);
+    parser.removeErrorListeners();
+    // TODO(andyccs): change to singleton
+    parser.addErrorListener(new ThrowingErrorListener());
+
     JavaParser.CompilationUnitContext tree = parser.compilationUnit(); // parse 
 
     MethodNameFormatListener methodNameFormatListener =
