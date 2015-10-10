@@ -1,5 +1,7 @@
 [![Build Status](https://travis-ci.org/Andyccs/sqat.svg?branch=develop)](https://travis-ci.org/Andyccs/sqat)
 
+[![Coverage Status](https://coveralls.io/repos/Andyccs/sqat/badge.svg?branch=develop&service=github)](https://coveralls.io/github/Andyccs/sqat?branch=develop)
+
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Andyccs/sqat?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 # Software Quality Analysis Tool
