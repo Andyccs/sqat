@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Andyccs/sqat.svg?branch=develop)](https://travis-ci.org/Andyccs/sqat)
+
 # Software Quality Analysis Tool
 
 Software Quality Analysis Tool (SQAT) allows you to:
