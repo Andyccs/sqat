@@ -21,9 +21,9 @@ class SubmitSourceCodeStore {
     });
   }
 
-  handleSourceCodeSubmitSuccess(report) {
+  handleSourceCodeSubmitSuccess(result) {
     this.currentState = SubmitSourceCodeState.SUCCESS;
-    this.report = report;
+    this.report = result.reports;
     // optionally return false to suppress the store change event
   }
 
@@ -36,8 +36,8 @@ class SubmitSourceCodeStore {
 
   handleFetchStyleCheckerReportFailed(errorMessage) {
     this.currentState = SubmitSourceCodeState.ERROR;
-    this.errorMessage = errorMessage;
-    console.log(errorMessage);
+    this.errorMessage = errorMessage.message;
+    console.log(errorMessage.message);
   }
 
   handleSubmitAgain() {

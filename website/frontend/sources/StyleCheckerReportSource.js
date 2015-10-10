@@ -12,9 +12,12 @@ const StyleCheckerReportSource = (alt) => {
         return axios.post('submitSourceCode', {
           sourceCode: state.sourceCode
         }).then((response) => {
+          if(response.data.error != null) {
+            throw new Error(response.error.code + ': ' + response.error.message);
+          }
           return response.data;
         }).catch((response) => {
-          throw new Error('Bad response from server');
+          throw new Error('500 Internal Server Error');
         });
       },
 

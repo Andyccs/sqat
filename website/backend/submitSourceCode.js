@@ -4,6 +4,8 @@ const PROTO_PATH = '../stylechecker/src/main/proto/style_check.proto';
 const styleCheckProto = grpc.load(PROTO_PATH).stylechecker;
 
 export default function submitSourceCode(request, response) {
+  response.setHeader('Content-Type', 'application/json');
+
   let sourceCode = request.body.sourceCode;
 
   let client = new styleCheckProto.StyleCheck(
@@ -19,12 +21,24 @@ export default function submitSourceCode(request, response) {
 
   client.check(checkStyleRequest, (err, styleCheckResponse) => {
     if(err) {
-      console.log(err);
+      let responseBody = {
+        error: {
+          code: 404,
+          message: 'Not Found'
+        }
+      };
+
+      response.send(JSON.stringify(responseBody));
       return;
     }
 
     if(styleCheckResponse.error) {
+      let responseBody = {
+        error: styleCheckResponse.error
+      };
+
       console.log(styleCheckResponse.error);
+      response.send(JSON.stringify(responseBody));
       return;
     }
 
@@ -41,8 +55,10 @@ export default function submitSourceCode(request, response) {
       result.push(report);
     }
 
-    response.setHeader('Content-Type', 'application/json');
-    // Send a dummy data back
-    response.send(JSON.stringify(result));
+    let responseBody = {
+      reports: result
+    };
+
+    response.send(JSON.stringify(responseBody));
   });
 }
