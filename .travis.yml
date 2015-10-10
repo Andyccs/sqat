@@ -11,6 +11,9 @@ before_script:
 script: 
 - ./gradlew test
 
+after_success:
+- ./gradlew cobertura coveralls
+
 notifications:
   webhooks:
     urls:

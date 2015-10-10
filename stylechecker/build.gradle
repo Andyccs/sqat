@@ -7,6 +7,8 @@ apply plugin: 'antlr'
 apply plugin: 'idea'
 apply plugin: 'checkstyle'
 apply plugin: 'com.google.protobuf'
+apply plugin: 'cobertura'
+apply plugin: 'com.github.kt3k.coveralls'
 
 sourceCompatibility = 1.7
 mainClassName = "com.sqatntu.stylechecker.Main"
@@ -32,6 +34,8 @@ buildscript {
     }
     dependencies {
         classpath 'com.google.protobuf:protobuf-gradle-plugin:0.7.0'
+        classpath 'net.saliman:gradle-cobertura-plugin:2.0.0' // cobertura plugin
+        classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.4.0'
     }
 }
 
@@ -73,3 +77,5 @@ idea {
 task wrapper(type: Wrapper) {
     gradleVersion = '2.7'
 }
+
+cobertura.coverageFormats = ['html', 'xml'] // coveralls plugin depends on xml format report
