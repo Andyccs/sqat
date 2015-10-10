@@ -23,6 +23,7 @@
 package com.sqatntu.stylechecker.injection;
 
 import com.sqatntu.stylechecker.StyleChecker;
+import com.sqatntu.stylechecker.ThrowingErrorListener;
 import com.sqatntu.stylechecker.configuration.ConfigurationLoader;
 import com.sqatntu.stylechecker.configuration.DummyConfigurationLoader;
 import com.sqatntu.stylechecker.configuration.JsonConfigurationLoader;
@@ -51,5 +52,11 @@ public class StyleCheckerModule {
   @Provides
   StyleReport provideStyleReport() {
     return new StyleReport();
+  }
+
+  @Provides
+  @Singleton
+  ThrowingErrorListener provideThrowingErrorListener() {
+    return new ThrowingErrorListener();
   }
 }

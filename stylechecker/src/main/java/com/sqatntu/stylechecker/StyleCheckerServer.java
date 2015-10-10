@@ -22,6 +22,7 @@
 
 package com.sqatntu.stylechecker;
 
+import com.sqatntu.stylechecker.proto.ErrorOuterClass;
 import com.sqatntu.stylechecker.proto.StyleCheckGrpc;
 import com.sqatntu.stylechecker.proto.StyleCheckOuterClass.StyleCheckReply;
 import com.sqatntu.stylechecker.proto.StyleCheckOuterClass.StyleCheckReport;
@@ -97,26 +98,38 @@ class StyleCheckerServer {
 
       StyleChecker checker = new StyleChecker();
       StyleReport styleReport;
-      styleReport = checker.checkSourceCode(sourceCode, configuration);
+      try {
+        styleReport = checker.checkSourceCode(sourceCode, configuration);
 
-      List<ReportContent> contents = styleReport.getReportContents();
+        List<ReportContent> contents = styleReport.getReportContents();
 
-      List<StyleCheckReport> reports = new ArrayList<>();
-      for (ReportContent content : contents) {
-        StyleCheckReport report = StyleCheckReport.newBuilder()
-            .setLineNumber(content.getLineNumber())
-            .setColumnNumber(content.getColumnNumber())
-            .setReportMessage(content.getMessage())
-            .setSuggestion(content.getSuggestion())
+        List<StyleCheckReport> reports = new ArrayList<>();
+        for (ReportContent content : contents) {
+          StyleCheckReport report = StyleCheckReport.newBuilder()
+              .setLineNumber(content.getLineNumber())
+              .setColumnNumber(content.getColumnNumber())
+              .setReportMessage(content.getMessage())
+              .setSuggestion(content.getSuggestion())
+              .build();
+          reports.add(report);
+        }
+
+        StyleCheckReply reply = StyleCheckReply.newBuilder()
+            .addAllReports(reports)
             .build();
-        reports.add(report);
+        responseObserver.onValue(reply);
+        responseObserver.onCompleted();
+      } catch (StyleCheckerException e) {
+        ErrorOuterClass.Error error = ErrorOuterClass.Error.newBuilder()
+            .setCode(500)
+            .setMessage(e.getMessage())
+            .build();
+        StyleCheckReply reply = StyleCheckReply.newBuilder()
+            .setError(error)
+            .build();
+        responseObserver.onValue(reply);
+        responseObserver.onCompleted();
       }
-
-      StyleCheckReply reply = StyleCheckReply.newBuilder()
-          .addAllReports(reports)
-          .build();
-      responseObserver.onValue(reply);
-      responseObserver.onCompleted();
     }
   }
 }

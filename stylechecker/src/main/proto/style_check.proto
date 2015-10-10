@@ -4,6 +4,8 @@ option java_package = "com.sqatntu.stylechecker.proto";
 
 package stylechecker;
 
+import "error.proto";
+
 service StyleCheck {
   rpc Check (StyleCheckRequest) returns (StyleCheckReply) {}
 }
@@ -15,6 +17,7 @@ message StyleCheckRequest {
 
 message StyleCheckReply {
   repeated StyleCheckReport reports = 1;
+  Error error = 2;
 }
 
 message StyleCheckReport {
