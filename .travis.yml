@@ -5,7 +5,7 @@ jdk:
   - oraclejdk7
 
 before_script:
-- ./stylechecker/gradlew build
+- cd ./stylechecker && ./gradlew build || cd ../
 
 script: 
-- ./stylechecker/gradlew test
+- cd ./stylechecker && ./gradlew test || cd ../
