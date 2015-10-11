@@ -36,8 +36,13 @@ public class StyleName {
   public static final String WILD_CARD_IMPORT_OK = "wildCard";
   public static final String WILD_CARD_IMPORT_NO = "noWildCard";
 
+  public static final String BRACE_STYLE = "braceStyle";
+  public static final String BRACE_STYLE_KR = "kr";
+  public static final String BRACE_STYLE_NON_KR = "nonKr";
+
   public static final String[] ALL_STYLE_NAMES = {
       METHOD_NAME_FORMAT,
       WILD_CARD_IMPORT,
+      BRACE_STYLE,
   };
 }

@@ -28,6 +28,7 @@ import com.sqatntu.stylechecker.configuration.Configuration;
 import com.sqatntu.stylechecker.configuration.ConfigurationLoader;
 import com.sqatntu.stylechecker.injection.Dagger;
 import com.sqatntu.stylechecker.listener.AllListeners;
+import com.sqatntu.stylechecker.listener.BraceStyleListener;
 import com.sqatntu.stylechecker.listener.MethodNameFormatListener;
 import com.sqatntu.stylechecker.listener.WildCardImportStatementListener;
 import com.sqatntu.stylechecker.report.StyleReport;
@@ -37,6 +38,7 @@ import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.RecognitionException;
+import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.misc.ParseCancellationException;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
@@ -91,6 +93,7 @@ public class StyleChecker {
     lexer.addErrorListener(throwingErrorListener);
 
     CommonTokenStream tokens = new CommonTokenStream(lexer);
+
     JavaParser parser = new JavaParser(tokens);
     parser.removeErrorListeners();
     parser.addErrorListener(throwingErrorListener);
@@ -101,6 +104,8 @@ public class StyleChecker {
     ParseTreeWalker walker = new ParseTreeWalker(); // create standard walker
     walker.walk(allListeners, tree);
 
+    BraceStyleListener lis = new BraceStyleListener(config, styleReport);
+    walker.walk(lis, tree);
     return styleReport;
   }
 }
