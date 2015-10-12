@@ -32,7 +32,7 @@ public class BraceStyleListener extends JavaBaseListener {
       System.out.println(e.getMessage());
       return;
     }
-    if(attribute.equals(StyleName.IGNORE_STYLE)) {
+    if (attribute.equals(StyleName.IGNORE_STYLE)) {
       return;
     }
 
@@ -42,12 +42,11 @@ public class BraceStyleListener extends JavaBaseListener {
     int line = ctx.getStart().getLine();
     int parentLine = ctx.getParent().getParent().getStart().getLine();
 
-    if(attribute.equals(StyleName.BRACE_STYLE_KR) && line != parentLine) {
+    if (attribute.equals(StyleName.BRACE_STYLE_KR) && line != parentLine) {
       String suggestion = "You should move this braces to previous line";
       ReportContent reportContent = new ReportContent(line, column, message, suggestion);
       report.addReportContents(reportContent);
-    }
-    else if(attribute.equals(StyleName.BRACE_STYLE_NON_KR) && line == parentLine) {
+    } else if (attribute.equals(StyleName.BRACE_STYLE_NON_KR) && line == parentLine) {
       String suggestion = "You should move this braces to next line";
       ReportContent reportContent = new ReportContent(line, column, message, suggestion);
       report.addReportContents(reportContent);

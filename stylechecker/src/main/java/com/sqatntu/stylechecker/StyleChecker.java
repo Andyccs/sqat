@@ -104,8 +104,6 @@ public class StyleChecker {
     ParseTreeWalker walker = new ParseTreeWalker(); // create standard walker
     walker.walk(allListeners, tree);
 
-    BraceStyleListener lis = new BraceStyleListener(config, styleReport);
-    walker.walk(lis, tree);
     return styleReport;
   }
 }

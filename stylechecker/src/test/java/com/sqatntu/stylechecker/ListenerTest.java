@@ -25,12 +25,11 @@ public class ListenerTest {
     Method method = this.getClass().getMethod(name.getMethodName());
     Annotation[] annotations = method.getDeclaredAnnotations();
 
-    for(Annotation annotation : annotations) {
-      if(annotation instanceof TestCode){
+    for (Annotation annotation : annotations) {
+      if (annotation instanceof TestCode) {
         TestCode testCodeAnnotation = (TestCode) annotation;
         testCode = TestUtil.loadFile(testCodeAnnotation.fileName());
-      }
-      else if(annotation instanceof TestConfig) {
+      } else if (annotation instanceof TestConfig) {
         TestConfig testConfigAnnotation = (TestConfig) annotation;
         testConfig = TestUtil.loadFile(testConfigAnnotation.fileName());
       }

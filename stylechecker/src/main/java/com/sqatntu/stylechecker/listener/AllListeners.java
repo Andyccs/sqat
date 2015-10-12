@@ -12,10 +12,12 @@ public class AllListeners extends JavaBaseListener {
 
   private MethodNameFormatListener methodNameFormatListener;
   private WildCardImportStatementListener wildCardImportStatementListener;
+  private BraceStyleListener braceStyleListener;
 
   public AllListeners(Configuration configuration, StyleReport report) {
     methodNameFormatListener = new MethodNameFormatListener(configuration, report);
     wildCardImportStatementListener = new WildCardImportStatementListener(configuration, report);
+    braceStyleListener = new BraceStyleListener(configuration, report);
   }
 
   @Override
@@ -26,5 +28,10 @@ public class AllListeners extends JavaBaseListener {
   @Override
   public void enterImportDeclaration(JavaParser.ImportDeclarationContext ctx) {
     wildCardImportStatementListener.enterImportDeclaration(ctx);
+  }
+
+  @Override
+  public void enterBlock(com.sqatntu.stylechecker.api.JavaParser.BlockContext ctx) {
+    braceStyleListener.enterBlock(ctx);
   }
 }
