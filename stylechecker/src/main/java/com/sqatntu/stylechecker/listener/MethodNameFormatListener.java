@@ -49,16 +49,12 @@ public class MethodNameFormatListener extends JavaBaseListener {
 
   @Override
   public void enterMethodDeclaration(JavaParser.MethodDeclarationContext ctx) {
-    String regex = "";
-    String methodNameFormatValue = StyleName.IGNORE_STYLE;
-
     // Determine regular expression by using configuration
     try {
       if (configuration
           .getAttribute(StyleName.METHOD_NAME_FORMAT)
-          .equals(StyleName.METHOD_NAME_FORMAT_CAMEL_CASE)) {
-        regex = "^([a-z])([a-zA-Z0-9])*";
-        methodNameFormatValue = StyleName.METHOD_NAME_FORMAT_CAMEL_CASE;
+          .equals(StyleName.IGNORE_STYLE)) {
+        return;
       }
     } catch (StyleCheckerException e) {
       // This means that no configuration for method name format is set,
@@ -66,6 +62,9 @@ public class MethodNameFormatListener extends JavaBaseListener {
       System.out.println(e.getMessage());
       return;
     }
+
+    String methodNameFormatValue = StyleName.METHOD_NAME_FORMAT_CAMEL_CASE;
+    String regex = "^([a-z])([a-zA-Z0-9])*";
 
     // Do matching and add new report
     String methodName = ctx.getChild(1).getText();
