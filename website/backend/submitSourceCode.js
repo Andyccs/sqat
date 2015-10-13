@@ -13,7 +13,7 @@ export default function submitSourceCode(request, response) {
     grpc.Credentials.createFake());
 
   let configuration =
-    '{"methodNameFormat": "camelCase","wildCardImport": "noWildCard"}';
+    '{"methodNameFormat": "camelCase","wildCardImport": "noWildCard","braceStyle":"kr"}';
   let checkStyleRequest = {
     sourceCode,
     configuration
