@@ -1,3 +1,10 @@
+/*
+This function will make a rpc call to stylechecker service to get a style reports
+Two possible errors will be returned:
+1. 404 Not Found, when the stylechecker service is not available
+2. Error message: When the provided souce code is not in Java
+*/
+
 import grpc from 'grpc';
 
 const PROTO_PATH = '../stylechecker/src/main/proto/style_check.proto';
