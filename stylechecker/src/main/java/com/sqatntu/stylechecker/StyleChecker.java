@@ -43,7 +43,9 @@ import java.io.IOException;
 import javax.inject.Inject;
 
 /**
- * Created by andyccs on 6/9/15.
+ * StyleChecker provides only one method, i.e. the {@code #checkSourceCode} method.
+ * The method accepts source code and style check configuration and performs style
+ * checking by using Visitor pattern.
  */
 public class StyleChecker {
 
