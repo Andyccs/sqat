@@ -27,8 +27,8 @@ import com.sqatntu.stylechecker.api.JavaBaseListener;
 import com.sqatntu.stylechecker.api.JavaParser;
 import com.sqatntu.stylechecker.configuration.Configuration;
 import com.sqatntu.stylechecker.configuration.StyleName;
-import com.sqatntu.stylechecker.report.ReportContent;
 import com.sqatntu.stylechecker.report.StyleReport;
+import com.sqatntu.stylechecker.report.StyleReportContent;
 
 /**
  * Created by andyccs on 22/9/15.
@@ -77,7 +77,7 @@ public class WildCardImportStatementListener extends JavaBaseListener {
     String message = "You should not use wild card import statement";
     String suggestion = "Split this statement to multiple import statements";
 
-    ReportContent reportContent = new ReportContent(line, column, message, suggestion);
+    StyleReportContent reportContent = new StyleReportContent(line, column, message, suggestion);
     report.addReportContents(reportContent);
   }
 }

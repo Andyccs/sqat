@@ -22,23 +22,18 @@
 
 package com.sqatntu.stylechecker;
 
+import com.sqatntu.ThrowingErrorListener;
 import com.sqatntu.stylechecker.api.JavaLexer;
 import com.sqatntu.stylechecker.api.JavaParser;
 import com.sqatntu.stylechecker.configuration.Configuration;
 import com.sqatntu.stylechecker.configuration.ConfigurationLoader;
 import com.sqatntu.stylechecker.injection.Dagger;
 import com.sqatntu.stylechecker.listener.AllListeners;
-import com.sqatntu.stylechecker.listener.BraceStyleListener;
-import com.sqatntu.stylechecker.listener.MethodNameFormatListener;
-import com.sqatntu.stylechecker.listener.WildCardImportStatementListener;
 import com.sqatntu.stylechecker.report.StyleReport;
-import org.antlr.v4.runtime.ANTLRErrorListener;
 import org.antlr.v4.runtime.ANTLRFileStream;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CommonTokenStream;
-import org.antlr.v4.runtime.RecognitionException;
-import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.misc.ParseCancellationException;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 

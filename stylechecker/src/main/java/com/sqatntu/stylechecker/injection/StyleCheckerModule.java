@@ -22,12 +22,10 @@
 
 package com.sqatntu.stylechecker.injection;
 
+import com.sqatntu.ThrowingErrorListener;
 import com.sqatntu.stylechecker.StyleChecker;
-import com.sqatntu.stylechecker.ThrowingErrorListener;
 import com.sqatntu.stylechecker.configuration.ConfigurationLoader;
-import com.sqatntu.stylechecker.configuration.DummyConfigurationLoader;
 import com.sqatntu.stylechecker.configuration.JsonConfigurationLoader;
-import com.sqatntu.stylechecker.listener.MethodNameFormatListener;
 import com.sqatntu.stylechecker.report.StyleReport;
 import dagger.Module;
 import dagger.Provides;
