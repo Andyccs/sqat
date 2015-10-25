@@ -28,7 +28,8 @@ public class WildCardImportStatementListenerTest {
   public void importStatementsHasWildCard() throws IOException, StyleCheckerException {
     StyleChecker checker = new StyleChecker();
     StyleReport report = checker.checkSourceCode(
-        TestUtil.loadFile("src/test/resources/stylechecker/WildCardImportStatementHasWildCard.java"),
+        TestUtil.loadFile(
+            "src/test/resources/stylechecker/WildCardImportStatementHasWildCard.java"),
         TestUtil.loadFile("src/test/resources/stylechecker/WildCardNotAllow.json"));
     assertEquals(2, report.getReportContents().size());
     assertEquals(3, report.getReportContents().get(0).getLineNumber());
@@ -39,7 +40,8 @@ public class WildCardImportStatementListenerTest {
   public void importStatementsAllowWildCard() throws IOException, StyleCheckerException {
     StyleChecker checker = new StyleChecker();
     StyleReport report = checker.checkSourceCode(
-        TestUtil.loadFile("src/test/resources/stylechecker/WildCardImportStatementHasWildCard.java"),
+        TestUtil.loadFile(
+            "src/test/resources/stylechecker/WildCardImportStatementHasWildCard.java"),
         TestUtil.loadFile("src/test/resources/stylechecker/WildCardAllow.json"));
     assertEquals(0, report.getReportContents().size());
   }
