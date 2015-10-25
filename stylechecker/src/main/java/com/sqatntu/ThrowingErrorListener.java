@@ -1,4 +1,4 @@
-package com.sqatntu.stylechecker;
+package com.sqatntu;
 
 import org.antlr.v4.runtime.BaseErrorListener;
 import org.antlr.v4.runtime.RecognitionException;

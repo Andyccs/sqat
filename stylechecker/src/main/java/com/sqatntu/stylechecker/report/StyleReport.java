@@ -10,17 +10,17 @@ import java.util.List;
  */
 public class StyleReport {
 
-  List<ReportContent> reportContents;
+  List<StyleReportContent> reportContents;
 
   public StyleReport() {
     reportContents = new ArrayList<>();
   }
 
-  public List<ReportContent> getReportContents() {
-    return ImmutableList.<ReportContent>builder().addAll(reportContents).build();
+  public List<StyleReportContent> getReportContents() {
+    return ImmutableList.<StyleReportContent>builder().addAll(reportContents).build();
   }
 
-  public void addReportContents(ReportContent reportContents) {
+  public void addReportContents(StyleReportContent reportContents) {
     this.reportContents.add(reportContents);
   }
 }

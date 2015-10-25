@@ -5,8 +5,8 @@ import com.sqatntu.stylechecker.api.JavaBaseListener;
 import com.sqatntu.stylechecker.api.JavaParser;
 import com.sqatntu.stylechecker.configuration.Configuration;
 import com.sqatntu.stylechecker.configuration.StyleName;
-import com.sqatntu.stylechecker.report.ReportContent;
 import com.sqatntu.stylechecker.report.StyleReport;
+import com.sqatntu.stylechecker.report.StyleReportContent;
 
 /**
  * Created by andyccs on 11/10/15.
@@ -44,11 +44,11 @@ public class BraceStyleListener extends JavaBaseListener {
 
     if (attribute.equals(StyleName.BRACE_STYLE_KR) && line != parentLine) {
       String suggestion = "You should move this braces to previous line";
-      ReportContent reportContent = new ReportContent(line, column, message, suggestion);
+      StyleReportContent reportContent = new StyleReportContent(line, column, message, suggestion);
       report.addReportContents(reportContent);
     } else if (attribute.equals(StyleName.BRACE_STYLE_NON_KR) && line == parentLine) {
       String suggestion = "You should move this braces to next line";
-      ReportContent reportContent = new ReportContent(line, column, message, suggestion);
+      StyleReportContent reportContent = new StyleReportContent(line, column, message, suggestion);
       report.addReportContents(reportContent);
     }
   }

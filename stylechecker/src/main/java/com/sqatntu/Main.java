@@ -27,7 +27,7 @@ package com.sqatntu;
  */
 public class Main {
   public static void main(String[] args) throws Exception {
-    final SQATServer server = new SQATServer();
+    final SqatServer server = new SqatServer();
     server.start();
     server.blockUntilShutdown();
   }

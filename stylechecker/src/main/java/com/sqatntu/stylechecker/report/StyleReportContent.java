@@ -3,7 +3,7 @@ package com.sqatntu.stylechecker.report;
 /**
  * Created by andyccs on 6/9/15.
  */
-public class ReportContent {
+public class StyleReportContent {
 
   private int lineNumber;
 
@@ -13,13 +13,13 @@ public class ReportContent {
 
   private String suggestion;
 
-  public ReportContent(int lineNumber, int columnNumber, String message) {
+  public StyleReportContent(int lineNumber, int columnNumber, String message) {
     this.lineNumber = lineNumber;
     this.columnNumber = columnNumber;
     this.message = message;
   }
 
-  public ReportContent(int lineNumber, int columnNumber, String message, String suggestion) {
+  public StyleReportContent(int lineNumber, int columnNumber, String message, String suggestion) {
     this.lineNumber = lineNumber;
     this.columnNumber = columnNumber;
     this.message = message;

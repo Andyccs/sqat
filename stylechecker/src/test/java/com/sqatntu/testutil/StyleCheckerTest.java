@@ -1,9 +1,9 @@
-package com.sqatntu.stylechecker;
+package com.sqatntu.testutil;
 
-import org.apache.commons.io.FileUtils;
+import com.sqatntu.stylechecker.StyleChecker;
+import com.sqatntu.stylechecker.StyleCheckerException;
 import org.junit.Test;
 
-import java.io.File;
 import java.io.IOException;
 
 /**
@@ -13,8 +13,8 @@ public class StyleCheckerTest {
 
   @Test(expected = StyleCheckerException.class)
   public void nonJavaCode() throws IOException, StyleCheckerException {
-    String javascriptCode = TestUtil.loadFile("src/test/resources/NotJava.js");
-    String randomConfig = TestUtil.loadFile("src/test/resources/NotJava.json");
+    String javascriptCode = TestUtil.loadFile("src/test/resources/stylechecker/NotJava.js");
+    String randomConfig = TestUtil.loadFile("src/test/resources/stylechecker/NotJava.json");
 
     StyleChecker checker = new StyleChecker();
     checker.checkSourceCode(javascriptCode, randomConfig);

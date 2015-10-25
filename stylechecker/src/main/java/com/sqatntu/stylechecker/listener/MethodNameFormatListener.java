@@ -26,13 +26,9 @@ import com.sqatntu.stylechecker.StyleCheckerException;
 import com.sqatntu.stylechecker.api.JavaBaseListener;
 import com.sqatntu.stylechecker.api.JavaParser;
 import com.sqatntu.stylechecker.configuration.Configuration;
-import com.sqatntu.stylechecker.configuration.ConfigurationLoader;
 import com.sqatntu.stylechecker.configuration.StyleName;
-import com.sqatntu.stylechecker.injection.Dagger;
-import com.sqatntu.stylechecker.report.ReportContent;
 import com.sqatntu.stylechecker.report.StyleReport;
-
-import javax.inject.Inject;
+import com.sqatntu.stylechecker.report.StyleReportContent;
 
 /**
  * Created by andyccs on 6/9/15.
@@ -92,7 +88,7 @@ public class MethodNameFormatListener extends JavaBaseListener {
     int line = ctx.getStart().getLine();
     int column = ctx.getStart().getCharPositionInLine() + ctx.getChild(0).getText().length() + 2;
 
-    ReportContent reportContent = new ReportContent(line, column, message, suggestion);
+    StyleReportContent reportContent = new StyleReportContent(line, column, message, suggestion);
     report.addReportContents(reportContent);
   }
 

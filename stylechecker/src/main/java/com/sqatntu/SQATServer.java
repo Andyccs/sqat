@@ -29,8 +29,8 @@ import com.sqatntu.stylechecker.proto.StyleCheckGrpc;
 import com.sqatntu.stylechecker.proto.StyleCheckOuterClass.StyleCheckReply;
 import com.sqatntu.stylechecker.proto.StyleCheckOuterClass.StyleCheckReport;
 import com.sqatntu.stylechecker.proto.StyleCheckOuterClass.StyleCheckRequest;
-import com.sqatntu.stylechecker.report.ReportContent;
 import com.sqatntu.stylechecker.report.StyleReport;
+import com.sqatntu.stylechecker.report.StyleReportContent;
 import io.grpc.ServerImpl;
 import io.grpc.netty.NettyServerBuilder;
 import io.grpc.stub.StreamObserver;
@@ -39,9 +39,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * SQATServer class for Style Checker
+ * SqatServer class for Style Checker
  */
-class SQATServer {
+class SqatServer {
 
   /* The PORT on which the server should run */
   private static Logger LOG = new Logger(StyleCheckImpl.class.getSimpleName());
@@ -49,7 +49,7 @@ class SQATServer {
 
   private ServerImpl server;
 
-  public SQATServer() {
+  public SqatServer() {
     LOG.setLevel(Logger.Level.ALL);
   }
 
@@ -66,7 +66,7 @@ class SQATServer {
       public void run() {
         // Use stderr here since the LOG may have been reset by its JVM shutdown hook.
         LOG.e("*** shutting down gRPC server since JVM is shutting down");
-        SQATServer.this.stop();
+        SqatServer.this.stop();
         LOG.e("*** server shut down");
       }
     });
@@ -102,10 +102,10 @@ class SQATServer {
       try {
         styleReport = checker.checkSourceCode(sourceCode, configuration);
 
-        List<ReportContent> contents = styleReport.getReportContents();
+        List<StyleReportContent> contents = styleReport.getReportContents();
 
         List<StyleCheckReport> reports = new ArrayList<>();
-        for (ReportContent content : contents) {
+        for (StyleReportContent content : contents) {
           StyleCheckReport report = StyleCheckReport.newBuilder()
               .setLineNumber(content.getLineNumber())
               .setColumnNumber(content.getColumnNumber())
