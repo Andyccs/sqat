@@ -41,8 +41,8 @@ public class MethodNameFormatListenerTest {
   public void methodNameFormatWithCamelCase() throws IOException, StyleCheckerException {
     StyleChecker checker = new StyleChecker();
     StyleReport report = checker.checkSourceCode(
-        TestUtil.loadFile("src/test/resources/MethodNameFormatCamelCase.java"),
-        TestUtil.loadFile("src/test/resources/MethodNameCamelCase.json"));
+        TestUtil.loadFile("src/test/resources/stylechecker/MethodNameFormatCamelCase.java"),
+        TestUtil.loadFile("src/test/resources/stylechecker/MethodNameCamelCase.json"));
     assertEquals(0, report.getReportContents().size());
   }
 }

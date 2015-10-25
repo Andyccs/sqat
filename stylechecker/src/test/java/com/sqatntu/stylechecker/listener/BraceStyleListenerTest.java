@@ -20,10 +20,10 @@ public class BraceStyleListenerTest extends ListenerTest {
   @Test
   @TestCode(
       detail = "krStyleCode",
-      fileName = "src/test/resources/BraceKRStyle.java")
+      fileName = "src/test/resources/stylechecker/BraceKRStyle.java")
   @TestConfig(
       detail = "krStyleConfig",
-      fileName = "src/test/resources/BraceKRStyle.json")
+      fileName = "src/test/resources/stylechecker/BraceKRStyle.json")
   public void braceStyle1() throws IOException, StyleCheckerException {
     StyleChecker checker = new StyleChecker();
     StyleReport report = checker.checkSourceCode(testCode, testConfig);
@@ -33,10 +33,10 @@ public class BraceStyleListenerTest extends ListenerTest {
   @Test
   @TestCode(
       detail = "krStyleCode",
-      fileName = "src/test/resources/BraceKRStyle.java")
+      fileName = "src/test/resources/stylechecker/BraceKRStyle.java")
   @TestConfig(
       detail = "nonKrStyleConfig",
-      fileName = "src/test/resources/BraceNonKRStyle.json")
+      fileName = "src/test/resources/stylechecker/BraceNonKRStyle.json")
   public void braceStyle2() throws IOException, StyleCheckerException {
     StyleChecker checker = new StyleChecker();
     StyleReport report = checker.checkSourceCode(testCode, testConfig);
@@ -46,7 +46,7 @@ public class BraceStyleListenerTest extends ListenerTest {
   @Test
   @TestCode(
       detail = "krStyleCode",
-      fileName = "src/test/resources/BraceKRStyle.java")
+      fileName = "src/test/resources/stylechecker/BraceKRStyle.java")
   @TestConfig(
       detail = "ignoreConfig",
       fileName = "src/test/resources/ignoreAll.json")
@@ -59,10 +59,10 @@ public class BraceStyleListenerTest extends ListenerTest {
   @Test
   @TestCode(
       detail = "NonKrStyleCode",
-      fileName = "src/test/resources/BraceNonKRStyle.java")
+      fileName = "src/test/resources/stylechecker/BraceNonKRStyle.java")
   @TestConfig(
       detail = "krStyleConfig",
-      fileName = "src/test/resources/BraceKRStyle.json")
+      fileName = "src/test/resources/stylechecker/BraceKRStyle.json")
   public void braceStyle4() throws IOException, StyleCheckerException {
     StyleChecker checker = new StyleChecker();
     StyleReport report = checker.checkSourceCode(testCode, testConfig);
@@ -72,10 +72,10 @@ public class BraceStyleListenerTest extends ListenerTest {
   @Test
   @TestCode(
       detail = "NonKrStyleCode",
-      fileName = "src/test/resources/BraceNonKRStyle.java")
+      fileName = "src/test/resources/stylechecker/BraceNonKRStyle.java")
   @TestConfig(
       detail = "nonKrStyleConfig",
-      fileName = "src/test/resources/BraceNonKRStyle.json")
+      fileName = "src/test/resources/stylechecker/BraceNonKRStyle.json")
   public void braceStyle5() throws IOException, StyleCheckerException {
     StyleChecker checker = new StyleChecker();
     StyleReport report = checker.checkSourceCode(testCode, testConfig);
@@ -85,10 +85,10 @@ public class BraceStyleListenerTest extends ListenerTest {
   @Test
   @TestCode(
       detail = "NonKrStyleCode",
-      fileName = "src/test/resources/BraceNonKRStyle.java")
+      fileName = "src/test/resources/stylechecker/BraceNonKRStyle.java")
   @TestConfig(
       detail = "ignoreConfig",
-      fileName = "src/test/resources/ignoreAll.json")
+      fileName = "src/test/resources/stylechecker/ignoreAll.json")
   public void braceStyle6() throws IOException, StyleCheckerException {
     StyleChecker checker = new StyleChecker();
     StyleReport report = checker.checkSourceCode(testCode, testConfig);
@@ -98,10 +98,10 @@ public class BraceStyleListenerTest extends ListenerTest {
   @Test
   @TestCode(
       detail = "krStyleCodeInterface",
-      fileName = "src/test/resources/BraceKRStyleInterface.java")
+      fileName = "src/test/resources/stylechecker/BraceKRStyleInterface.java")
   @TestConfig(
       detail = "krStyleConfig",
-      fileName = "src/test/resources/BraceKRStyle.json")
+      fileName = "src/test/resources/stylechecker/BraceKRStyle.json")
   public void braceStyle7() throws IOException, StyleCheckerException {
     StyleChecker checker = new StyleChecker();
     StyleReport report = checker.checkSourceCode(testCode, testConfig);
@@ -111,10 +111,10 @@ public class BraceStyleListenerTest extends ListenerTest {
   @Test
   @TestCode(
       detail = "krStyleCodeInterface",
-      fileName = "src/test/resources/BraceKRStyleInterface.java")
+      fileName = "src/test/resources/stylechecker/BraceKRStyleInterface.java")
   @TestConfig(
       detail = "nonKrStyleConfig",
-      fileName = "src/test/resources/BraceNonKRStyle.json")
+      fileName = "src/test/resources/stylechecker/BraceNonKRStyle.json")
   public void braceStyle8() throws IOException, StyleCheckerException {
     StyleChecker checker = new StyleChecker();
     StyleReport report = checker.checkSourceCode(testCode, testConfig);
@@ -124,10 +124,10 @@ public class BraceStyleListenerTest extends ListenerTest {
   @Test
   @TestCode(
       detail = "krStyleCodeInterface",
-      fileName = "src/test/resources/BraceKRStyleInterface.java")
+      fileName = "src/test/resources/stylechecker/BraceKRStyleInterface.java")
   @TestConfig(
       detail = "ignoreConfig",
-      fileName = "src/test/resources/ignoreAll.json")
+      fileName = "src/test/resources/stylechecker/ignoreAll.json")
   public void braceStyle9() throws IOException, StyleCheckerException {
     StyleChecker checker = new StyleChecker();
     StyleReport report = checker.checkSourceCode(testCode, testConfig);
@@ -137,10 +137,10 @@ public class BraceStyleListenerTest extends ListenerTest {
   @Test
   @TestCode(
       detail = "nonKrStyleCodeInterface",
-      fileName = "src/test/resources/BraceNonKRStyleInterface.java")
+      fileName = "src/test/resources/stylechecker/BraceNonKRStyleInterface.java")
   @TestConfig(
       detail = "krStyleConfig",
-      fileName = "src/test/resources/BraceKRStyle.json")
+      fileName = "src/test/resources/stylechecker/BraceKRStyle.json")
   public void braceStyle10() throws IOException, StyleCheckerException {
     StyleChecker checker = new StyleChecker();
     StyleReport report = checker.checkSourceCode(testCode, testConfig);
@@ -150,10 +150,10 @@ public class BraceStyleListenerTest extends ListenerTest {
   @Test
   @TestCode(
       detail = "nonKrStyleCodeInterface",
-      fileName = "src/test/resources/BraceNonKRStyleInterface.java")
+      fileName = "src/test/resources/stylechecker/BraceNonKRStyleInterface.java")
   @TestConfig(
       detail = "nonKrStyleConfig",
-      fileName = "src/test/resources/BraceNonKRStyle.json")
+      fileName = "src/test/resources/stylechecker/BraceNonKRStyle.json")
   public void braceStyle11() throws IOException, StyleCheckerException {
     StyleChecker checker = new StyleChecker();
     StyleReport report = checker.checkSourceCode(testCode, testConfig);
@@ -163,10 +163,10 @@ public class BraceStyleListenerTest extends ListenerTest {
   @Test
   @TestCode(
       detail = "nonKrStyleCodeInterface",
-      fileName = "src/test/resources/BraceNonKRStyleInterface.java")
+      fileName = "src/test/resources/stylechecker/BraceNonKRStyleInterface.java")
   @TestConfig(
       detail = "ignoreConfig",
-      fileName = "src/test/resources/ignoreAll.json")
+      fileName = "src/test/resources/stylechecker/ignoreAll.json")
   public void braceStyle12() throws IOException, StyleCheckerException {
     StyleChecker checker = new StyleChecker();
     StyleReport report = checker.checkSourceCode(testCode, testConfig);

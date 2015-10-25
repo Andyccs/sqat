@@ -19,8 +19,8 @@ public class WildCardImportStatementListenerTest {
   public void importStatementsWithoutWildCard() throws IOException, StyleCheckerException {
     StyleChecker checker = new StyleChecker();
     StyleReport report = checker.checkSourceCode(
-        TestUtil.loadFile("src/test/resources/WildCardImportStatementNoWildCard.java"),
-        TestUtil.loadFile("src/test/resources/WildCardNotAllow.json"));
+        TestUtil.loadFile("src/test/resources/stylechecker/WildCardImportStatementNoWildCard.java"),
+        TestUtil.loadFile("src/test/resources/stylechecker/WildCardNotAllow.json"));
     assertEquals(0, report.getReportContents().size());
   }
 
@@ -28,8 +28,8 @@ public class WildCardImportStatementListenerTest {
   public void importStatementsHasWildCard() throws IOException, StyleCheckerException {
     StyleChecker checker = new StyleChecker();
     StyleReport report = checker.checkSourceCode(
-        TestUtil.loadFile("src/test/resources/WildCardImportStatementHasWildCard.java"),
-        TestUtil.loadFile("src/test/resources/WildCardNotAllow.json"));
+        TestUtil.loadFile("src/test/resources/stylechecker/WildCardImportStatementHasWildCard.java"),
+        TestUtil.loadFile("src/test/resources/stylechecker/WildCardNotAllow.json"));
     assertEquals(2, report.getReportContents().size());
     assertEquals(3, report.getReportContents().get(0).getLineNumber());
     assertEquals(4, report.getReportContents().get(1).getLineNumber());
@@ -39,8 +39,8 @@ public class WildCardImportStatementListenerTest {
   public void importStatementsAllowWildCard() throws IOException, StyleCheckerException {
     StyleChecker checker = new StyleChecker();
     StyleReport report = checker.checkSourceCode(
-        TestUtil.loadFile("src/test/resources/WildCardImportStatementHasWildCard.java"),
-        TestUtil.loadFile("src/test/resources/WildCardAllow.json"));
+        TestUtil.loadFile("src/test/resources/stylechecker/WildCardImportStatementHasWildCard.java"),
+        TestUtil.loadFile("src/test/resources/stylechecker/WildCardAllow.json"));
     assertEquals(0, report.getReportContents().size());
   }
 }

@@ -13,8 +13,8 @@ public class StyleCheckerTest {
 
   @Test(expected = StyleCheckerException.class)
   public void nonJavaCode() throws IOException, StyleCheckerException {
-    String javascriptCode = TestUtil.loadFile("src/test/resources/NotJava.js");
-    String randomConfig = TestUtil.loadFile("src/test/resources/NotJava.json");
+    String javascriptCode = TestUtil.loadFile("src/test/resources/stylechecker/NotJava.js");
+    String randomConfig = TestUtil.loadFile("src/test/resources/stylechecker/NotJava.json");
 
     StyleChecker checker = new StyleChecker();
     checker.checkSourceCode(javascriptCode, randomConfig);
