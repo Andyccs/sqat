@@ -23,8 +23,8 @@
 package com.sqatntu.stylechecker;
 
 import com.sqatntu.ThrowingErrorListener;
-import com.sqatntu.stylechecker.api.JavaLexer;
-import com.sqatntu.stylechecker.api.JavaParser;
+import com.sqatntu.api.JavaLexer;
+import com.sqatntu.api.JavaParser;
 import com.sqatntu.stylechecker.configuration.Configuration;
 import com.sqatntu.stylechecker.configuration.ConfigurationLoader;
 import com.sqatntu.stylechecker.injection.Dagger;

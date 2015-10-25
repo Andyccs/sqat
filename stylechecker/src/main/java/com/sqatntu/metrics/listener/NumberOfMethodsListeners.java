@@ -1,8 +1,8 @@
 package com.sqatntu.metrics.listener;
 
+import com.sqatntu.api.JavaBaseListener;
+import com.sqatntu.api.JavaParser;
 import com.sqatntu.metrics.report.MetricReport;
-import com.sqatntu.stylechecker.api.JavaBaseListener;
-import com.sqatntu.stylechecker.api.JavaParser;
 
 /**
  * Created by andyccs on 25/10/15.

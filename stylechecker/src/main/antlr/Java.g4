@@ -41,7 +41,7 @@
 grammar Java;
 
 @header {
-package com.sqatntu.stylechecker.api;
+package com.sqatntu.api;
 }
 
 // starting point for parsing a java file

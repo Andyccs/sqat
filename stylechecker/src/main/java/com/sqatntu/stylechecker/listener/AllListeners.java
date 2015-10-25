@@ -1,7 +1,7 @@
 package com.sqatntu.stylechecker.listener;
 
-import com.sqatntu.stylechecker.api.JavaBaseListener;
-import com.sqatntu.stylechecker.api.JavaParser;
+import com.sqatntu.api.JavaBaseListener;
+import com.sqatntu.api.JavaParser;
 import com.sqatntu.stylechecker.configuration.Configuration;
 import com.sqatntu.stylechecker.report.StyleReport;
 
@@ -31,7 +31,7 @@ public class AllListeners extends JavaBaseListener {
   }
 
   @Override
-  public void enterBlock(com.sqatntu.stylechecker.api.JavaParser.BlockContext ctx) {
+  public void enterBlock(com.sqatntu.api.JavaParser.BlockContext ctx) {
     braceStyleListener.enterBlock(ctx);
   }
 }

@@ -1,8 +1,8 @@
 package com.sqatntu.stylechecker.listener;
 
+import com.sqatntu.api.JavaBaseListener;
+import com.sqatntu.api.JavaParser;
 import com.sqatntu.stylechecker.StyleCheckerException;
-import com.sqatntu.stylechecker.api.JavaBaseListener;
-import com.sqatntu.stylechecker.api.JavaParser;
 import com.sqatntu.stylechecker.configuration.Configuration;
 import com.sqatntu.stylechecker.configuration.StyleName;
 import com.sqatntu.stylechecker.report.StyleReport;
