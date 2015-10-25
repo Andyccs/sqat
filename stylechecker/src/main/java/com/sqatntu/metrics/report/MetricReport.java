@@ -9,17 +9,13 @@ import java.util.List;
  */
 public class MetricReport {
 
-  List<MetricReportContent> report;
+  private int numberOfMethods;
 
-  public MetricReport() {
-    report = new ArrayList<>();
+  public int getNumberOfMethods() {
+    return numberOfMethods;
   }
 
-  public List<MetricReportContent> getReport() {
-    return report;
-  }
-
-  public void addReportContents(MetricReportContent reportContents) {
-    report.add(reportContents);
+  public void setNumberOfMethods(int numberOfMethods) {
+    this.numberOfMethods = numberOfMethods;
   }
 }

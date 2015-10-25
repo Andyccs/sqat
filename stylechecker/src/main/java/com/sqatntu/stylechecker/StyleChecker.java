@@ -28,6 +28,7 @@ import com.sqatntu.stylechecker.api.JavaParser;
 import com.sqatntu.stylechecker.configuration.Configuration;
 import com.sqatntu.stylechecker.configuration.ConfigurationLoader;
 import com.sqatntu.stylechecker.injection.Dagger;
+import com.sqatntu.stylechecker.injection.StyleCheckerModule;
 import com.sqatntu.stylechecker.listener.AllListeners;
 import com.sqatntu.stylechecker.report.StyleReport;
 import org.antlr.v4.runtime.ANTLRFileStream;
@@ -56,6 +57,7 @@ public class StyleChecker {
   ThrowingErrorListener throwingErrorListener;
 
   public StyleChecker() {
+    Dagger.changeModule(new StyleCheckerModule());
     Dagger.inject(this);
   }
 

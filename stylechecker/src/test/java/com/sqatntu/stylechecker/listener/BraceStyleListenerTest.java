@@ -49,7 +49,7 @@ public class BraceStyleListenerTest extends ListenerTest {
       fileName = "src/test/resources/stylechecker/BraceKRStyle.java")
   @TestConfig(
       detail = "ignoreConfig",
-      fileName = "src/test/resources/ignoreAll.json")
+      fileName = "src/test/resources/stylechecker/ignoreAll.json")
   public void braceStyle3() throws IOException, StyleCheckerException {
     StyleChecker checker = new StyleChecker();
     StyleReport report = checker.checkSourceCode(testCode, testConfig);

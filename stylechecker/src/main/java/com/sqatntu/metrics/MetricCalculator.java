@@ -1,11 +1,12 @@
 package com.sqatntu.metrics;
 
 import com.sqatntu.ThrowingErrorListener;
+import com.sqatntu.metrics.injection.MetricCalculatorModule;
 import com.sqatntu.metrics.listener.NumberOfMethodsListeners;
 import com.sqatntu.metrics.report.MetricReport;
 import com.sqatntu.stylechecker.api.JavaLexer;
 import com.sqatntu.stylechecker.api.JavaParser;
-import com.sqatntu.stylechecker.listener.AllListeners;
+import com.sqatntu.stylechecker.injection.Dagger;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
@@ -22,6 +23,11 @@ public class MetricCalculator {
 
   @Inject
   ThrowingErrorListener throwingErrorListener;
+
+  public MetricCalculator() {
+    Dagger.changeModule(new MetricCalculatorModule());
+    Dagger.inject(this);
+  }
 
   public MetricReport calculateMetrics(String sourceCode) {
     ANTLRInputStream stream = new ANTLRInputStream(sourceCode);
