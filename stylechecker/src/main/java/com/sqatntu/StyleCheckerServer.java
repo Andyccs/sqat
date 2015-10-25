@@ -20,8 +20,10 @@
  *
  */
 
-package com.sqatntu.stylechecker;
+package com.sqatntu;
 
+import com.sqatntu.stylechecker.StyleChecker;
+import com.sqatntu.stylechecker.StyleCheckerException;
 import com.sqatntu.stylechecker.proto.ErrorOuterClass;
 import com.sqatntu.stylechecker.proto.StyleCheckGrpc;
 import com.sqatntu.stylechecker.proto.StyleCheckOuterClass.StyleCheckReply;
@@ -33,7 +35,6 @@ import io.grpc.ServerImpl;
 import io.grpc.netty.NettyServerBuilder;
 import io.grpc.stub.StreamObserver;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 

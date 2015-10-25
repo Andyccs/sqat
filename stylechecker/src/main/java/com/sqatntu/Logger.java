@@ -20,7 +20,7 @@
  *
  */
 
-package com.sqatntu.stylechecker;
+package com.sqatntu;
 
 public class Logger {
   public enum Level {

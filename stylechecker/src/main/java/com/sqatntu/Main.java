@@ -20,7 +20,7 @@
  *
  */
 
-package com.sqatntu.stylechecker;
+package com.sqatntu;
 
 /**
  * Created by andyccs on 11/9/15.

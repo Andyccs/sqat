@@ -11,7 +11,7 @@ apply plugin: 'cobertura'
 apply plugin: 'com.github.kt3k.coveralls'
 
 sourceCompatibility = 1.7
-mainClassName = "com.sqatntu.stylechecker.Main"
+mainClassName = "com.sqatntu.Main"
 
 repositories {
     mavenCentral()
