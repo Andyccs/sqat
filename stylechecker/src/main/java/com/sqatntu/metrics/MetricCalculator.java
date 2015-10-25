@@ -6,7 +6,7 @@ import com.sqatntu.api.JavaParser;
 import com.sqatntu.metrics.injection.MetricCalculatorModule;
 import com.sqatntu.metrics.listener.NumberOfMethodsListeners;
 import com.sqatntu.metrics.report.MetricReport;
-import com.sqatntu.stylechecker.injection.Dagger;
+import dagger.ObjectGraph;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
@@ -25,8 +25,8 @@ public class MetricCalculator {
   ThrowingErrorListener throwingErrorListener;
 
   public MetricCalculator() {
-    Dagger.changeModule(new MetricCalculatorModule());
-    Dagger.inject(this);
+    ObjectGraph objectGraph = ObjectGraph.create(new MetricCalculatorModule());
+    objectGraph.inject(this);
   }
 
   public MetricReport calculateMetrics(String sourceCode) {

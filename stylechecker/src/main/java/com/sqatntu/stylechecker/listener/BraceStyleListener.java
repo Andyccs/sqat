@@ -9,9 +9,15 @@ import com.sqatntu.stylechecker.report.StyleReport;
 import com.sqatntu.stylechecker.report.StyleReportContent;
 
 /**
- * Created by andyccs on 11/10/15.
+ * Check brace style of source codes.
+ * Three brace styles are define in {@link StyleName}:
+ * 1. {@link StyleName#BRACE_STYLE_KR}
+ * 2. {@link StyleName#BRACE_STYLE_NON_KR}
+ * 3. {@link StyleName#IGNORE_STYLE}
+ *
+ * @see StyleName#BRACE_STYLE
  */
-public class BraceStyleListener extends JavaBaseListener {
+class BraceStyleListener extends JavaBaseListener {
 
   private Configuration configuration;
   private StyleReport report;

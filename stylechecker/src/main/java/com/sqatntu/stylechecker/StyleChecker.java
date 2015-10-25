@@ -27,10 +27,10 @@ import com.sqatntu.api.JavaLexer;
 import com.sqatntu.api.JavaParser;
 import com.sqatntu.stylechecker.configuration.Configuration;
 import com.sqatntu.stylechecker.configuration.ConfigurationLoader;
-import com.sqatntu.stylechecker.injection.Dagger;
 import com.sqatntu.stylechecker.injection.StyleCheckerModule;
 import com.sqatntu.stylechecker.listener.AllListeners;
 import com.sqatntu.stylechecker.report.StyleReport;
+import dagger.ObjectGraph;
 import org.antlr.v4.runtime.ANTLRFileStream;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CharStream;
@@ -43,7 +43,7 @@ import java.io.IOException;
 import javax.inject.Inject;
 
 /**
- * StyleChecker provides only one method, i.e. the {@code #checkSourceCode} method.
+ * StyleChecker provides only one method, i.e. the {@link #checkSourceCode} method.
  * The method accepts source code and style check configuration and performs style
  * checking by using Visitor pattern.
  */
@@ -59,8 +59,8 @@ public class StyleChecker {
   ThrowingErrorListener throwingErrorListener;
 
   public StyleChecker() {
-    Dagger.changeModule(new StyleCheckerModule());
-    Dagger.inject(this);
+    ObjectGraph objectGraph = ObjectGraph.create(new StyleCheckerModule());
+    objectGraph.inject(this);
   }
 
   @Deprecated

@@ -6,7 +6,9 @@ import com.sqatntu.stylechecker.configuration.Configuration;
 import com.sqatntu.stylechecker.report.StyleReport;
 
 /**
- * Created by andyccs on 11/10/15.
+ * Aggregate all {@link JavaBaseListener} so that we only need
+ * {@link org.antlr.v4.runtime.tree.ParseTreeWalker}
+ * to walk the Parse Tree once.
  */
 public class AllListeners extends JavaBaseListener {
 

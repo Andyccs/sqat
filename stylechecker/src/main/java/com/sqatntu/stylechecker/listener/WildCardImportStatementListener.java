@@ -31,9 +31,15 @@ import com.sqatntu.stylechecker.report.StyleReport;
 import com.sqatntu.stylechecker.report.StyleReportContent;
 
 /**
- * Created by andyccs on 22/9/15.
+ * Check wild card import statement of source codes.
+ * Two wild card import statement style is define in {@link StyleName}:
+ * 1. {@link StyleName#WILD_CARD_IMPORT_NO}
+ * 2. {@link StyleName#WILD_CARD_IMPORT_OK}
+ * 3. {@link StyleName#IGNORE_STYLE}
+ *
+ * @see StyleName#WILD_CARD_IMPORT
  */
-public class WildCardImportStatementListener extends JavaBaseListener {
+class WildCardImportStatementListener extends JavaBaseListener {
 
   private Configuration configuration;
   private StyleReport report;

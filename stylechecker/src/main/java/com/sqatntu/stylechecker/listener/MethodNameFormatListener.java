@@ -31,9 +31,14 @@ import com.sqatntu.stylechecker.report.StyleReport;
 import com.sqatntu.stylechecker.report.StyleReportContent;
 
 /**
- * Created by andyccs on 6/9/15.
+ * Check method name format of source codes
+ * Two method name format is define in {@link StyleName}:
+ * 1. {@link StyleName#METHOD_NAME_FORMAT_CAMEL_CASE}
+ * 2. {@link StyleName#IGNORE_STYLE}
+ *
+ * @see StyleName#METHOD_NAME_FORMAT
  */
-public class MethodNameFormatListener extends JavaBaseListener {
+class MethodNameFormatListener extends JavaBaseListener {
 
   private Configuration configuration;
   private StyleReport report;

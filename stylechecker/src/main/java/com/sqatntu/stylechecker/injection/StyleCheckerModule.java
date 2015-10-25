@@ -33,12 +33,9 @@ import dagger.Provides;
 import javax.inject.Singleton;
 
 /**
- * Created by andyccs on 6/9/15.
+ * A module that provides all required dependencies for {@link StyleChecker}
  */
-@Module(
-    injects = {
-        StyleChecker.class
-    })
+@Module(injects = {StyleChecker.class})
 public class StyleCheckerModule {
 
   @Provides
