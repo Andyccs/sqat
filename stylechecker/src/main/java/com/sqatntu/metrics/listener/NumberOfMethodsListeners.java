@@ -17,6 +17,7 @@ public class NumberOfMethodsListeners extends JavaBaseListener {
 
   @Override
   public void enterMethodDeclaration(JavaParser.MethodDeclarationContext ctx) {
-
+    int currentNumberOfMethods = report.getNumberOfMethods();
+    report.setNumberOfMethods(++currentNumberOfMethods);
   }
 }
