@@ -27,7 +27,7 @@ package com.sqatntu;
  */
 public class Main {
   public static void main(String[] args) throws Exception {
-    final StyleCheckerServer server = new StyleCheckerServer();
+    final SQATServer server = new SQATServer();
     server.start();
     server.blockUntilShutdown();
   }

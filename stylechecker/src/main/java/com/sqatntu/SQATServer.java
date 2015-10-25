@@ -39,9 +39,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * StyleCheckerServer class for Style Checker
+ * SQATServer class for Style Checker
  */
-class StyleCheckerServer {
+class SQATServer {
 
   /* The PORT on which the server should run */
   private static Logger LOG = new Logger(StyleCheckImpl.class.getSimpleName());
@@ -49,7 +49,7 @@ class StyleCheckerServer {
 
   private ServerImpl server;
 
-  public StyleCheckerServer() {
+  public SQATServer() {
     LOG.setLevel(Logger.Level.ALL);
   }
 
@@ -66,7 +66,7 @@ class StyleCheckerServer {
       public void run() {
         // Use stderr here since the LOG may have been reset by its JVM shutdown hook.
         LOG.e("*** shutting down gRPC server since JVM is shutting down");
-        StyleCheckerServer.this.stop();
+        SQATServer.this.stop();
         LOG.e("*** server shut down");
       }
     });
