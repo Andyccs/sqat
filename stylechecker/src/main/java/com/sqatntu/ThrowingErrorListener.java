@@ -5,6 +5,10 @@ import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;
 import org.antlr.v4.runtime.misc.ParseCancellationException;
 
+/**
+ * When {@code JavaLexer} or {@code JavaParser} failed to parse source codes, this
+ * listener will respond by throwing {@code ParseCancellationException}
+ */
 public class ThrowingErrorListener extends BaseErrorListener {
 
   @Override

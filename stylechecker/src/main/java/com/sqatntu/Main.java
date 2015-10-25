@@ -23,7 +23,7 @@
 package com.sqatntu;
 
 /**
- * Created by andyccs on 11/9/15.
+ * Start SQAT server
  */
 public class Main {
   public static void main(String[] args) throws Exception {

@@ -22,6 +22,9 @@
 
 package com.sqatntu;
 
+/**
+ * A Simple logger with different levels
+ */
 public class Logger {
   public enum Level {
     ALL(0),
@@ -44,8 +47,14 @@ public class Logger {
   }
 
   private String className;
+
   private Level level;
 
+  /**
+   * Create a simple logger for a class.
+   * The default logging level is: WARNING.
+   * @param className
+   */
   public Logger(String className) {
     this.className = className;
     level = Level.WARNING;

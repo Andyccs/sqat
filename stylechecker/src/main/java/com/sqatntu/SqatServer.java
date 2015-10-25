@@ -41,7 +41,7 @@ import java.util.List;
 /**
  * SqatServer class for Style Checker
  */
-class SqatServer {
+public class SqatServer {
 
   /* The PORT on which the server should run */
   private static Logger LOG = new Logger(StyleCheckImpl.class.getSimpleName());
@@ -87,6 +87,9 @@ class SqatServer {
     }
   }
 
+  /**
+   * Style Checker Service implementation for GRPC service
+   */
   private class StyleCheckImpl implements StyleCheckGrpc.StyleCheck {
     public StyleCheckImpl() {
       LOG.setLevel(Logger.Level.ALL);
