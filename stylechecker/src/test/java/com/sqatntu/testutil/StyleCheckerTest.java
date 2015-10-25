@@ -1,9 +1,9 @@
-package com.sqatntu.stylechecker;
+package com.sqatntu.testutil;
 
-import org.apache.commons.io.FileUtils;
+import com.sqatntu.stylechecker.StyleChecker;
+import com.sqatntu.stylechecker.StyleCheckerException;
 import org.junit.Test;
 
-import java.io.File;
 import java.io.IOException;
 
 /**

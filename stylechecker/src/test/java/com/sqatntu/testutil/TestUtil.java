@@ -1,4 +1,4 @@
-package com.sqatntu.stylechecker;
+package com.sqatntu.testutil;
 
 import org.apache.commons.io.FileUtils;
 

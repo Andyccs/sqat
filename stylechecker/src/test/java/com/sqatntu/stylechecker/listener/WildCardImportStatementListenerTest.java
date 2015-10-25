@@ -4,8 +4,8 @@ import static org.junit.Assert.assertEquals;
 
 import com.sqatntu.stylechecker.StyleChecker;
 import com.sqatntu.stylechecker.StyleCheckerException;
-import com.sqatntu.stylechecker.TestUtil;
 import com.sqatntu.stylechecker.report.StyleReport;
+import com.sqatntu.testutil.TestUtil;
 import org.junit.Test;
 
 import java.io.IOException;

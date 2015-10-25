@@ -2,12 +2,12 @@ package com.sqatntu.stylechecker.listener;
 
 import static org.junit.Assert.assertEquals;
 
-import com.sqatntu.stylechecker.ListenerTest;
 import com.sqatntu.stylechecker.StyleChecker;
 import com.sqatntu.stylechecker.StyleCheckerException;
-import com.sqatntu.stylechecker.TestCode;
-import com.sqatntu.stylechecker.TestConfig;
 import com.sqatntu.stylechecker.report.StyleReport;
+import com.sqatntu.testutil.ListenerTest;
+import com.sqatntu.testutil.TestCode;
+import com.sqatntu.testutil.TestConfig;
 import org.junit.Test;
 
 import java.io.IOException;

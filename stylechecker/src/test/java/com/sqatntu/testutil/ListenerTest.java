@@ -1,4 +1,4 @@
-package com.sqatntu.stylechecker;
+package com.sqatntu.testutil;
 
 import org.junit.After;
 import org.junit.Before;
