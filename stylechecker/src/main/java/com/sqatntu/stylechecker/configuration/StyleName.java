@@ -23,7 +23,7 @@
 package com.sqatntu.stylechecker.configuration;
 
 /**
- * Created by andyccs on 6/9/15.
+ * All the style names and their values.
  */
 public class StyleName {
 

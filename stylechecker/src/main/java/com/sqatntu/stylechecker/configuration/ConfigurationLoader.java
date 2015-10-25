@@ -25,7 +25,7 @@ package com.sqatntu.stylechecker.configuration;
 import java.io.IOException;
 
 /**
- * Created by andyccs on 6/9/15.
+ * Define the way to load configuration from various sources
  */
 public interface ConfigurationLoader {
   Configuration loadFileConfiguration(String filePath) throws IOException;

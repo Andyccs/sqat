@@ -25,7 +25,7 @@ package com.sqatntu.stylechecker.configuration;
 import com.sqatntu.stylechecker.StyleCheckerException;
 
 /**
- * Created by andyccs on 6/9/15.
+ * Style Checker will check the source codes according to configuration.
  */
 public interface Configuration {
 
