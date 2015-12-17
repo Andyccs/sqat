@@ -9,47 +9,9 @@ class SubmitSourceCodeStore {
   constructor() {
     this.currentState = SubmitSourceCodeState.INITIAL;
     this.errorMessage = null;
-    this.report = null;
+    this.styleReport = null;
     this.sourceCode = null;
-    this.metricReport = {
-      overallData: {
-        percentage: 90,
-        descriptionText: 'Overall Quality'
-      },
-      analysabilityData: {
-        percentage: 70,
-        descriptionText: 'Analysability'
-      },
-      testabilityData: {
-        percentage: 90,
-        descriptionText: 'Testability'
-      },
-      lineOfCode: {
-        value: 1005,
-        benchmark: 1500,
-        score: 85
-      },
-      depthOfConditionalNesting: {
-        value: 3,
-        benchmark: 1.5,
-        score: 80
-      },
-      lengthOfIdentifier: {
-        value: 25,
-        benchmark: 10,
-        score: 50
-      },
-      weightedMethodPerClass: {
-        value: 6,
-        benchmark: 5,
-        score: 90
-      },
-      numberOfAttribute: {
-        value: 8,
-        benchmark: 6,
-        score: 80
-      }
-    };
+    this.metricReport = null;
 
     this.bindListeners({
       handleFetchStyleCheckerReport: SubmitSourceCodeAction.fetchStyleCheckerReport,
@@ -62,14 +24,15 @@ class SubmitSourceCodeStore {
 
   handleSourceCodeSubmitSuccess(result) {
     this.currentState = SubmitSourceCodeState.SUCCESS;
-    this.report = result.reports;
+    this.styleReport = result.styleReport;
+    this.metricReport = result.metricReport;
     // optionally return false to suppress the store change event
   }
 
   handleFetchStyleCheckerReport() {
     this.currentState = SubmitSourceCodeState.SUBMITTING;
     if(!this.getInstance().isLoading()) {
-      this.getInstance().performStyleCheck();
+      this.getInstance().performQualityCheck();
     }
   }
 
@@ -82,7 +45,7 @@ class SubmitSourceCodeStore {
   handleSubmitAgain() {
     this.currentState = SubmitSourceCodeState.INITIAL;
     this.errorMessage = null;
-    this.report = null;
+    this.styleReport = null;
   }
 
   handleSourceCodeChanged(sourceCode) {

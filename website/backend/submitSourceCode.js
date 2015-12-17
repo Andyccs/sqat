@@ -62,8 +62,50 @@ export default function submitSourceCode(request, response) {
       result.push(report);
     }
 
+    // TODO: change fake data to real data
+    let metricReport = {
+      overallData: {
+        percentage: 99,
+        descriptionText: 'Overall Quality'
+      },
+      analysabilityData: {
+        percentage: 70,
+        descriptionText: 'Analysability'
+      },
+      testabilityData: {
+        percentage: 90,
+        descriptionText: 'Testability'
+      },
+      lineOfCode: {
+        value: 1005,
+        benchmark: 1500,
+        score: 85
+      },
+      depthOfConditionalNesting: {
+        value: 3,
+        benchmark: 1.5,
+        score: 80
+      },
+      lengthOfIdentifier: {
+        value: 25,
+        benchmark: 10,
+        score: 50
+      },
+      weightedMethodPerClass: {
+        value: 6,
+        benchmark: 5,
+        score: 90
+      },
+      numberOfAttribute: {
+        value: 8,
+        benchmark: 6,
+        score: 80
+      }
+    };
+
     let responseBody = {
-      reports: result
+      styleReport: result,
+      metricReport: metricReport
     };
 
     response.send(JSON.stringify(responseBody));

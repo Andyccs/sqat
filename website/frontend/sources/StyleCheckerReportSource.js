@@ -7,7 +7,7 @@ promise.polyfill();
 
 const StyleCheckerReportSource = (alt) => {
   return {
-    performStyleCheck: {
+    performQualityCheck: {
       remote(state) {
         return axios.post('submitSourceCode', {
           sourceCode: state.sourceCode
