@@ -26,6 +26,9 @@ import com.sqatntu.stylechecker.StyleChecker;
 import com.sqatntu.stylechecker.StyleCheckerException;
 import com.sqatntu.stylechecker.proto.ErrorOuterClass;
 import com.sqatntu.stylechecker.proto.StyleCheckGrpc;
+import com.sqatntu.stylechecker.proto.StyleCheckOuterClass.MetricData;
+import com.sqatntu.stylechecker.proto.StyleCheckOuterClass.MetricReport;
+import com.sqatntu.stylechecker.proto.StyleCheckOuterClass.PercentageData;
 import com.sqatntu.stylechecker.proto.StyleCheckOuterClass.StyleCheckReply;
 import com.sqatntu.stylechecker.proto.StyleCheckOuterClass.StyleCheckReport;
 import com.sqatntu.stylechecker.proto.StyleCheckOuterClass.StyleCheckRequest;
@@ -118,8 +121,52 @@ public class SqatServer {
           reports.add(report);
         }
 
+        // Build a fake metric report
+        // TODO: replace with real report
+        PercentageData.Builder overallQualityBuilder = PercentageData.newBuilder()
+            .setDescriptionText("Overall Quality")
+            .setPercentage(98);
+        PercentageData.Builder analysabilityBuilder = PercentageData.newBuilder()
+            .setDescriptionText("Analysability")
+            .setPercentage(70);
+        PercentageData.Builder testabilityBuilder = PercentageData.newBuilder()
+            .setDescriptionText("Testability")
+            .setPercentage(90);
+
+        MetricData.Builder lineOfCodeBuilder = MetricData.newBuilder()
+            .setValue(1005)
+            .setBenchmark(1500)
+            .setScore(85);
+        MetricData.Builder depthOfConditionalBuilder = MetricData.newBuilder()
+            .setValue(3)
+            .setBenchmark(2)
+            .setScore(80);
+        MetricData.Builder lengthOfIdentifierBuilder = MetricData.newBuilder()
+            .setValue(20)
+            .setBenchmark(15)
+            .setScore(80);
+        MetricData.Builder weightedMethodPerClassBuilder = MetricData.newBuilder()
+            .setValue(6)
+            .setBenchmark(5)
+            .setScore(90);
+        MetricData.Builder numberOfAttributeBuilder = MetricData.newBuilder()
+            .setValue(8)
+            .setBenchmark(6)
+            .setScore(80);
+
+        MetricReport.Builder metricReportBuilder = MetricReport.newBuilder()
+            .setOverallData(overallQualityBuilder)
+            .setAnalysabilityData(analysabilityBuilder)
+            .setTestabilityData(testabilityBuilder)
+            .setLineOfCode(lineOfCodeBuilder)
+            .setDepthOfConditionalNesting(depthOfConditionalBuilder)
+            .setLengthOfIdentifier(lengthOfIdentifierBuilder)
+            .setWeightedMethodPerClass(weightedMethodPerClassBuilder)
+            .setNumberOfAttribute(numberOfAttributeBuilder);
+
         StyleCheckReply reply = StyleCheckReply.newBuilder()
             .addAllReports(reports)
+            .setMetricReport(metricReportBuilder)
             .build();
         responseObserver.onValue(reply);
         responseObserver.onCompleted();

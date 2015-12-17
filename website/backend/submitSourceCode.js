@@ -26,7 +26,7 @@ export default function submitSourceCode(request, response) {
     configuration
   };
 
-  client.check(checkStyleRequest, (err, styleCheckResponse) => {
+  client.check(checkStyleRequest, (err, qualityCheckResponse) => {
     if(err) {
       let responseBody = {
         error: {
@@ -39,69 +39,30 @@ export default function submitSourceCode(request, response) {
       return;
     }
 
-    if(styleCheckResponse.error) {
+    if(qualityCheckResponse.error) {
       let responseBody = {
-        error: styleCheckResponse.error
+        error: qualityCheckResponse.error
       };
 
-      console.log(styleCheckResponse.error);
+      console.log(qualityCheckResponse.error);
       response.send(JSON.stringify(responseBody));
       return;
     }
 
     let result = [];
 
-    for(let i = 0; i < styleCheckResponse.reports.length; i++) {
+    for(let i = 0; i < qualityCheckResponse.reports.length; i++) {
       let report = {
-        lineNumber: styleCheckResponse.reports[i].lineNumber,
-        columnNumber: styleCheckResponse.reports[i].columnNumber,
-        reportMessage: styleCheckResponse.reports[i].reportMessage,
-        suggestion: styleCheckResponse.reports[i].suggestion,
+        lineNumber: qualityCheckResponse.reports[i].lineNumber,
+        columnNumber: qualityCheckResponse.reports[i].columnNumber,
+        reportMessage: qualityCheckResponse.reports[i].reportMessage,
+        suggestion: qualityCheckResponse.reports[i].suggestion,
       };
 
       result.push(report);
     }
 
-    // TODO: change fake data to real data
-    let metricReport = {
-      overallData: {
-        percentage: 99,
-        descriptionText: 'Overall Quality'
-      },
-      analysabilityData: {
-        percentage: 70,
-        descriptionText: 'Analysability'
-      },
-      testabilityData: {
-        percentage: 90,
-        descriptionText: 'Testability'
-      },
-      lineOfCode: {
-        value: 1005,
-        benchmark: 1500,
-        score: 85
-      },
-      depthOfConditionalNesting: {
-        value: 3,
-        benchmark: 1.5,
-        score: 80
-      },
-      lengthOfIdentifier: {
-        value: 25,
-        benchmark: 10,
-        score: 50
-      },
-      weightedMethodPerClass: {
-        value: 6,
-        benchmark: 5,
-        score: 90
-      },
-      numberOfAttribute: {
-        value: 8,
-        benchmark: 6,
-        score: 80
-      }
-    };
+    let metricReport = qualityCheckResponse.metricReport;
 
     let responseBody = {
       styleReport: result,
