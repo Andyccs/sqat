@@ -26,7 +26,7 @@ export default function submitSourceCode(request, response) {
     configuration
   };
 
-  client.check(checkStyleRequest, (err, styleCheckResponse) => {
+  client.check(checkStyleRequest, (err, qualityCheckResponse) => {
     if(err) {
       let responseBody = {
         error: {
@@ -39,31 +39,34 @@ export default function submitSourceCode(request, response) {
       return;
     }
 
-    if(styleCheckResponse.error) {
+    if(qualityCheckResponse.error) {
       let responseBody = {
-        error: styleCheckResponse.error
+        error: qualityCheckResponse.error
       };
 
-      console.log(styleCheckResponse.error);
+      console.log(qualityCheckResponse.error);
       response.send(JSON.stringify(responseBody));
       return;
     }
 
     let result = [];
 
-    for(let i = 0; i < styleCheckResponse.reports.length; i++) {
+    for(let i = 0; i < qualityCheckResponse.reports.length; i++) {
       let report = {
-        lineNumber: styleCheckResponse.reports[i].lineNumber,
-        columnNumber: styleCheckResponse.reports[i].columnNumber,
-        reportMessage: styleCheckResponse.reports[i].reportMessage,
-        suggestion: styleCheckResponse.reports[i].suggestion,
+        lineNumber: qualityCheckResponse.reports[i].lineNumber,
+        columnNumber: qualityCheckResponse.reports[i].columnNumber,
+        reportMessage: qualityCheckResponse.reports[i].reportMessage,
+        suggestion: qualityCheckResponse.reports[i].suggestion,
       };
 
       result.push(report);
     }
 
+    let metricReport = qualityCheckResponse.metricReport;
+
     let responseBody = {
-      reports: result
+      styleReport: result,
+      metricReport: metricReport
     };
 
     response.send(JSON.stringify(responseBody));

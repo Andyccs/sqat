@@ -43,7 +43,7 @@ export default class StyleReport extends React.Component {
   render() {
     let currentState = this.props.data.currentState;
     let sourceCode = this.props.data.sourceCode;
-    let report = this.props.data.report;
+    let report = this.props.data.styleReport;
 
     let aggregatedReports = [];
 

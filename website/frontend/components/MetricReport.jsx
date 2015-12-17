@@ -21,6 +21,7 @@ export default class MetricReport extends React.Component {
                   <MetricCard data={metricReport.testabilityData}/>
                 </div>
               </div>
+
               <table className='table table-striped table-hover'>
                 <thead>
                   <tr>
@@ -31,7 +32,7 @@ export default class MetricReport extends React.Component {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className={metricReport.lineOfCode.score < 80 ? 'danger' : ''}>>
+                  <tr className={metricReport.lineOfCode.score < 80 ? 'danger' : ''}>
                     <td>Line of codes</td>
                     <td>{metricReport.lineOfCode.value}</td>
                     <td>{metricReport.lineOfCode.benchmark}</td>
@@ -55,7 +56,7 @@ export default class MetricReport extends React.Component {
                     <td>{metricReport.weightedMethodPerClass.benchmark}</td>
                     <td>{metricReport.weightedMethodPerClass.score}%</td>
                   </tr>
-                  <tr className={metricReport.numberOfAttribute.score < 80 ? 'danger' : ''}>>
+                  <tr className={metricReport.numberOfAttribute.score < 80 ? 'danger' : ''}>
                     <td>Number of attributes</td>
                     <td>{metricReport.numberOfAttribute.value}</td>
                     <td>{metricReport.numberOfAttribute.benchmark}</td>

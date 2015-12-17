@@ -18,6 +18,7 @@ message StyleCheckRequest {
 message StyleCheckReply {
   repeated StyleCheckReport reports = 1;
   Error error = 2;
+  MetricReport metricReport = 3;
 }
 
 message StyleCheckReport {
@@ -25,4 +26,27 @@ message StyleCheckReport {
   uint32 columnNumber = 2;
   string reportMessage = 3;
   string suggestion = 4;
+}
+
+message MetricReport {
+  PercentageData overallData = 1;
+  PercentageData analysabilityData = 2;
+  PercentageData testabilityData = 3;
+
+  MetricData lineOfCode = 51;
+  MetricData depthOfConditionalNesting = 52;
+  MetricData lengthOfIdentifier = 53;
+  MetricData weightedMethodPerClass = 54;
+  MetricData numberOfAttribute = 55;
+}
+
+message PercentageData {
+  uint32 percentage = 1;
+  string descriptionText = 2;
+}
+
+message MetricData {
+  uint32 value = 1;
+  uint32 benchmark = 2;
+  uint32 score = 3;
 }
