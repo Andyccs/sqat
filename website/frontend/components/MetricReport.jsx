@@ -7,29 +7,18 @@ export default class MetricReport extends React.Component {
   }
 
   render() {
-    let overallData = {
-      percentage: 80,
-      infoText: 'Overall Quality'
-    };
-    let analysabilityData = {
-      percentage: 70,
-      infoText: 'Analysability'
-    };
-    let testabilityData = {
-      percentage: 90,
-      infoText: 'Testability'
-    };
+    let metricReport = this.props.data.metricReport;
 
     return  <div>
               <div className='row'>
                 <div className='col-md-3'>
-                  <MetricCard data={overallData}/>
+                  <MetricCard data={metricReport.overallData}/>
                 </div>
                 <div className='col-md-3'>
-                  <MetricCard data={analysabilityData}/>
+                  <MetricCard data={metricReport.analysabilityData}/>
                 </div>
                 <div className='col-md-3'>
-                  <MetricCard data={testabilityData}/>
+                  <MetricCard data={metricReport.testabilityData}/>
                 </div>
               </div>
               <table className='table table-striped table-hover'>
@@ -42,35 +31,35 @@ export default class MetricReport extends React.Component {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
+                  <tr className={metricReport.lineOfCode.score < 80 ? 'danger' : ''}>>
                     <td>Line of codes</td>
-                    <td>1000</td>
-                    <td>1050</td>
-                    <td>90%</td>
+                    <td>{metricReport.lineOfCode.value}</td>
+                    <td>{metricReport.lineOfCode.benchmark}</td>
+                    <td>{metricReport.lineOfCode.score}%</td>
                   </tr>
-                  <tr>
+                  <tr className={metricReport.depthOfConditionalNesting.score < 80 ? 'danger' : ''}>
                     <td>Depth of conditional nesting</td>
-                    <td>3</td>
-                    <td>1.5</td>
-                    <td>80%</td>
+                    <td>{metricReport.depthOfConditionalNesting.value}</td>
+                    <td>{metricReport.depthOfConditionalNesting.benchmark}</td>
+                    <td>{metricReport.depthOfConditionalNesting.score}%</td>
                   </tr>
-                  <tr className="danger">
+                  <tr className={metricReport.lengthOfIdentifier.score < 80 ? 'danger' : ''}>
                     <td>Average length of identifier</td>
-                    <td>20</td>
-                    <td>10</td>
-                    <td>50%</td>
+                    <td>{metricReport.lengthOfIdentifier.value}</td>
+                    <td>{metricReport.lengthOfIdentifier.benchmark}</td>
+                    <td>{metricReport.lengthOfIdentifier.score}%</td>
                   </tr>
-                  <tr>
+                  <tr className={metricReport.weightedMethodPerClass.score < 80 ? 'danger' : ''}>
                     <td>Weighted method per class</td>
-                    <td>10</td>
-                    <td>5</td>
-                    <td>50%</td>
+                    <td>{metricReport.weightedMethodPerClass.value}</td>
+                    <td>{metricReport.weightedMethodPerClass.benchmark}</td>
+                    <td>{metricReport.weightedMethodPerClass.score}%</td>
                   </tr>
-                  <tr>
+                  <tr className={metricReport.numberOfAttribute.score < 80 ? 'danger' : ''}>>
                     <td>Number of attributes</td>
-                    <td>6</td>
-                    <td>10</td>
-                    <td>100%</td>
+                    <td>{metricReport.numberOfAttribute.value}</td>
+                    <td>{metricReport.numberOfAttribute.benchmark}</td>
+                    <td>{metricReport.numberOfAttribute.score}%</td>
                   </tr>
                 </tbody>
               </table>

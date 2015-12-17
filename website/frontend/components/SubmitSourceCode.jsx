@@ -82,7 +82,8 @@ export default class SubmitSourceCode extends React.Component {
                 }
 
                 { renderStyeReport &&
-                  <MetricReport />
+                  <MetricReport
+                    data={this.state}/>
                 }
 
                 { renderStyeReport &&
