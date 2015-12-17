@@ -7,6 +7,7 @@ import SubmitButton from './SubmitButton';
 import ErrorMessage from './ErrorMessage';
 import Title from './Title';
 import StyleReport from './StyleReport';
+import MetricReport from './MetricReport';
 import SubmitSourceCodeStore from '../stores/SubmitSourceCodeStore';
 import SubmitSourceCodeAction from '../actions/SubmitSourceCodeAction';
 import SubmitSourceCodeState from '../constants/SubmitSourceCodeState';
@@ -78,6 +79,11 @@ export default class SubmitSourceCode extends React.Component {
                   <ProgressBar
                     data={this.state} />
                 </div>
+                }
+
+                { renderStyeReport &&
+                  <MetricReport
+                    data={this.state}/>
                 }
 
                 { renderStyeReport &&

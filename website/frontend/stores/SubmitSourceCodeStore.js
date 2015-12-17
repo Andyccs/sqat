@@ -11,6 +11,45 @@ class SubmitSourceCodeStore {
     this.errorMessage = null;
     this.report = null;
     this.sourceCode = null;
+    this.metricReport = {
+      overallData: {
+        percentage: 90,
+        descriptionText: 'Overall Quality'
+      },
+      analysabilityData: {
+        percentage: 70,
+        descriptionText: 'Analysability'
+      },
+      testabilityData: {
+        percentage: 90,
+        descriptionText: 'Testability'
+      },
+      lineOfCode: {
+        value: 1005,
+        benchmark: 1500,
+        score: 85
+      },
+      depthOfConditionalNesting: {
+        value: 3,
+        benchmark: 1.5,
+        score: 80
+      },
+      lengthOfIdentifier: {
+        value: 25,
+        benchmark: 10,
+        score: 50
+      },
+      weightedMethodPerClass: {
+        value: 6,
+        benchmark: 5,
+        score: 90
+      },
+      numberOfAttribute: {
+        value: 8,
+        benchmark: 6,
+        score: 80
+      }
+    };
 
     this.bindListeners({
       handleFetchStyleCheckerReport: SubmitSourceCodeAction.fetchStyleCheckerReport,
