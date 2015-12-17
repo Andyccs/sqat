@@ -60,8 +60,6 @@ export default class SubmitSourceCode extends React.Component {
                   <Title data={this.state}/>
                 </div>
 
-                <MetricReport />
-
                 { renderErrorMessage &&
                 <div className='row'>
                   <ErrorMessage data={this.state}/>
@@ -81,6 +79,10 @@ export default class SubmitSourceCode extends React.Component {
                   <ProgressBar
                     data={this.state} />
                 </div>
+                }
+
+                { renderStyeReport &&
+                  <MetricReport />
                 }
 
                 { renderStyeReport &&
