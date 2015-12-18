@@ -37,6 +37,7 @@ message MetricReport {
   MetricData depthOfConditionalNesting = 52;
   MetricData lengthOfIdentifier = 53;
   MetricData numberOfAttribute = 54;
+  MetricData numberOfMethod = 55;
 }
 
 message PercentageData {

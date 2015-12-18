@@ -22,6 +22,7 @@
 
 package com.sqatntu;
 
+import com.sqatntu.metrics.MetricCalculator;
 import com.sqatntu.stylechecker.StyleChecker;
 import com.sqatntu.stylechecker.StyleCheckerException;
 import com.sqatntu.stylechecker.proto.ErrorOuterClass;
@@ -105,6 +106,8 @@ public class SqatServer {
 
       StyleChecker checker = new StyleChecker();
       StyleReport styleReport;
+
+      MetricCalculator calculator = new MetricCalculator();
       try {
         styleReport = checker.checkSourceCode(sourceCode, configuration);
 
@@ -123,6 +126,8 @@ public class SqatServer {
 
         // Build a fake metric report
         // TODO: replace with real report
+        com.sqatntu.metrics.report.MetricReport report = calculator.calculateMetrics(sourceCode);
+
         PercentageData.Builder overallQualityBuilder = PercentageData.newBuilder()
             .setDescriptionText("Overall Quality")
             .setPercentage(98);
@@ -149,6 +154,10 @@ public class SqatServer {
             .setValue(8)
             .setBenchmark(6)
             .setScore(80);
+        MetricData.Builder numberOfMethodBuilder = MetricData.newBuilder()
+            .setValue(report.getNumberOfMethods())
+            .setBenchmark(5)
+            .setScore(90);
 
         MetricReport.Builder metricReportBuilder = MetricReport.newBuilder()
             .setOverallData(overallQualityBuilder)
@@ -157,7 +166,8 @@ public class SqatServer {
             .setLineOfCode(lineOfCodeBuilder)
             .setDepthOfConditionalNesting(depthOfConditionalBuilder)
             .setLengthOfIdentifier(lengthOfIdentifierBuilder)
-            .setNumberOfAttribute(numberOfAttributeBuilder);
+            .setNumberOfAttribute(numberOfAttributeBuilder)
+            .setNumberOfMethod(numberOfMethodBuilder);
 
         StyleCheckReply reply = StyleCheckReply.newBuilder()
             .addAllReports(reports)
