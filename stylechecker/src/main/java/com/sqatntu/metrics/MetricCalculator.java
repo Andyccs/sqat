@@ -4,8 +4,9 @@ import com.sqatntu.ThrowingErrorListener;
 import com.sqatntu.api.JavaLexer;
 import com.sqatntu.api.JavaParser;
 import com.sqatntu.metrics.injection.MetricCalculatorModule;
-import com.sqatntu.metrics.listener.NumberOfLineListeners;
-import com.sqatntu.metrics.listener.NumberOfMethodsListeners;
+import com.sqatntu.metrics.listener.DepthOfConditionNestingListener;
+import com.sqatntu.metrics.listener.NumberOfLineListener;
+import com.sqatntu.metrics.listener.NumberOfMethodsListener;
 import com.sqatntu.metrics.report.MetricReport;
 import dagger.ObjectGraph;
 import org.antlr.v4.runtime.ANTLRInputStream;
@@ -46,11 +47,14 @@ public class MetricCalculator {
     JavaParser.CompilationUnitContext tree = parser.compilationUnit(); // parse 
     ParseTreeWalker walker = new ParseTreeWalker();
 
-    NumberOfMethodsListeners numberOfMethodsListeners = new NumberOfMethodsListeners(report);
+    NumberOfMethodsListener numberOfMethodsListeners = new NumberOfMethodsListener(report);
     walker.walk(numberOfMethodsListeners, tree);
 
-    NumberOfLineListeners numberOfLineListeners = new NumberOfLineListeners(report);
+    NumberOfLineListener numberOfLineListeners = new NumberOfLineListener(report);
     walker.walk(numberOfLineListeners, tree);
+
+    DepthOfConditionNestingListener ifDepthListener = new DepthOfConditionNestingListener(report);
+    walker.walk(ifDepthListener, tree);
 
     return report;
   }

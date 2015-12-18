@@ -11,24 +11,24 @@ import org.junit.Test;
 /**
  * Created by andyccs on 18/12/15.
  */
-public class NumberOfLineListenersTest extends ListenerTest {
+public class DepthOfConditionNestingListenerTest extends ListenerTest {
   @Test
   @TestCode(
-      fileName = "src/test/resources/metrics/2Lines.java",
-      detail = "A class with 2 line of codes")
-  public void TwoLineOfCode() {
+      fileName = "src/test/resources/metrics/1If.java",
+      detail = "A class with 1 if statement, depth of 1")
+  public void OneIfStatement() {
     MetricCalculator calculator = new MetricCalculator();
     MetricReport report = calculator.calculateMetrics(testCode);
-    assertEquals(2, report.getNumberOfLines());
+    assertEquals(1, report.getDepthOfConditionNesting());
   }
 
   @Test
   @TestCode(
-      fileName = "src/test/resources/metrics/6Lines.java",
-      detail = "A class with 6 line of codes")
-  public void SixLineOfCode() {
+      fileName = "src/test/resources/metrics/2If.java",
+      detail = "A class with 2 if statement, depth of 2")
+  public void TwoIfStatement() {
     MetricCalculator calculator = new MetricCalculator();
     MetricReport report = calculator.calculateMetrics(testCode);
-    assertEquals(6, report.getNumberOfLines());
+    assertEquals(2, report.getDepthOfConditionNesting());
   }
 }
