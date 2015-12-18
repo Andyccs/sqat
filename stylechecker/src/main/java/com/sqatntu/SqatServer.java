@@ -143,7 +143,7 @@ public class SqatServer {
             .setBenchmark(1500)
             .setScore(85);
         MetricData.Builder depthOfConditionalBuilder = MetricData.newBuilder()
-            .setValue(3)
+            .setValue(report.getDepthOfConditionNesting())
             .setBenchmark(2)
             .setScore(80);
         MetricData.Builder lengthOfIdentifierBuilder = MetricData.newBuilder()
