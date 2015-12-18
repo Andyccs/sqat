@@ -31,4 +31,25 @@ public class DepthOfConditionNestingListenerTest extends ListenerTest {
     MetricReport report = calculator.calculateMetrics(testCode);
     assertEquals(2, report.getDepthOfConditionNesting());
   }
+
+  @Test
+  @TestCode(
+      fileName = "src/test/resources/metrics/IfElse1.java",
+      detail = "A class with 1 if else statement and 1 if statement, with " +
+          "the if statement on the else clause, depth of 2")
+  public void IfElse1() {
+    MetricCalculator calculator = new MetricCalculator();
+    MetricReport report = calculator.calculateMetrics(testCode);
+    assertEquals(2, report.getDepthOfConditionNesting());
+  }
+
+  @Test
+  @TestCode(
+      fileName = "src/test/resources/metrics/IfElse2.java",
+      detail = "A more complex example, depth of 4")
+  public void IfElse2() {
+    MetricCalculator calculator = new MetricCalculator();
+    MetricReport report = calculator.calculateMetrics(testCode);
+    assertEquals(4, report.getDepthOfConditionNesting());
+  }
 }

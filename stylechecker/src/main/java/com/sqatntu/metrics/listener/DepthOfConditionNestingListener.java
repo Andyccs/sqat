@@ -20,7 +20,10 @@ public class DepthOfConditionNestingListener extends JavaBaseListener {
   public void enterStatement(JavaParser.StatementContext ctx) {
     ctx.getChildCount();
     String text = ctx.getStart().getText();
-    if (!text.startsWith("if")) {
+    if (!text.equals("if") &&
+        !text.equals("while") &&
+        !text.equals("for") &&
+        !text.equals("do")) {
       return;
     }
 
@@ -28,7 +31,11 @@ public class DepthOfConditionNestingListener extends JavaBaseListener {
     ParserRuleContext tempContext = ctx.getParent();
     while (!(tempContext instanceof JavaParser.MethodDeclarationContext)) {
       if (tempContext instanceof JavaParser.StatementContext) {
-        if (tempContext.getStart().getText().equals("if")) {
+        text = tempContext.getStart().getText();
+        if (text.equals("if") ||
+            text.equals("while") ||
+            text.equals("for") ||
+            text.equals("do")) {
           depth++;
         }
       }
