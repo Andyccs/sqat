@@ -13,6 +13,8 @@ public class MetricReport {
 
   private int numberOfLines;
 
+  private int depthOfConditionNesting;
+
   public int getNumberOfMethods() {
     return numberOfMethods;
   }
@@ -27,5 +29,13 @@ public class MetricReport {
 
   public void setNumberOfLines(int numberOfLines) {
     this.numberOfLines = numberOfLines;
+  }
+
+  public int getDepthOfConditionNesting() {
+    return depthOfConditionNesting;
+  }
+
+  public void setDepthOfConditionNesting(int depthOfConditionNesting) {
+    this.depthOfConditionNesting = depthOfConditionNesting;
   }
 }

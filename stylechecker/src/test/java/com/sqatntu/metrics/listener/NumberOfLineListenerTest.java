@@ -11,7 +11,7 @@ import org.junit.Test;
 /**
  * Created by andyccs on 18/12/15.
  */
-public class NumberOfLineListenersTest extends ListenerTest {
+public class NumberOfLineListenerTest extends ListenerTest {
   @Test
   @TestCode(
       fileName = "src/test/resources/metrics/2Lines.java",
