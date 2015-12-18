@@ -145,10 +145,6 @@ public class SqatServer {
             .setValue(20)
             .setBenchmark(15)
             .setScore(80);
-        MetricData.Builder weightedMethodPerClassBuilder = MetricData.newBuilder()
-            .setValue(6)
-            .setBenchmark(5)
-            .setScore(90);
         MetricData.Builder numberOfAttributeBuilder = MetricData.newBuilder()
             .setValue(8)
             .setBenchmark(6)
@@ -161,7 +157,6 @@ public class SqatServer {
             .setLineOfCode(lineOfCodeBuilder)
             .setDepthOfConditionalNesting(depthOfConditionalBuilder)
             .setLengthOfIdentifier(lengthOfIdentifierBuilder)
-            .setWeightedMethodPerClass(weightedMethodPerClassBuilder)
             .setNumberOfAttribute(numberOfAttributeBuilder);
 
         StyleCheckReply reply = StyleCheckReply.newBuilder()

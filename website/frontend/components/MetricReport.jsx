@@ -50,12 +50,6 @@ export default class MetricReport extends React.Component {
                     <td>{metricReport.lengthOfIdentifier.benchmark}</td>
                     <td>{metricReport.lengthOfIdentifier.score}%</td>
                   </tr>
-                  <tr className={metricReport.weightedMethodPerClass.score < 80 ? 'danger' : ''}>
-                    <td>Weighted method per class</td>
-                    <td>{metricReport.weightedMethodPerClass.value}</td>
-                    <td>{metricReport.weightedMethodPerClass.benchmark}</td>
-                    <td>{metricReport.weightedMethodPerClass.score}%</td>
-                  </tr>
                   <tr className={metricReport.numberOfAttribute.score < 80 ? 'danger' : ''}>
                     <td>Number of attributes</td>
                     <td>{metricReport.numberOfAttribute.value}</td>
