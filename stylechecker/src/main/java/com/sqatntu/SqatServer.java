@@ -139,7 +139,7 @@ public class SqatServer {
             .setPercentage(90);
 
         MetricData.Builder lineOfCodeBuilder = MetricData.newBuilder()
-            .setValue(1005)
+            .setValue(report.getNumberOfLines())
             .setBenchmark(1500)
             .setScore(85);
         MetricData.Builder depthOfConditionalBuilder = MetricData.newBuilder()

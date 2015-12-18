@@ -15,7 +15,6 @@ import javax.inject.Singleton;
     })
 public class MetricCalculatorModule {
   @Provides
-  @Singleton
   MetricReport provideMetricReport() {
     return new MetricReport();
   }

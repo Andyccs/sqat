@@ -4,6 +4,7 @@ import com.sqatntu.ThrowingErrorListener;
 import com.sqatntu.api.JavaLexer;
 import com.sqatntu.api.JavaParser;
 import com.sqatntu.metrics.injection.MetricCalculatorModule;
+import com.sqatntu.metrics.listener.NumberOfLineListeners;
 import com.sqatntu.metrics.listener.NumberOfMethodsListeners;
 import com.sqatntu.metrics.report.MetricReport;
 import dagger.ObjectGraph;
@@ -43,10 +44,13 @@ public class MetricCalculator {
     parser.addErrorListener(throwingErrorListener);
 
     JavaParser.CompilationUnitContext tree = parser.compilationUnit(); // parse 
+    ParseTreeWalker walker = new ParseTreeWalker();
 
     NumberOfMethodsListeners numberOfMethodsListeners = new NumberOfMethodsListeners(report);
-    ParseTreeWalker walker = new ParseTreeWalker();
     walker.walk(numberOfMethodsListeners, tree);
+
+    NumberOfLineListeners numberOfLineListeners = new NumberOfLineListeners(report);
+    walker.walk(numberOfLineListeners, tree);
 
     return report;
   }
