@@ -48,5 +48,5 @@ message PercentageData {
 message MetricData {
   uint32 value = 1;
   uint32 benchmark = 2;
-  uint32 score = 3;
+  float score = 3;
 }

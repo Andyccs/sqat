@@ -9,6 +9,13 @@ export default class MetricReport extends React.Component {
   render() {
     let metricReport = this.props.data.metricReport;
 
+    metricReport.lineOfCode.score = metricReport.lineOfCode.score.toFixed(2);
+    metricReport.depthOfConditionalNesting.score =
+        metricReport.depthOfConditionalNesting.score.toFixed(2);
+    metricReport.lengthOfIdentifier.score = metricReport.lengthOfIdentifier.score.toFixed(2);
+    metricReport.numberOfMethod.score = metricReport.numberOfMethod.score.toFixed(2);
+    metricReport.numberOfAttribute.score = metricReport.numberOfAttribute.score.toFixed(2);
+
     return  <div>
               <div className='row'>
                 <div className='col-md-3'>

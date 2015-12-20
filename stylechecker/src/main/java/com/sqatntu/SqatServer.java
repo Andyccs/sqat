@@ -22,7 +22,9 @@
 
 package com.sqatntu;
 
+import com.sqatntu.metrics.Benchmark;
 import com.sqatntu.metrics.MetricCalculator;
+import com.sqatntu.metrics.ScoreCalculator;
 import com.sqatntu.stylechecker.StyleChecker;
 import com.sqatntu.stylechecker.StyleCheckerException;
 import com.sqatntu.stylechecker.proto.ErrorOuterClass;
@@ -140,24 +142,39 @@ public class SqatServer {
 
         MetricData.Builder lineOfCodeBuilder = MetricData.newBuilder()
             .setValue(report.getNumberOfLines())
-            .setBenchmark(1500)
-            .setScore(85);
+            .setBenchmark(Benchmark.LINE_OF_CODE)
+            .setScore(
+                ScoreCalculator.calculateScore(
+                    report.getNumberOfLines(),
+                    Benchmark.LINE_OF_CODE));
         MetricData.Builder depthOfConditionalBuilder = MetricData.newBuilder()
             .setValue(report.getDepthOfConditionNesting())
-            .setBenchmark(2)
-            .setScore(80);
+            .setBenchmark(Benchmark.DEPTH_OF_CONDITION_NESTING)
+            .setScore(
+                ScoreCalculator.calculateScore(
+                    report.getDepthOfConditionNesting(),
+                    Benchmark.DEPTH_OF_CONDITION_NESTING));
         MetricData.Builder lengthOfIdentifierBuilder = MetricData.newBuilder()
             .setValue(report.getAverageLengthOfIdentifier())
-            .setBenchmark(15)
-            .setScore(80);
+            .setBenchmark(Benchmark.AVERAGE_LENGTH_OF_IDENTIFIER)
+            .setScore(
+                ScoreCalculator.calculateScore(
+                    report.getAverageLengthOfIdentifier(),
+                    Benchmark.AVERAGE_LENGTH_OF_IDENTIFIER));
         MetricData.Builder numberOfAttributeBuilder = MetricData.newBuilder()
             .setValue(report.getNumberOfAttributes())
-            .setBenchmark(6)
-            .setScore(80);
+            .setBenchmark(Benchmark.NUMBER_OF_ATTRIBUTES)
+            .setScore(
+                ScoreCalculator.calculateScore(
+                    report.getNumberOfAttributes(),
+                    Benchmark.NUMBER_OF_ATTRIBUTES));
         MetricData.Builder numberOfMethodBuilder = MetricData.newBuilder()
             .setValue(report.getNumberOfMethods())
-            .setBenchmark(5)
-            .setScore(90);
+            .setBenchmark(Benchmark.NUMBER_OF_METHODS)
+            .setScore(
+                ScoreCalculator.calculateScore(
+                    report.getNumberOfMethods(),
+                    Benchmark.NUMBER_OF_METHODS));
 
         MetricReport.Builder metricReportBuilder = MetricReport.newBuilder()
             .setOverallData(overallQualityBuilder)
