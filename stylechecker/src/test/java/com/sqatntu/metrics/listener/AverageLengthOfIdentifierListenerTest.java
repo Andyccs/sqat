@@ -45,10 +45,20 @@ public class AverageLengthOfIdentifierListenerTest extends ListenerTest {
   @Test
   @TestCode(
       fileName = "src/test/resources/metrics/IdentifierInterface.java",
-      detail = "an interface with no method")
+      detail = "an interface with one method and one constant")
   public void interfaceIdentifier() {
     MetricCalculator calculator = new MetricCalculator();
     MetricReport report = calculator.calculateMetrics(testCode);
-    assertEquals(13, report.getAverageLengthOfIdentifier());
+    assertEquals(11, report.getAverageLengthOfIdentifier());
+  }
+
+  @Test
+  @TestCode(
+      fileName = "src/test/resources/metrics/IdentifierConstructor.java",
+      detail = "an interface with no method")
+  public void constructorIdentifier() {
+    MetricCalculator calculator = new MetricCalculator();
+    MetricReport report = calculator.calculateMetrics(testCode);
+    assertEquals(4, report.getAverageLengthOfIdentifier());
   }
 }

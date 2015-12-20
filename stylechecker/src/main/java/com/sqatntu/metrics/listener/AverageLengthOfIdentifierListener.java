@@ -50,4 +50,22 @@ public class AverageLengthOfIdentifierListener extends JavaBaseListener {
     String text = ctx.getChild(1).getText();
     report.addLengthOfIdentifier(text.length());
   }
+
+  @Override
+  public void enterConstructorDeclaration(JavaParser.ConstructorDeclarationContext ctx) {
+    String text = ctx.getStart().getText();
+    report.addLengthOfIdentifier(text.length());
+  }
+
+  @Override
+  public void enterInterfaceMethodDeclaration(JavaParser.InterfaceMethodDeclarationContext ctx) {
+    String text = ctx.getChild(1).getText();
+    report.addLengthOfIdentifier(text.length());
+  }
+
+  @Override
+  public void enterConstantDeclarator(JavaParser.ConstantDeclaratorContext ctx) {
+    String text = ctx.getStart().getText();
+    report.addLengthOfIdentifier(text.length());
+  }
 }
