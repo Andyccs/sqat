@@ -41,4 +41,14 @@ public class AverageLengthOfIdentifierListenerTest extends ListenerTest {
     MetricReport report = calculator.calculateMetrics(testCode);
     assertEquals(4, report.getAverageLengthOfIdentifier());
   }
+
+  @Test
+  @TestCode(
+      fileName = "src/test/resources/metrics/IdentifierInterface.java",
+      detail = "an interface with no method")
+  public void interfaceIdentifier() {
+    MetricCalculator calculator = new MetricCalculator();
+    MetricReport report = calculator.calculateMetrics(testCode);
+    assertEquals(13, report.getAverageLengthOfIdentifier());
+  }
 }
