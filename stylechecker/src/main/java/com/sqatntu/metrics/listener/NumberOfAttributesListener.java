@@ -3,7 +3,6 @@ package com.sqatntu.metrics.listener;
 import com.sqatntu.api.JavaBaseListener;
 import com.sqatntu.api.JavaParser;
 import com.sqatntu.metrics.report.MetricReport;
-import org.antlr.v4.runtime.RuleContext;
 
 import java.util.List;
 
