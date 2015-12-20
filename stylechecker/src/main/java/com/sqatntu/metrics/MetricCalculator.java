@@ -4,6 +4,7 @@ import com.sqatntu.ThrowingErrorListener;
 import com.sqatntu.api.JavaLexer;
 import com.sqatntu.api.JavaParser;
 import com.sqatntu.metrics.injection.MetricCalculatorModule;
+import com.sqatntu.metrics.listener.AverageLengthOfIdentifierListener;
 import com.sqatntu.metrics.listener.DepthOfConditionNestingListener;
 import com.sqatntu.metrics.listener.NumberOfLineListener;
 import com.sqatntu.metrics.listener.NumberOfMethodsListener;
@@ -55,6 +56,10 @@ public class MetricCalculator {
 
     DepthOfConditionNestingListener ifDepthListener = new DepthOfConditionNestingListener(report);
     walker.walk(ifDepthListener, tree);
+
+    AverageLengthOfIdentifierListener identifierLengthListener =
+        new AverageLengthOfIdentifierListener(report);
+    walker.walk(identifierLengthListener, tree);
 
     return report;
   }

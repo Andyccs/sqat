@@ -35,8 +35,8 @@ public class DepthOfConditionNestingListenerTest extends ListenerTest {
   @Test
   @TestCode(
       fileName = "src/test/resources/metrics/IfElse1.java",
-      detail = "A class with 1 if else statement and 1 if statement, with " +
-          "the if statement on the else clause, depth of 2")
+      detail = "A class with 1 if else statement and 1 if statement, with "
+          + "the if statement on the else clause, depth of 2")
   public void IfElse1() {
     MetricCalculator calculator = new MetricCalculator();
     MetricReport report = calculator.calculateMetrics(testCode);
