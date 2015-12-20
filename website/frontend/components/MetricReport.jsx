@@ -16,6 +16,11 @@ export default class MetricReport extends React.Component {
     metricReport.numberOfMethod.score = metricReport.numberOfMethod.score.toFixed(2);
     metricReport.numberOfAttribute.score = metricReport.numberOfAttribute.score.toFixed(2);
 
+    metricReport.overallData.percentage = metricReport.overallData.percentage.toFixed(2);
+    metricReport.analysabilityData.percentage =
+        metricReport.analysabilityData.percentage.toFixed(2);
+    metricReport.testabilityData.percentage = metricReport.testabilityData.percentage.toFixed(2);
+
     return  <div>
               <div className='row'>
                 <div className='col-md-3'>

@@ -41,7 +41,7 @@ message MetricReport {
 }
 
 message PercentageData {
-  uint32 percentage = 1;
+  float percentage = 1;
   string descriptionText = 2;
 }
 

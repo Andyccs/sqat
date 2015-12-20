@@ -132,13 +132,13 @@ public class SqatServer {
 
         PercentageData.Builder overallQualityBuilder = PercentageData.newBuilder()
             .setDescriptionText("Overall Quality")
-            .setPercentage(98);
+            .setPercentage(report.getOverallPercentage());
         PercentageData.Builder analysabilityBuilder = PercentageData.newBuilder()
             .setDescriptionText("Analysability")
-            .setPercentage(70);
+            .setPercentage(report.getAnalysabilityPercentage());
         PercentageData.Builder testabilityBuilder = PercentageData.newBuilder()
             .setDescriptionText("Testability")
-            .setPercentage(90);
+            .setPercentage(report.getTestabilityPercentage());
 
         MetricData.Builder lineOfCodeBuilder = MetricData.newBuilder()
             .setValue(report.getNumberOfLines())

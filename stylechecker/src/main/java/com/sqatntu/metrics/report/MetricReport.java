@@ -1,6 +1,9 @@
 package com.sqatntu.metrics.report;
 
 
+import com.sqatntu.metrics.Benchmark;
+import com.sqatntu.metrics.ScoreCalculator;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,5 +66,42 @@ public class MetricReport {
 
   public void addNumberOfAttributes(int numberOfAttributes) {
     this.numberOfAttributes += numberOfAttributes;
+  }
+
+  public float getAnalysabilityPercentage() {
+    return getAverage(
+        getScore(getNumberOfLines(), Benchmark.LINE_OF_CODE),
+        getScore(getDepthOfConditionNesting(), Benchmark.DEPTH_OF_CONDITION_NESTING),
+        getScore(getAverageLengthOfIdentifier(), Benchmark.AVERAGE_LENGTH_OF_IDENTIFIER),
+        getScore(getNumberOfAttributes(), Benchmark.NUMBER_OF_ATTRIBUTES),
+        getScore(getNumberOfMethods(), Benchmark.NUMBER_OF_METHODS)
+    );
+  }
+
+  public float getTestabilityPercentage() {
+    return getAverage(
+        getScore(getNumberOfLines(), Benchmark.LINE_OF_CODE),
+        getScore(getDepthOfConditionNesting(), Benchmark.DEPTH_OF_CONDITION_NESTING)
+    );
+  }
+
+  public float getOverallPercentage() {
+    return getAverage(
+        getAnalysabilityPercentage(),
+        getTestabilityPercentage()
+    );
+  }
+
+  private float getScore(int value, int benchmark) {
+    return ScoreCalculator.calculateScore(value, benchmark);
+  }
+
+  private float getAverage(float... values) {
+    float total = 0;
+
+    for (float value : values) {
+      total += value;
+    }
+    return total / values.length;
   }
 }
