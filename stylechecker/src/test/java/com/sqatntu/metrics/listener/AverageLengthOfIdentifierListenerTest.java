@@ -19,7 +19,7 @@ public class AverageLengthOfIdentifierListenerTest extends ListenerTest {
   public void twoIdentifier() {
     MetricCalculator calculator = new MetricCalculator();
     MetricReport report = calculator.calculateMetrics(testCode);
-    assertEquals(8, report.getAverageLengthOfIdentifier());
+    assertEquals(7, report.getAverageLengthOfIdentifier());
   }
 
   @Test
@@ -27,6 +27,16 @@ public class AverageLengthOfIdentifierListenerTest extends ListenerTest {
       fileName = "src/test/resources/metrics/IdentifierEnum.java",
       detail = "an enum class with two enum constans")
   public void enumIdentifier() {
+    MetricCalculator calculator = new MetricCalculator();
+    MetricReport report = calculator.calculateMetrics(testCode);
+    assertEquals(4, report.getAverageLengthOfIdentifier());
+  }
+
+  @Test
+  @TestCode(
+      fileName = "src/test/resources/metrics/IdentifierMethod.java",
+      detail = "an class with two methods")
+  public void methodIdentifier() {
     MetricCalculator calculator = new MetricCalculator();
     MetricReport report = calculator.calculateMetrics(testCode);
     assertEquals(4, report.getAverageLengthOfIdentifier());
