@@ -15,6 +15,9 @@ public class MetricReport {
 
   private int depthOfConditionNesting;
 
+  private int lengthOfIdentifier;
+  private int numberOfIdentifier;
+
   public int getNumberOfMethods() {
     return numberOfMethods;
   }
@@ -37,5 +40,18 @@ public class MetricReport {
 
   public void setDepthOfConditionNesting(int depthOfConditionNesting) {
     this.depthOfConditionNesting = depthOfConditionNesting;
+  }
+
+  public int getLengthOfIdentifier() {
+    return lengthOfIdentifier;
+  }
+
+  public void addLengthOfIdentifier(int lengthOfIdentifier) {
+    this.lengthOfIdentifier += lengthOfIdentifier;
+    this.numberOfIdentifier++;
+  }
+
+  public int getAverageLengthOfIdentifier() {
+    return numberOfIdentifier != 0 ? lengthOfIdentifier / numberOfIdentifier : 0;
   }
 }
