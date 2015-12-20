@@ -147,7 +147,7 @@ public class SqatServer {
             .setBenchmark(2)
             .setScore(80);
         MetricData.Builder lengthOfIdentifierBuilder = MetricData.newBuilder()
-            .setValue(20)
+            .setValue(report.getAverageLengthOfIdentifier())
             .setBenchmark(15)
             .setScore(80);
         MetricData.Builder numberOfAttributeBuilder = MetricData.newBuilder()
