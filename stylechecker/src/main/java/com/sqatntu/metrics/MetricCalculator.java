@@ -6,7 +6,8 @@ import com.sqatntu.api.JavaParser;
 import com.sqatntu.metrics.injection.MetricCalculatorModule;
 import com.sqatntu.metrics.listener.AverageLengthOfIdentifierListener;
 import com.sqatntu.metrics.listener.DepthOfConditionNestingListener;
-import com.sqatntu.metrics.listener.NumberOfLineListener;
+import com.sqatntu.metrics.listener.NumberOfAttributesListener;
+import com.sqatntu.metrics.listener.NumberOfLinesListener;
 import com.sqatntu.metrics.listener.NumberOfMethodsListener;
 import com.sqatntu.metrics.report.MetricReport;
 import dagger.ObjectGraph;
@@ -51,7 +52,7 @@ public class MetricCalculator {
     NumberOfMethodsListener numberOfMethodsListeners = new NumberOfMethodsListener(report);
     walker.walk(numberOfMethodsListeners, tree);
 
-    NumberOfLineListener numberOfLineListeners = new NumberOfLineListener(report);
+    NumberOfLinesListener numberOfLineListeners = new NumberOfLinesListener(report);
     walker.walk(numberOfLineListeners, tree);
 
     DepthOfConditionNestingListener ifDepthListener = new DepthOfConditionNestingListener(report);
@@ -60,6 +61,9 @@ public class MetricCalculator {
     AverageLengthOfIdentifierListener identifierLengthListener =
         new AverageLengthOfIdentifierListener(report);
     walker.walk(identifierLengthListener, tree);
+
+    NumberOfAttributesListener attributesListener = new NumberOfAttributesListener(report);
+    walker.walk(attributesListener, tree);
 
     return report;
   }

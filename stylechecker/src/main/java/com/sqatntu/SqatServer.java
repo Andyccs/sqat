@@ -151,7 +151,7 @@ public class SqatServer {
             .setBenchmark(15)
             .setScore(80);
         MetricData.Builder numberOfAttributeBuilder = MetricData.newBuilder()
-            .setValue(8)
+            .setValue(report.getNumberOfAttributes())
             .setBenchmark(6)
             .setScore(80);
         MetricData.Builder numberOfMethodBuilder = MetricData.newBuilder()

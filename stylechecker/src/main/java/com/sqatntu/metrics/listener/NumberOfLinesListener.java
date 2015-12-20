@@ -7,11 +7,11 @@ import com.sqatntu.metrics.report.MetricReport;
 /**
  * Created by andyccs on 18/12/15.
  */
-public class NumberOfLineListener extends JavaBaseListener {
+public class NumberOfLinesListener extends JavaBaseListener {
 
   private MetricReport report;
 
-  public NumberOfLineListener(MetricReport report) {
+  public NumberOfLinesListener(MetricReport report) {
     this.report = report;
   }
 

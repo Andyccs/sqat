@@ -18,6 +18,8 @@ public class MetricReport {
   private int lengthOfIdentifier;
   private int numberOfIdentifier;
 
+  private int numberOfAttributes;
+
   public int getNumberOfMethods() {
     return numberOfMethods;
   }
@@ -53,5 +55,13 @@ public class MetricReport {
 
   public int getAverageLengthOfIdentifier() {
     return numberOfIdentifier != 0 ? lengthOfIdentifier / numberOfIdentifier : 0;
+  }
+
+  public int getNumberOfAttributes() {
+    return numberOfAttributes;
+  }
+
+  public void addNumberOfAttributes(int numberOfAttributes) {
+    this.numberOfAttributes += numberOfAttributes;
   }
 }
