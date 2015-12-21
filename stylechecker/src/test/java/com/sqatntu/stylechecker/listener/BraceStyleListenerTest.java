@@ -172,4 +172,56 @@ public class BraceStyleListenerTest extends ListenerTest {
     StyleReport report = checker.checkSourceCode(testCode, testConfig);
     assertEquals(0, report.getReportContents().size());
   }
+
+  @Test
+  @TestCode(
+      detail = "kRStyleTryCatchFinally",
+      fileName = "src/test/resources/stylechecker/BraceKRStyleTryCatchFinally.java")
+  @TestConfig(
+      detail = "krStyleConfig",
+      fileName = "src/test/resources/stylechecker/BraceKRStyle.json")
+  public void braceStyle13() throws IOException, StyleCheckerException {
+    StyleChecker checker = new StyleChecker();
+    StyleReport report = checker.checkSourceCode(testCode, testConfig);
+    assertEquals(0, report.getReportContents().size());
+  }
+
+  @Test
+  @TestCode(
+      detail = "kRStyleTryCatchFinally",
+      fileName = "src/test/resources/stylechecker/BraceKRStyleTryCatchFinally.java")
+  @TestConfig(
+      detail = "nonKrStyleConfig",
+      fileName = "src/test/resources/stylechecker/BraceNonKRStyle.json")
+  public void braceStyle14() throws IOException, StyleCheckerException {
+    StyleChecker checker = new StyleChecker();
+    StyleReport report = checker.checkSourceCode(testCode, testConfig);
+    assertEquals(5, report.getReportContents().size());
+  }
+
+  @Test
+  @TestCode(
+      detail = "nonKRStyleTryCatchFinally",
+      fileName = "src/test/resources/stylechecker/BraceNonKRStyleTryCatchFinally.java")
+  @TestConfig(
+      detail = "nonKrStyleConfig",
+      fileName = "src/test/resources/stylechecker/BraceNonKRStyle.json")
+  public void braceStyle15() throws IOException, StyleCheckerException {
+    StyleChecker checker = new StyleChecker();
+    StyleReport report = checker.checkSourceCode(testCode, testConfig);
+    assertEquals(0, report.getReportContents().size());
+  }
+
+  @Test
+  @TestCode(
+      detail = "nonKRStyleTryCatchFinally",
+      fileName = "src/test/resources/stylechecker/BraceNonKRStyleTryCatchFinally.java")
+  @TestConfig(
+      detail = "krStyleConfig",
+      fileName = "src/test/resources/stylechecker/BraceKRStyle.json")
+  public void braceStyle16() throws IOException, StyleCheckerException {
+    StyleChecker checker = new StyleChecker();
+    StyleReport report = checker.checkSourceCode(testCode, testConfig);
+    assertEquals(5, report.getReportContents().size());
+  }
 }
