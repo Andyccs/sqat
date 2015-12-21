@@ -36,4 +36,19 @@ public class AllListeners extends JavaBaseListener {
   public void enterBlock(com.sqatntu.api.JavaParser.BlockContext ctx) {
     braceStyleListener.enterBlock(ctx);
   }
+
+  @Override
+  public void enterClassBody(JavaParser.ClassBodyContext ctx) {
+    braceStyleListener.enterClassBody(ctx);
+  }
+
+  @Override
+  public void enterInterfaceBody(JavaParser.InterfaceBodyContext ctx) {
+    braceStyleListener.enterInterfaceBody(ctx);
+  }
+
+  @Override
+  public void enterStatement(JavaParser.StatementContext ctx) {
+    braceStyleListener.enterStatement(ctx);
+  }
 }
