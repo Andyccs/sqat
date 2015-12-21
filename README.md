@@ -41,18 +41,11 @@ cd stylechecker
 gradlew run
 ```
 
-Second, we need to run webpack dev server:
-
-```
-cd website
-npm run dev
-```
-
-Third, we need to run backend server:
+Second, we need to run backend server:
 
 ```
 cd webiste
-npm run serve
+npm run dev
 ```
 
 Finally, open your browser and go to `http://localhost:8080`. You should see a nice React application in your browser. 
