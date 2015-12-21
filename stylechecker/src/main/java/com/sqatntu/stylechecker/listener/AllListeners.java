@@ -51,4 +51,14 @@ public class AllListeners extends JavaBaseListener {
   public void enterStatement(JavaParser.StatementContext ctx) {
     braceStyleListener.enterStatement(ctx);
   }
+
+  @Override
+  public void enterCatchClause(JavaParser.CatchClauseContext ctx) {
+    braceStyleListener.enterCatchClause(ctx);
+  }
+
+  @Override
+  public void enterFinallyBlock(JavaParser.FinallyBlockContext ctx) {
+    braceStyleListener.enterFinallyBlock(ctx);
+  }
 }

@@ -47,8 +47,27 @@ class BraceStyleListener extends JavaBaseListener {
 
   @Override
   public void enterBlock(JavaParser.BlockContext ctx) {
+    if (ctx.getParent() instanceof JavaParser.CatchClauseContext
+        || ctx.getParent() instanceof JavaParser.FinallyBlockContext) {
+      return;
+    }
+
     int parentLine = ctx.getParent().getParent().getStart().getLine();
     int line = ctx.getStart().getLine();
+    detectBraceStyle(ctx, parentLine, line);
+  }
+
+  @Override
+  public void enterCatchClause(JavaParser.CatchClauseContext ctx) {
+    int parentLine = ctx.getStart().getLine();
+    int line = ctx.getRuleContext(JavaParser.BlockContext.class, 0).getStart().getLine();
+    detectBraceStyle(ctx, parentLine, line);
+  }
+
+  @Override
+  public void enterFinallyBlock(JavaParser.FinallyBlockContext ctx) {
+    int parentLine = ctx.getStart().getLine();
+    int line = ctx.getRuleContext(JavaParser.BlockContext.class, 0).getStart().getLine();
     detectBraceStyle(ctx, parentLine, line);
   }
 
