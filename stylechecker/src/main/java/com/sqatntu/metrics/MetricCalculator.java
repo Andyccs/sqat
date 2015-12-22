@@ -71,7 +71,7 @@ public class MetricCalculator {
     parser.removeErrorListeners();
     parser.addErrorListener(throwingErrorListener);
 
-    JavaParser.CompilationUnitContext tree = parser.compilationUnit(); // parse 
+    JavaParser.CompilationUnitContext tree = parser.compilationUnit(); // parse
     ParseTreeWalker walker = new ParseTreeWalker();
 
     NumberOfMethodsListener numberOfMethodsListeners = new NumberOfMethodsListener(report);

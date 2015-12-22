@@ -97,7 +97,7 @@ public class StyleChecker {
     parser.removeErrorListeners();
     parser.addErrorListener(throwingErrorListener);
 
-    JavaParser.CompilationUnitContext tree = parser.compilationUnit(); // parse 
+    JavaParser.CompilationUnitContext tree = parser.compilationUnit(); // parse
 
     AllListeners allListeners = new AllListeners(config, styleReport);
     ParseTreeWalker walker = new ParseTreeWalker(); // create standard walker
