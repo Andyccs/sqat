@@ -10,7 +10,7 @@
   "scripts": {
     "dev": "node ./backend/babel_index.js",
     "deploy": "NODE_ENV=production webpack --config webpack.production.config.js",
-    "start": "NODE_ENV=production PORT=8080 node ./backend/babel_index.js"
+    "start": "NODE_ENV=production PORT=4000 node ./backend/babel_index.js"
   },
   "repository": {
     "type": "git",
