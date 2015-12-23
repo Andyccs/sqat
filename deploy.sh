@@ -1,5 +1,9 @@
 #!/bin/bash -e
 
+# When run under interactive mode, bashrc wont run
+export NVM_DIR="/home/ubuntu/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
 pwd=${PWD##/}
 root="/home/ubuntu/sqat"
 
