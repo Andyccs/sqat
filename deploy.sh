@@ -1,9 +1,10 @@
 #!/bin/bash -e
 
-pwd = ${PWD##/}
-root = "/home/ubuntu/sqat"
+pwd=${PWD##/}
+root="/home/ubuntu/sqat"
 
-if [ "$pwd" != "home/ubuntu/sqat"; ] then
+if [ "$pwd" != "home/ubuntu/sqat" ] 
+then
   echo "Changing your working directory to home/ubuntu/sqat"
   cd "$root"
 fi
@@ -20,7 +21,8 @@ cd build/install/sqat-stylechecker/bin
 forever start -c bash sqat-stylechecker
 
 cd "$root/website"
-nvm use
 npm install
 npm run deploy
 NODE_ENV=production PORT=4000 forever start ./backend/babel_index.js
+
+forever list
