@@ -1,18 +1,26 @@
-#!/bin/sh
+#!/bin/bash -e
 
-# script for deployment, not tested
-cd sqat
+pwd = ${PWD##/}
+root = "/home/ubuntu/sqat"
+
+if [ "$pwd" != "home/ubuntu/sqat"; ] then
+  echo "Changing your working directory to home/ubuntu/sqat"
+  cd "$root"
+fi
+
+# Stop all forever process
+forever stopall
+
 git pull
 
-cp sqat-nginx.conf /etc/nginx/sites-enabled/sqat
-sudo service nginx restart
+# run style checker micro service
+cd "${root}/stylechecker"
+./gradlew installDist
+cd build/install/sqat-stylechecker/bin
+forever start -c bash sqat-stylechecker
 
-cd stylechecker
-./gradlew run
-cd ../
-
-cd website
+cd "$root/website"
 nvm use
 npm install
 npm run deploy
-forever npm run start &
+NODE_ENV=production PORT=4000 forever start ./backend/babel_index.js
