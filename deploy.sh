@@ -3,26 +3,34 @@
 pwd=${PWD##/}
 root="/home/ubuntu/sqat"
 
+# current working directory must be $root
 if [ "$pwd" != "home/ubuntu/sqat" ] 
 then
   echo "Changing your working directory to home/ubuntu/sqat"
   cd "$root"
 fi
 
-# Stop all forever process
-forever stopall
-
 git pull
 
-# run style checker micro service
+# Install style checker micro service
 cd "${root}/stylechecker"
 ./gradlew installDist
-cd build/install/sqat-stylechecker/bin
-forever start -c bash sqat-stylechecker
 
+# Install frontend server
 cd "$root/website"
 npm install
 npm run deploy
+
+# Stop all forever process
+forever stopall
+
+# Start frontend server
+cd "$root/website"
 NODE_ENV=production PORT=4000 forever start ./backend/babel_index.js
+
+# Start stylechecker microservice
+cd "${root}/stylechecker"
+cd build/install/sqat-stylechecker/bin
+forever start -c bash sqat-stylechecker
 
 forever list
