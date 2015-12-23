@@ -14,6 +14,7 @@ then
   cd "$root"
 fi
 
+git checkout develop
 git pull
 
 # Install style checker micro service
