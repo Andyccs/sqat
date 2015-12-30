@@ -14,7 +14,7 @@ Software Quality Analysis Tool (SQAT) allows you to:
 
 This tool is still under active development.
 
-# How To Run This Project
+# Project Organisation
 
 This project is organized as:
 
@@ -34,21 +34,38 @@ Backend folder contatins a Node.js server that communicate with Stylechecker ser
 
 Frontend folder contains a React.js web application that communicate with Backend Node.js server and render webpage for users. 
 
-To run this project, first we need to run the stylechecker service:
+# How to run this project locally?
 
-```
+We recommended you to run this project using Docker. Please install [Docker Engine](https://docs.docker.com) or “Docker” on [Ubuntu](https://docs.docker.com/engine/installation/ubuntulinux/), [Mac OS X](https://docs.docker.com/engine/installation/mac/), or [Windows](https://docs.docker.com/engine/installation/windows/). 
+
+To run stylechecker:
+
+```Shell
 cd stylechecker
-gradlew run
+docker build -t my-sqat-stylechecker .
+docker run --name -p 50051:50051 stylechecker my-sqat-stylechecker &
 ```
 
-Second, we need to run backend server:
+To run website:
 
-```
-cd webiste
-npm run dev
+```Shell
+# You must be in root directory
+cp website/Dockerfile . && \
+  docker build -t my-sqat . && \
+  rm Dockerfile
+docker run --name -p 4000:4000 sqatwebsite my-sqat-website &
 ```
 
-Finally, open your browser and go to `http://localhost:8080`. You should see a nice React application in your browser. 
+Next, check your docker machine ip address by using:
+
+```Shell
+docker-machine url default
+# This should show your docker machine ip address, example:
+# tcp://192.168.99.100:2376
+# where 192.168.99.100 is <your-docker-machine-ip-address>
+```
+
+Finally, open your browser and go to `http://<your-docker-machine-ip-address>:4000`. You should see a nice React application in your browser. 
 
 # License
 
