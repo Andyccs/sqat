@@ -43,7 +43,7 @@ To run stylechecker:
 ```Shell
 cd stylechecker
 docker build -t my-sqat-stylechecker .
-docker run --name -p 50051:50051 stylechecker my-sqat-stylechecker &
+docker run --name stylechecker -p 50051:50051 my-sqat-stylechecker &
 ```
 
 To run website:
@@ -51,9 +51,11 @@ To run website:
 ```Shell
 # You must be in root directory
 cp website/Dockerfile . && \
-  docker build -t my-sqat . && \
-  rm Dockerfile
-docker run --name -p 4000:4000 sqatwebsite my-sqat-website &
+  cp website/.dockerignore . && \
+  docker build -t my-sqat-website . && \
+  rm Dockerfile && \
+  rm .dockerignore
+docker run --name sqatwebsite --link stylechecker:stylechecker -p 4000:4000 my-sqat-website &
 ```
 
 Next, check your docker machine ip address by using:
