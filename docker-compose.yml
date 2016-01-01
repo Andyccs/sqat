@@ -1,0 +1,26 @@
+web:
+  build: .
+  dockerfile: website/Dockerfile
+  ports:
+  - "4000:4000"
+  links:
+  - stylechecker
+  volumes:
+  - ./stylechecker/src/main/proto/:/usr/src/app/stylechecker/src/main/proto/:rw
+  - ./website/:/usr/src/app/website:rw
+  command: >
+    sh -c '
+      if test -d node_modules; 
+      then 
+        echo node_modules_exists ; 
+      else 
+        cp -a /tmp/node_modules /usr/src/app/website; 
+      fi && 
+      npm install && 
+      npm run deploy && 
+      /usr/local/bin/node ./backend/babel_index.js
+    '
+stylechecker:
+  build: ./stylechecker
+  ports:
+  - "50051:50051"

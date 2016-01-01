@@ -14,7 +14,9 @@ sourceCompatibility = 1.7
 mainClassName = "com.sqatntu.Main"
 
 repositories {
-    mavenCentral()
+    maven  {
+        url "http://repo1.maven.org/maven2"
+    }
 }
 
 dependencies {
@@ -30,7 +32,9 @@ dependencies {
 
 buildscript {
     repositories {
-        mavenCentral()
+        maven  {
+            url "http://repo1.maven.org/maven2"
+        }
     }
     dependencies {
         classpath 'com.google.protobuf:protobuf-gradle-plugin:0.7.0'

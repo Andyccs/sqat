@@ -5,7 +5,6 @@ import bodyParser from 'body-parser';
 import jadeAutoRouting from './jadeAutoRouting';
 import submitSourceCode from './submitSourceCode';
 import httpProxy from 'http-proxy';
-import bundle from './bundle.js';
 
 let app = express();
 
@@ -47,6 +46,7 @@ if (!isProduction) {
   // We require the bundler inside the if block because
   // it is only needed in a development environment. Later
   // you will see why this is a good idea
+  bundle = require('./bundle.js');
   bundle();
 
   // Any requests to localhost:3000/build is proxied
