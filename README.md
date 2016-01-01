@@ -36,7 +36,18 @@ Frontend folder contains a React.js web application that communicate with Backen
 
 # How to run this project locally?
 
-We recommended you to run this project using Docker. Please install [Docker Engine](https://docs.docker.com) or “Docker” on [Ubuntu](https://docs.docker.com/engine/installation/ubuntulinux/), [Mac OS X](https://docs.docker.com/engine/installation/mac/), or [Windows](https://docs.docker.com/engine/installation/windows/). 
+We recommended you to run this project using Docker. Please install [Docker](https://docs.docker.com) on [Ubuntu](https://docs.docker.com/engine/installation/ubuntulinux/), [Mac OS X](https://docs.docker.com/engine/installation/mac/), or [Windows](https://docs.docker.com/engine/installation/windows/). 
+
+## Use Docker Compose to run the project
+
+This is the easiest way to run this project:
+
+```Shell
+# Assume that you're in the root directory
+docker-compose up
+```
+
+## Use `docker` Command
 
 To run stylechecker:
 
@@ -57,6 +68,12 @@ cp website/Dockerfile . && \
   rm .dockerignore
 docker run --name sqatwebsite --link stylechecker:stylechecker -p 4000:4000 my-sqat-website &
 ```
+
+## Run it locally
+
+We used to run this project locally until we switch our workflow to docker, but we don't stop you to run this project locally. The dockerfiles in [sqat-docker-library](https://github.com/Andyccs/sqat-docker-library) serve as a step-by-step guide to install all dependencies locally in your Linux machines.
+
+## View the application running
 
 Next, check your docker machine ip address by using:
 
