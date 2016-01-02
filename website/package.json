@@ -50,6 +50,7 @@
     "eslint-loader": "^1.0.0",
     "eslint-plugin-react": "^3.3.2",
     "webpack": "^1.12.9",
-    "webpack-dev-server": "^1.11.0"
+    "webpack-dev-middleware": "^1.4.0",
+    "webpack-hot-middleware": "^2.6.0"
   }
 }

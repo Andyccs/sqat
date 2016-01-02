@@ -8,7 +8,10 @@ module.exports = {
   // Makes sure errors in console map to the correct file
   // and line number
   devtool: 'eval',
-  entry: mainPath,
+  entry: [
+    'webpack-hot-middleware/client?reload=true',
+    mainPath
+  ],
   output: {
     // We need to give Webpack a path. It does not actually need it,
     // because files are kept in memory in webpack-dev-server, but an
@@ -46,5 +49,9 @@ module.exports = {
   },
   // We have to manually add the Hot Replacement plugin when running
   // from Node
-  plugins: [ new webpack.HotModuleReplacementPlugin() ]
+  plugins: [ 
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin(),
+  ]
 };

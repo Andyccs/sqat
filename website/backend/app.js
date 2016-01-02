@@ -39,32 +39,36 @@ jadeAutoRouting(app);
 // Routing
 app.post('/submitSourceCode', submitSourceCode);
 
-let proxy = httpProxy.createProxyServer();
-
 // We only want to run the workflow when not in production
 if (!isProduction) {
-  // We require the bundler inside the if block because
-  // it is only needed in a development environment. Later
-  // you will see why this is a good idea
-  bundle = require('./bundle.js');
-  bundle();
+  let webpack = require('webpack');
+  let webpackMiddleware = require('webpack-dev-middleware');
+  let webpackHotMiddleware = require('webpack-hot-middleware');
+  let config = require('../webpack.config.js');
 
-  // Any requests to localhost:3000/build is proxied
-  // to webpack-dev-server
-  app.all('/build/*', (req, res) => {
-    proxy.web(req, res, {
-      target: 'http://localhost:8090'
-    });
+  const compiler = webpack(config);
+  const middleware = webpackMiddleware(compiler, {
+    publicPath: config.output.publicPath,
+    noInfo: true,
+    quiet: false,
+    lazy: false,
+    watchOptions: {
+      aggregateTimeout: 300,
+      poll: true
+    },
+    stats: {
+      colors: true,
+    }
   });
+  const bundlePath = path.join(__dirname, '../public/build/bundle.js');
 
+  app.use(middleware);
+  app.use(webpackHotMiddleware(compiler));
+  app.all('/build/*', function response(req, res) {
+    res.write(middleware.fileSystem.readFileSync(bundlePath));
+    res.end();
+  });
 }
-
-// It is important to catch any errors from the proxy or the
-// server will crash. An example of this is connecting to the
-// server when webpack is bundling
-proxy.on('error', (error) => {
-  console.log('Could not connect to proxy, please try again...');
-});
 
 // Create and start the server
 let server = http.createServer(app);

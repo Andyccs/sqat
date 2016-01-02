@@ -2,12 +2,14 @@ web:
   build: .
   dockerfile: website/Dockerfile
   ports:
-  - "4000:4000"
+  - "4000:8080"
   links:
   - stylechecker
   volumes:
   - ./stylechecker/src/main/proto/:/usr/src/app/stylechecker/src/main/proto/:rw
   - ./website/:/usr/src/app/website:rw
+  environment:
+  - NODE_ENV=development
   command: >
     sh -c '
       if test -d node_modules; 
@@ -16,8 +18,8 @@ web:
       else 
         cp -a /tmp/node_modules /usr/src/app/website; 
       fi && 
-      npm install && 
-      npm run deploy && 
+      rm -rf public/build && 
+      npm install --dev && 
       /usr/local/bin/node ./backend/babel_index.js
     '
 stylechecker:
