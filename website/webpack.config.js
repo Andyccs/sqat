@@ -30,8 +30,11 @@ module.exports = {
       test: /\.css$/,
       loader: 'style!css'
     }, {
-      test: /\.(js|jsx)$/,
-      loaders: ['babel?stage=1']
+      test: /\.jsx$/,
+      loaders: ['babel']
+    }, {
+      test: /\.js$/,
+      loaders: ['babel']
     }]
   },
   externals: {
