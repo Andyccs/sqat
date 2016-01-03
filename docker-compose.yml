@@ -19,7 +19,7 @@ web:
         cp -a /tmp/node_modules /usr/src/app/website; 
       fi && 
       rm -rf public/build && 
-      npm install --dev && 
+      npm install && 
       /usr/local/bin/node ./backend/babel_index.js
     '
 stylechecker:

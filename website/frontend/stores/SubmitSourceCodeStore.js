@@ -2,7 +2,7 @@ import alt from '../alt';
 import SubmitSourceCodeAction from '../actions/SubmitSourceCodeAction';
 import SubmitSourceCodeState from '../constants/SubmitSourceCodeState';
 import styleCheckerReportSource from '../sources/StyleCheckerReportSource';
-import {datasource} from 'alt/utils/decorators';
+import {datasource} from 'alt-utils/lib/decorators';
 
 @datasource(styleCheckerReportSource)
 class SubmitSourceCodeStore {
