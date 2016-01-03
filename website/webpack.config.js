@@ -30,11 +30,7 @@ module.exports = {
       test: /\.css$/,
       loader: 'style!css'
     }, {
-      // tell webpack to use jsx-loader for all *.jsx files
-      test: /\.jsx$/,
-      loaders: ['jsx-loader?insertPragma=React.DOM&harmony', 'babel?stage=1']
-    }, {
-      test: /\.js$/,
+      test: /\.(js|jsx)$/,
       loaders: ['babel?stage=1']
     }]
   },
@@ -44,11 +40,9 @@ module.exports = {
     'react': 'React'
   },
   resolve: {
-    // you can now require('file') instead of require('file.coffee')
+    // you can now require('file') instead of require('file.js') or require('file.jsx')
     extensions: ['', '.js', '.jsx']
   },
-  // We have to manually add the Hot Replacement plugin when running
-  // from Node
   plugins: [ 
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
