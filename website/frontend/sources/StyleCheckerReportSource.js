@@ -1,5 +1,4 @@
 import alt from '../alt';
-import 'isomorphic-fetch';
 import * as promise from 'es6-promise';
 import axios from 'axios';
 

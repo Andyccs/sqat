@@ -1,5 +1,4 @@
 import React from 'react';
-import 'babel/polyfill';
 import TextAreaAutosize from 'react-textarea-autosize';
 
 export default class InputArea extends React.Component {

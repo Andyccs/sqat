@@ -4,7 +4,6 @@ import path from 'path';
 import bodyParser from 'body-parser';
 import jadeAutoRouting from './jadeAutoRouting';
 import submitSourceCode from './submitSourceCode';
-import httpProxy from 'http-proxy';
 
 let app = express();
 
