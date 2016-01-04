@@ -4,7 +4,7 @@ web:
   ports:
   - "4000:8080"
   links:
-  - stylechecker
+  - stylechecker-service
   volumes:
   - ./stylechecker/src/main/proto/:/usr/src/app/stylechecker/src/main/proto/:rw
   - ./website/:/usr/src/app/website:rw
@@ -18,11 +18,10 @@ web:
       else 
         cp -a /tmp/node_modules /usr/src/app/website; 
       fi && 
-      rm -rf public/build && 
       npm install && 
-      /usr/local/bin/node ./backend/babel_index.js
+      /usr/local/bin/node ./index.js
     '
-stylechecker:
+stylechecker-service:
   build: ./stylechecker
   ports:
   - "50051:50051"

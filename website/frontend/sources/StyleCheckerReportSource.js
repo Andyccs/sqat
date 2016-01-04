@@ -8,7 +8,11 @@ const StyleCheckerReportSource = (alt) => {
   return {
     performQualityCheck: {
       remote(state) {
-        return axios.post('submitSourceCode', {
+        var instance = axios.create({
+          baseURL: 'submit-source-code-service:50051'
+        });
+
+        return instance.post('submitSourceCode', {
           sourceCode: state.sourceCode
         }).then((response) => {
           if(response.data.error != null) {

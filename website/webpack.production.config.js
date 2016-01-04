@@ -3,10 +3,14 @@ var webpack = require('webpack');
 
 var buildPath = path.resolve(__dirname, 'public', 'build');
 var mainPath = path.resolve(__dirname, 'frontend', 'index.jsx');
+var htmlPath = path.resolve(__dirname, 'frontend', 'index.html');
 
 module.exports = {
   devtool: 'source-map',
-  entry: mainPath,
+  entry: [
+    mainPath,
+    htmlPath
+  ],
   output: {
     path: buildPath,
     filename: 'bundle.js'

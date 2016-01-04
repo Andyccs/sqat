@@ -16,7 +16,7 @@ export default function submitSourceCode(request, response) {
   let sourceCode = request.body.sourceCode;
 
   let client = new styleCheckProto.StyleCheck(
-    'stylechecker:50051',
+    'stylechecker-service:50051',
     grpc.Credentials.createInsecure());
 
   let configuration =

@@ -1,0 +1,32 @@
+{
+  "name": "submit-source-code-service",
+  "version": "0.1.0",
+  "engines": {
+    "node": "0.12.7",
+    "npm": "2.11.3"
+  },
+  "description": "microservice to submit source code from frontend to stylechecker service",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Andyccs/sqat/"
+  },
+  "scripts": {
+    "dev": "node ./index.js",
+    "start": "NODE_ENV=production PORT=50051 node ./index.js"
+  },
+  "author": "Andyccs",
+  "license": "MIT",
+  "dependencies": {
+    "babel-preset-es2015": "^6.3.13",
+    "babel-register": "^6.3.13",
+    "body-parser": "^1.14.2",
+    "express": "^4.13.3",
+    "grpc": "^0.11.1"
+  },
+  "devDependencies": {
+    "babel-eslint": "^4.1.6",
+    "eslint": "^1.10.3",
+    "eslint-config-defaults": "^7.1.1"
+  }
+}
