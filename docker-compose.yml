@@ -22,7 +22,7 @@ web:
       else 
         cp -a /tmp/node_modules /usr/src/app/; 
       fi && 
-      /usr/local/bin/node ./index.js
+      npm run start
     '
 submit-code-service:
   build: .

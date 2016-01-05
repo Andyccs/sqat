@@ -7,11 +7,12 @@ RUN npm config set registry http://registry.npmjs.org/ && npm install --producti
 WORKDIR /usr/src/app
 COPY . /usr/src/app/
 RUN cp -a /tmp/node_modules /usr/src/app/
-RUN npm run deploy
+RUN npm run build-server
+RUN npm run build-webpack
 
 ENV NODE_ENV=production 
 ENV PORT=8080
 
-CMD [ "/usr/local/bin/node", "./index.js" ]
+CMD [ "/usr/local/bin/npm", "run", "start" ]
 
 EXPOSE 8080

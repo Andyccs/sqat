@@ -8,7 +8,7 @@ if (isDeveloping) {
   let webpack = require('webpack');
   let webpackMiddleware = require('webpack-dev-middleware');
   let webpackHotMiddleware = require('webpack-hot-middleware');
-  let config = require('./webpack.config.js');
+  let config = require('../webpack.config.js');
 
   const compiler = webpack(config);
   const middleware = webpackMiddleware(compiler, {

@@ -48,7 +48,9 @@ This is the easiest way to run this project:
 
 ```Shell
 # Assume that you're in the root directory
-docker-compose up
+# This command will run a bunch of "npm build" commands,
+# and finally run "docker compose up" command
+sh fast-dc-up.sh
 ```
 
 ## Use `docker` Command
