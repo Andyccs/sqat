@@ -21,18 +21,22 @@ This project is organized as:
 ```
 root
 |
+|-- proxy
+|
 |-- stylechecker
 |
+|-- submit-code-service
+|
 |-- website
-|---- backend
-|---- frontend
 ```
 
-Stylechecker folder contains ANTLR and java codes to check and analyze your source code. 
+`proxy` folder contains an Nginx server that serves static contents and redirects requests to appropriate microservices.
 
-Backend folder contatins a Node.js server that communicate with Stylechecker service and provides an API for clients.
+`stylechecker` folder contains ANTLR and java codes to check and analyze your source code. 
 
-Frontend folder contains a React.js web application that communicate with Backend Node.js server and render webpage for users. 
+`submit-code-service` folder contains a microservice that communicate with stylechecker service and provides an API for clients.
+
+`website` folder contains a React.js web application that communicate with Backend Node.js server and render webpage for users. 
 
 # How to run this project locally?
 
@@ -49,6 +53,14 @@ docker-compose up
 
 ## Use `docker` Command
 
+To run proxy:
+
+```Shell
+cd proxy
+docker build -t my-proxy .
+docker run --name proxy -p 80:80 443:443 --link web:web submit-code-service:submit-code-service my-proxy
+```
+
 To run stylechecker:
 
 ```Shell
@@ -57,16 +69,22 @@ docker build -t my-sqat-stylechecker .
 docker run --name stylechecker -p 50051:50051 my-sqat-stylechecker &
 ```
 
-To run website:
+To run submit-code-service:
 
 ```Shell
 # You must be in root directory
-cp website/Dockerfile . && \
-  cp website/.dockerignore . && \
-  docker build -t my-sqat-website . && \
+cp submit-code-service/Dockerfile . && \
+  docker build -t my-submit-code-service . && \
   rm Dockerfile && \
-  rm .dockerignore
-docker run --name sqatwebsite --link stylechecker:stylechecker -p 4000:4000 my-sqat-website &
+docker run --name submit-code-service --link stylechecker:stylechecker -p 50052:50052 my-submit-code-service &
+```
+
+To run website:
+
+```Shell
+cd website
+docker build -t my-sqat-website . 
+docker run --name web -p 8080:8080 my-sqat-website &
 ```
 
 ## Run it locally
@@ -78,13 +96,10 @@ We used to run this project locally until we switch our workflow to docker, but 
 Next, check your docker machine ip address by using:
 
 ```Shell
-docker-machine url default
-# This should show your docker machine ip address, example:
-# tcp://192.168.99.100:2376
-# where 192.168.99.100 is <your-docker-machine-ip-address>
+docker-machine ip default
 ```
 
-Finally, open your browser and go to `http://<your-docker-machine-ip-address>:4000`. You should see a nice React application in your browser. 
+Finally, open your browser and go to `http://<your-docker-machine-ip-address>`. You should see a nice React application in your browser. 
 
 # License
 
