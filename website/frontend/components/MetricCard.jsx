@@ -12,7 +12,7 @@ export default class MetricCard extends React.Component {
     let descriptionText = this.props.data.descriptionText;
 
     return  <div className='well infobox'
-              style={percentage >= 80 ? [styles.goodMetric] : [styles.badMetric]}>
+              style={percentage >= 80 ? styles.goodMetric : styles.badMetric}>
               <h2>{percentage}%</h2>
               {descriptionText}
             </div>;

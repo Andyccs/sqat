@@ -2,9 +2,7 @@ import alt from '../alt';
 import SubmitSourceCodeAction from '../actions/SubmitSourceCodeAction';
 import SubmitSourceCodeState from '../constants/SubmitSourceCodeState';
 import styleCheckerReportSource from '../sources/StyleCheckerReportSource';
-import {datasource} from 'alt-utils/lib/decorators';
 
-@datasource(styleCheckerReportSource)
 class SubmitSourceCodeStore {
   constructor() {
     this.currentState = SubmitSourceCodeState.INITIAL;
@@ -20,6 +18,8 @@ class SubmitSourceCodeStore {
       handleSubmitAgain: SubmitSourceCodeAction.submitAgain,
       handleSourceCodeChanged: SubmitSourceCodeAction.sourceCodeChanged
     });
+
+    this.registerAsync(styleCheckerReportSource);
   }
 
   handleSourceCodeSubmitSuccess(result) {

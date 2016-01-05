@@ -11,12 +11,13 @@ const PROTO_PATH = '../stylechecker/src/main/proto/style_check.proto';
 const styleCheckProto = grpc.load(PROTO_PATH).stylechecker;
 
 export default function submitSourceCode(request, response) {
+  console.log("Hello submit source code 1");
   response.setHeader('Content-Type', 'application/json');
 
   let sourceCode = request.body.sourceCode;
 
   let client = new styleCheckProto.StyleCheck(
-    'stylechecker:50051',
+    'stylechecker-service:50051',
     grpc.Credentials.createInsecure());
 
   let configuration =

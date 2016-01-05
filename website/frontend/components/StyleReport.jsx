@@ -54,17 +54,17 @@ export default class StyleReport extends React.Component {
     return  <table>
               <tbody>
                 {aggregatedReports.map((report) => {
-                  return  <tr key={report.lineNumber} style={[styles.row]}>
-                            <td style={[styles.columnBase, styles.lineNumber]}>
+                  return  <tr key={report.lineNumber} style={styles.row}>
+                            <td style={styles.columnBase, styles.lineNumber}>
                               {report.lineNumber}
                             </td>
-                            <td style={[styles.columnBase, styles.code]}>
+                            <td style={styles.columnBase, styles.code}>
                               {report.sourceCode}
                             </td>
-                            <td style={[styles.columnBase, styles.message]}>
+                            <td style={styles.columnBase, styles.message}>
                               {report.message}
                             </td>
-                            <td style={[styles.columnBase, styles.suggestion]}>
+                            <td style={styles.columnBase, styles.suggestion}>
                               {report.suggestion}
                             </td>
                           </tr>;
@@ -102,15 +102,17 @@ var styles = {
   },
   code: {
     fontFamily: 'Consolas',
-    width: '50%',
+    width: '49%',
   },
   message: {
     color: 'red',
     fontWeight: 'bold',
+    width: '25%',
   },
   suggestion: {
     color: 'green',
     fontWeight: 'bold',
+    width: '25%',
   }
 };
 

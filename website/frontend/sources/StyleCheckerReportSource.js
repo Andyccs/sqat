@@ -16,6 +16,7 @@ const StyleCheckerReportSource = (alt) => {
           }
           return response.data;
         }).catch((response) => {
+          console.log(response);
           throw new Error('500 Internal Server Error');
         });
       },

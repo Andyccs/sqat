@@ -1,8 +1,10 @@
 var path = require('path');
 var webpack = require('webpack');
 
+var nodeModulesPath = path.resolve(__dirname, 'node_modules');
 var buildPath = path.resolve(__dirname, 'public', 'build');
 var mainPath = path.resolve(__dirname, 'frontend', 'index.jsx');
+var htmlPath = path.resolve(__dirname, 'frontend', 'index.html');
 
 module.exports = {
   // Makes sure errors in console map to the correct file
@@ -10,7 +12,8 @@ module.exports = {
   devtool: 'eval',
   entry: [
     'webpack-hot-middleware/client?reload=true',
-    mainPath
+    mainPath,
+    htmlPath
   ],
   output: {
     // We need to give Webpack a path. It does not actually need it,
@@ -20,10 +23,6 @@ module.exports = {
     // in production
     path: buildPath,
     filename: 'bundle.js',
-
-    // Everything related to Webpack should go through a build path,
-    // localhost:8080/build. That makes proxying easier to handle
-    publicPath: '/build/'
   },
   module: {
     loaders: [{
@@ -34,7 +33,11 @@ module.exports = {
       loaders: ['babel']
     }, {
       test: /\.js$/,
+      exclude: [nodeModulesPath],
       loaders: ['babel']
+    }, {
+      test: /\.html$/,
+      loader: 'file?name=[name].[ext]',
     }]
   },
   externals: {
