@@ -1,7 +1,6 @@
 # You must be in the root directory of this project when building this image
 FROM andyccs/sqat-submit-code-service:0.1.0
 
-# Running
 WORKDIR /tmp
 COPY submit-code-service/package.json /tmp/
 RUN npm config set registry http://registry.npmjs.org/ && npm install --production
@@ -12,10 +11,11 @@ COPY submit-code-service/ /usr/src/app/submit-code-service
 RUN cp -a /tmp/node_modules /usr/src/app/submit-code-service
 
 WORKDIR /usr/src/app/submit-code-service
+RUN npm run build
 
 ENV NODE_ENV=production 
 ENV PORT=50052
 
-CMD [ "/usr/local/bin/node", "./index.js" ]
+CMD [ "/usr/local/bin/npm", "run", "start" ]
 
 EXPOSE 50052

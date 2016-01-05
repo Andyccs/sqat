@@ -44,7 +44,7 @@ submit-code-service:
       else 
         cp -a /tmp/node_modules /usr/src/app/submit-code-service; 
       fi && 
-      /usr/local/bin/node ./index.js
+      npm run start
     '
 stylechecker-service:
   build: ./stylechecker
