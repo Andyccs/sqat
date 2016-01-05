@@ -9,7 +9,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "node ./index.js",
-    "deploy": "NODE_ENV=production webpack --config webpack.production.config.js",
+    "deploy": "webpack --config webpack.production.config.js",
     "start": "NODE_ENV=production PORT=4000 node ./index.js"
   },
   "repository": {
@@ -25,27 +25,25 @@
   "dependencies": {
     "alt": "^0.18.1",
     "alt-utils": "^1.0.0",
-    "axios": "^0.6.0",
     "babel-core": "^6.3.26",
     "babel-loader": "^6.2.0",
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-react": "^6.3.13",
-    "babel-preset-stage-1": "^6.3.13",
+    "babel-preset-stage-0": "^6.3.13",
     "babel-register": "^6.3.13",
-    "body-parser": "^1.14.0",
     "es6-promise": "^3.0.2",
     "express": "^4.13.3",
     "file-loader": "^0.8.5",
     "radium": "^0.15.3",
     "react": "^0.14.5",
-    "react-textarea-autosize": "^2.5.2"
+    "react-textarea-autosize": "^2.5.2",
+    "webpack": "^1.12.9"
   },
   "devDependencies": {
     "babel-eslint": "^4.1.3",
     "eslint": "^1.4.0",
     "eslint-config-defaults": "^6.0.0",
     "eslint-plugin-react": "^3.3.2",
-    "webpack": "^1.12.9",
     "webpack-dev-middleware": "^1.4.0",
     "webpack-hot-middleware": "^2.6.0"
   }

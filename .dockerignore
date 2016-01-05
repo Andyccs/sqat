@@ -1,0 +1,5 @@
+# This dockerignore is for submit-code-service
+
+*/website/
+.git*
+*/node_modules/

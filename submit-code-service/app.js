@@ -9,7 +9,7 @@ let app = express();
 let isProduction = process.env.NODE_ENV === 'production';
 
 // setting port and views
-const PORT = isProduction ? process.env.PORT : 8080;
+const PORT = isProduction ? process.env.PORT : 50052;
 
 app.set('port', PORT);
 
@@ -24,9 +24,12 @@ app.use(bodyParser.urlencoded({
 
 // Routing
 app.post('/submitSourceCode', submitSourceCode);
+app.get('/', (req, res) => {
+  res.send('Hello world');
+});
 
 // Create and start the server
 let server = http.createServer(app);
 
 server.listen(PORT, () =>
-  console.info('Express server listening on port ' + PORT));
+  console.info('submit-code-service server listening on port ' + PORT));

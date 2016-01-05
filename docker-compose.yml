@@ -1,13 +1,11 @@
 web:
-  build: .
-  dockerfile: website/Dockerfile
+  build: ./website
   ports:
-  - "4000:8080"
+  - "8080:8080"
   links:
-  - stylechecker-service
+  - submit-code-service
   volumes:
-  - ./stylechecker/src/main/proto/:/usr/src/app/stylechecker/src/main/proto/:rw
-  - ./website/:/usr/src/app/website:rw
+  - ./website:/usr/src/app/:rw
   environment:
   - NODE_ENV=development
   command: >
@@ -16,9 +14,30 @@ web:
       then 
         echo node_modules_exists ; 
       else 
-        cp -a /tmp/node_modules /usr/src/app/website; 
+        cp -a /tmp/node_modules /usr/src/app/; 
       fi && 
-      npm install && 
+      /usr/local/bin/node ./index.js
+    '
+submit-code-service:
+  build: .
+  ports:
+  - "50052:50052"
+  dockerfile: submit-code-service/Dockerfile
+  links:
+  - stylechecker-service
+  volumes:
+  - ./stylechecker/src/main/proto/:/usr/src/app/stylechecker/src/main/proto/:rw
+  - ./submit-code-service/:/usr/src/app/submit-code-service:rw
+  environment:
+  - NODE_ENV=development
+  command: >
+    sh -c '
+      if test -d node_modules; 
+      then 
+        echo node_modules_exists ; 
+      else 
+        cp -a /tmp/node_modules /usr/src/app/submit-code-service; 
+      fi && 
       /usr/local/bin/node ./index.js
     '
 stylechecker-service:

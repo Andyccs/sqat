@@ -8,11 +8,7 @@ const StyleCheckerReportSource = (alt) => {
   return {
     performQualityCheck: {
       remote(state) {
-        var instance = axios.create({
-          baseURL: 'submit-source-code-service:50051'
-        });
-
-        return instance.post('submitSourceCode', {
+        return axios.post('submitSourceCode', {
           sourceCode: state.sourceCode
         }).then((response) => {
           if(response.data.error != null) {
@@ -20,6 +16,7 @@ const StyleCheckerReportSource = (alt) => {
           }
           return response.data;
         }).catch((response) => {
+          console.log(response);
           throw new Error('500 Internal Server Error');
         });
       },

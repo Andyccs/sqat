@@ -1,10 +1,9 @@
 import path from 'path';
 import express from 'express';
 
-const isDeveloping = process.env.NODE_ENV !== 'production';
-const port = isDeveloping ? 3000 : process.env.PORT;
 const app = express();
 
+const isDeveloping = process.env.NODE_ENV !== 'production';
 if (isDeveloping) {
   let webpack = require('webpack');
   let webpackMiddleware = require('webpack-dev-middleware');
@@ -33,6 +32,7 @@ if (isDeveloping) {
   app.use(express.static(staticPath));
 }
 
+const port = isDeveloping ? 8080 : process.env.PORT;
 app.listen(port, '0.0.0.0', function onStart(err) {
   if (err) {
     console.log(err);
