@@ -89,7 +89,7 @@ docker run --name web -p 8080:8080 my-sqat-website &
 
 ## Run it locally
 
-We used to run this project locally until we switch our workflow to docker, but we don't stop you to run this project locally. The dockerfiles in [sqat-docker-library](https://github.com/Andyccs/sqat-docker-library) serve as a step-by-step guide to install all dependencies locally in your Linux machines.
+We used to run this project locally until we switch our workflow to docker, but we don't stop you to run this project locally. The dockerfiles in this project and [sqat-docker-library](https://github.com/Andyccs/sqat-docker-library) serve as a step-by-step guide to install all dependencies locally in your Linux machines.
 
 ## View the application running
 
