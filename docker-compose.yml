@@ -1,9 +1,15 @@
+proxy:
+  build: ./proxy
+  links:
+  - web
+  - submit-code-service
+  ports:
+  - "80:80"
+  - "443:443"
 web:
   build: ./website
   ports:
   - "8080:8080"
-  links:
-  - submit-code-service
   volumes:
   - ./website:/usr/src/app/:rw
   environment:

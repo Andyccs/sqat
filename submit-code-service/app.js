@@ -24,9 +24,6 @@ app.use(bodyParser.urlencoded({
 
 // Routing
 app.post('/submitSourceCode', submitSourceCode);
-app.get('/', (req, res) => {
-  res.send('Hello world');
-});
 
 // Create and start the server
 let server = http.createServer(app);
