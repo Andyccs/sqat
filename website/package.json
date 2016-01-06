@@ -9,7 +9,7 @@
   "main": "index.js",
   "scripts": {
     "build-server": "babel server --out-dir dist -s",
-    "build-webpack": "webpack --config webpack.production.config.js",
+    "build-webpack": "NODE_ENV=production webpack --config webpack.production.config.js",
     "clean-server": "rm -rf dist && mkdir dist",
     "clean-webpack": "rm -rf public && mkdir public",
     "start": "node ./dist/server.js"

@@ -28,16 +28,21 @@ module.exports = {
     loaders: [{
       test: /\.jsx$/,
       include: srcPath,
-      loaders: ['babel'],
+      loader: 'babel',
     }, {
       test: /\.js$/,
       include: srcPath,
-      loaders: ['babel'],
+      loader: 'babel',
     }, {
       test: /\.html$/,
       include: srcPath,
       loader: 'file?name=[name].[ext]',
     }]
+  },
+  externals: {
+    // don't bundle the 'react' npm package with our bundle.js
+    // but get it from a global 'React' variable
+    'react': 'React'
   },
   resolve: {
     // you can now require('file') instead of require('file.js') or require('file.jsx')

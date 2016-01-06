@@ -20,19 +20,17 @@ module.exports = {
     loaders: [{
       test: /\.jsx$/,
       include: srcPath,
-      loaders: ['babel'],
+      loader: 'babel',
     }, {
       test: /\.js$/,
       include: srcPath,
-      loaders: ['babel'],
+      loader: 'babel',
     }, {
       test: /\.html$/,
       include: srcPath,
       loader: 'file?name=[name].[ext]',
     }]
   },
-  // we only include 'external' section for production, else, react hot loader won't works
-  // https://github.com/gaearon/react-hot-loader/issues/53
   externals: {
     // don't bundle the 'react' npm package with our bundle.js
     // but get it from a global 'React' variable
@@ -41,5 +39,15 @@ module.exports = {
   resolve: {
     // you can now require('file') instead of require('file.coffee')
     extensions: ['', '.js', '.jsx']
-  }
+  },
+  plugins: [ 
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.UglifyJsPlugin(),
+    new webpack.DefinePlugin({
+      "process.env": {
+        // Signal production mode for React JS and other libs.
+        NODE_ENV: JSON.stringify("production")
+      }
+    }),
+  ]
 };
