@@ -1,8 +1,8 @@
 var path = require('path');
 var webpack = require('webpack');
 
-var nodeModulesPath = path.resolve(__dirname, 'node_modules');
 var buildPath = path.resolve(__dirname, 'public', 'build');
+var srcPath = path.resolve(__dirname, 'frontend');
 var mainPath = path.resolve(__dirname, 'frontend', 'index.jsx');
 var htmlPath = path.resolve(__dirname, 'frontend', 'index.html');
 
@@ -18,21 +18,21 @@ module.exports = {
   },
   module: {
     loaders: [{
-      test: /\.css$/,
-      loader: 'style!css'
-    }, {
-      // tell webpack to use jsx-loader for all *.jsx files
       test: /\.jsx$/,
-      loaders: ['babel']
+      include: srcPath,
+      loaders: ['babel'],
     }, {
       test: /\.js$/,
-      exclude: [nodeModulesPath],
-      loaders: ['babel']
+      include: srcPath,
+      loaders: ['babel'],
     }, {
       test: /\.html$/,
+      include: srcPath,
       loader: 'file?name=[name].[ext]',
     }]
   },
+  // we only include 'external' section for production, else, react hot loader won't works
+  // https://github.com/gaearon/react-hot-loader/issues/53
   externals: {
     // don't bundle the 'react' npm package with our bundle.js
     // but get it from a global 'React' variable
