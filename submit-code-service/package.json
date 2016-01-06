@@ -1,6 +1,6 @@
 {
   "name": "submit-source-code-service",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "engines": {
     "node": "0.12.7",
     "npm": "2.11.3"
