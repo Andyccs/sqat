@@ -31,7 +31,7 @@ import com.google.gson.JsonParseException;
 import java.lang.reflect.Type;
 
 /**
- * Created by andyccs on 11/9/15.
+ * Deserializer a json configurations into {@link DefaultConfiguration} using GSON
  */
 class ConfigurationDeserializer implements JsonDeserializer<DefaultConfiguration> {
 

@@ -43,7 +43,7 @@ public class JsonConfigurationLoaderTest {
 
   @Test
   public void loadOneConfiguration() throws StyleCheckerException, IOException {
-    String configFilePath = "src/test/resources/MethodNameCamelCase.json";
+    String configFilePath = "src/test/resources/stylechecker/MethodNameCamelCase.json";
     JsonConfigurationLoader loader = new JsonConfigurationLoader();
 
     Configuration config = loader.loadFileConfiguration(configFilePath);
@@ -53,7 +53,7 @@ public class JsonConfigurationLoaderTest {
 
   @Test
   public void loadTwoConfiguration() throws StyleCheckerException, IOException {
-    String configFilePath = "src/test/resources/WildCardAllow.json";
+    String configFilePath = "src/test/resources/stylechecker/WildCardAllow.json";
     JsonConfigurationLoader loader = new JsonConfigurationLoader();
 
     Configuration config = loader.loadFileConfiguration(configFilePath);

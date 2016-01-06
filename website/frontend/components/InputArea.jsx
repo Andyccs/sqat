@@ -1,5 +1,4 @@
 import React from 'react';
-import 'babel/polyfill';
 import TextAreaAutosize from 'react-textarea-autosize';
 
 export default class InputArea extends React.Component {
@@ -13,7 +12,7 @@ export default class InputArea extends React.Component {
     return  <div>
               <TextAreaAutosize
                 className='form-control'
-                rows='10'
+                rows={10}
                 placeholder='Paste your source code here'
                 onChange={handleTextChanged}
                 useCacheForDOMMeasurements />

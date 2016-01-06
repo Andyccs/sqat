@@ -1,25 +1,42 @@
 var path = require('path');
+var webpack = require('webpack');
+
+var buildPath = path.resolve(__dirname, 'public', 'build');
+var srcPath = path.resolve(__dirname, 'frontend');
+var mainPath = path.resolve(__dirname, 'frontend', 'index.jsx');
+var htmlPath = path.resolve(__dirname, 'frontend', 'index.html');
 
 module.exports = {
-  entry: './frontend/index.jsx',
+  // Makes sure errors in console map to the correct file
+  // and line number
+  devtool: 'eval',
+  entry: [
+    'webpack-hot-middleware/client?reload=true',
+    mainPath,
+    htmlPath
+  ],
   output: {
-    path: path.join(__dirname, './public/'),
+    // We need to give Webpack a path. It does not actually need it,
+    // because files are kept in memory in webpack-dev-server, but an
+    // error will occur if nothing is specified. We use the buildPath
+    // as that points to where the files will eventually be bundled
+    // in production
+    path: buildPath,
     filename: 'bundle.js',
-    // at this directory our bundle file will be available
-    // make sure port 8090 is used when launching webpack-dev-server
-    publicPath: 'http://localhost:8090/assets'
   },
   module: {
     loaders: [{
-      test: /\.css$/,
-      loader: 'style!css'
-    }, {
-      // tell webpack to use jsx-loader for all *.jsx files
       test: /\.jsx$/,
-      loaders: ['jsx-loader?insertPragma=React.DOM&harmony', 'babel?stage=1']
+      include: srcPath,
+      loader: 'babel',
     }, {
       test: /\.js$/,
-      loaders: ['babel?stage=1']
+      include: srcPath,
+      loader: 'babel',
+    }, {
+      test: /\.html$/,
+      include: srcPath,
+      loader: 'file?name=[name].[ext]',
     }]
   },
   externals: {
@@ -28,7 +45,12 @@ module.exports = {
     'react': 'React'
   },
   resolve: {
-    // you can now require('file') instead of require('file.coffee')
+    // you can now require('file') instead of require('file.js') or require('file.jsx')
     extensions: ['', '.js', '.jsx']
-  }
+  },
+  plugins: [ 
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin(),
+  ]
 };

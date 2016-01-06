@@ -4,23 +4,23 @@ import StyleCheckerReportSource from '../sources/StyleCheckerReportSource';
 class SubmitSourceCodeAction {
 
   fetchStyleCheckerReport() {
-    this.dispatch();
+    return null;
   }
 
   fetchStyleCheckerReportSuccess(report) {
-    this.dispatch(report);
+    return report;
   }
 
   fetchStyleCheckerReportFailed(errorMessage) {
-    this.dispatch(errorMessage);
+    return errorMessage;
   }
 
   submitAgain() {
-    this.dispatch();
+    return null;
   }
 
   sourceCodeChanged(sourceCode) {
-    this.dispatch(sourceCode);
+    return sourceCode;
   }
 }
 

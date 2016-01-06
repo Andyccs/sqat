@@ -30,7 +30,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * Created by andyccs on 6/9/15.
+ * DefaultConfiguration store all configurations in a HashMap.
  */
 public final class DefaultConfiguration implements Configuration {
 

@@ -1,0 +1,52 @@
+proxy:
+  build: ./proxy
+  links:
+  - web
+  - submit-code-service
+  ports:
+  - "80:80"
+  - "443:443"
+web:
+  build: ./website
+  ports:
+  - "8080:8080"
+  volumes:
+  - ./website:/usr/src/app/:rw
+  environment:
+  - NODE_ENV=development
+  command: >
+    sh -c '
+      if test -d node_modules; 
+      then 
+        echo node_modules_exists ; 
+      else 
+        cp -a /tmp/node_modules /usr/src/app/; 
+      fi && 
+      npm run start
+    '
+submit-code-service:
+  build: .
+  ports:
+  - "50052:50052"
+  dockerfile: submit-code-service/Dockerfile
+  links:
+  - stylechecker-service
+  volumes:
+  - ./stylechecker/src/main/proto/:/usr/src/app/stylechecker/src/main/proto/:rw
+  - ./submit-code-service/:/usr/src/app/submit-code-service:rw
+  environment:
+  - NODE_ENV=development
+  command: >
+    sh -c '
+      if test -d node_modules; 
+      then 
+        echo node_modules_exists ; 
+      else 
+        cp -a /tmp/node_modules /usr/src/app/submit-code-service; 
+      fi && 
+      npm run start
+    '
+stylechecker-service:
+  build: ./stylechecker
+  ports:
+  - "50051:50051"

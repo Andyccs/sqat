@@ -25,7 +25,9 @@ package com.sqatntu.stylechecker.listener;
 import static org.junit.Assert.assertEquals;
 
 import com.sqatntu.stylechecker.StyleChecker;
+import com.sqatntu.stylechecker.StyleCheckerException;
 import com.sqatntu.stylechecker.report.StyleReport;
+import com.sqatntu.testutil.TestUtil;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -36,11 +38,11 @@ import java.io.IOException;
 public class MethodNameFormatListenerTest {
 
   @Test
-  public void methodNameFormatWithCamelCase() throws IOException {
+  public void methodNameFormatWithCamelCase() throws IOException, StyleCheckerException {
     StyleChecker checker = new StyleChecker();
-    StyleReport report = checker.checkFile(
-        "src/test/resources/MethodNameFormatCamelCase.java",
-        "src/test/resources/MethodNameCamelCase.json");
+    StyleReport report = checker.checkSourceCode(
+        TestUtil.loadFile("src/test/resources/stylechecker/MethodNameFormatCamelCase.java"),
+        TestUtil.loadFile("src/test/resources/stylechecker/MethodNameCamelCase.json"));
     assertEquals(0, report.getReportContents().size());
   }
 }

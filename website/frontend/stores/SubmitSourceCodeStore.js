@@ -2,15 +2,14 @@ import alt from '../alt';
 import SubmitSourceCodeAction from '../actions/SubmitSourceCodeAction';
 import SubmitSourceCodeState from '../constants/SubmitSourceCodeState';
 import styleCheckerReportSource from '../sources/StyleCheckerReportSource';
-import {datasource} from 'alt/utils/decorators';
 
-@datasource(styleCheckerReportSource)
 class SubmitSourceCodeStore {
   constructor() {
     this.currentState = SubmitSourceCodeState.INITIAL;
     this.errorMessage = null;
-    this.report = null;
+    this.styleReport = null;
     this.sourceCode = null;
+    this.metricReport = null;
 
     this.bindListeners({
       handleFetchStyleCheckerReport: SubmitSourceCodeAction.fetchStyleCheckerReport,
@@ -19,31 +18,34 @@ class SubmitSourceCodeStore {
       handleSubmitAgain: SubmitSourceCodeAction.submitAgain,
       handleSourceCodeChanged: SubmitSourceCodeAction.sourceCodeChanged
     });
+
+    this.registerAsync(styleCheckerReportSource);
   }
 
-  handleSourceCodeSubmitSuccess(report) {
+  handleSourceCodeSubmitSuccess(result) {
     this.currentState = SubmitSourceCodeState.SUCCESS;
-    this.report = report;
+    this.styleReport = result.styleReport;
+    this.metricReport = result.metricReport;
     // optionally return false to suppress the store change event
   }
 
   handleFetchStyleCheckerReport() {
     this.currentState = SubmitSourceCodeState.SUBMITTING;
     if(!this.getInstance().isLoading()) {
-      this.getInstance().performStyleCheck();
+      this.getInstance().performQualityCheck();
     }
   }
 
   handleFetchStyleCheckerReportFailed(errorMessage) {
     this.currentState = SubmitSourceCodeState.ERROR;
-    this.errorMessage = errorMessage;
-    console.log(errorMessage);
+    this.errorMessage = errorMessage.message;
+    console.log(errorMessage.message);
   }
 
   handleSubmitAgain() {
     this.currentState = SubmitSourceCodeState.INITIAL;
     this.errorMessage = null;
-    this.report = null;
+    this.styleReport = null;
   }
 
   handleSourceCodeChanged(sourceCode) {

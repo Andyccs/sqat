@@ -22,11 +22,10 @@
 
 package com.sqatntu.stylechecker.injection;
 
+import com.sqatntu.ThrowingErrorListener;
 import com.sqatntu.stylechecker.StyleChecker;
 import com.sqatntu.stylechecker.configuration.ConfigurationLoader;
-import com.sqatntu.stylechecker.configuration.DummyConfigurationLoader;
 import com.sqatntu.stylechecker.configuration.JsonConfigurationLoader;
-import com.sqatntu.stylechecker.listener.MethodNameFormatListener;
 import com.sqatntu.stylechecker.report.StyleReport;
 import dagger.Module;
 import dagger.Provides;
@@ -34,12 +33,9 @@ import dagger.Provides;
 import javax.inject.Singleton;
 
 /**
- * Created by andyccs on 6/9/15.
+ * A module that provides all required dependencies for {@link StyleChecker}
  */
-@Module(
-    injects = {
-        StyleChecker.class
-    })
+@Module(injects = {StyleChecker.class})
 public class StyleCheckerModule {
 
   @Provides
@@ -51,5 +47,11 @@ public class StyleCheckerModule {
   @Provides
   StyleReport provideStyleReport() {
     return new StyleReport();
+  }
+
+  @Provides
+  @Singleton
+  ThrowingErrorListener provideThrowingErrorListener() {
+    return new ThrowingErrorListener();
   }
 }

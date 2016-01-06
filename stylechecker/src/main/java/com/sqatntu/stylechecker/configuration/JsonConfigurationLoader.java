@@ -31,7 +31,7 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * Created by andyccs on 11/9/15.
+ * Load configurations from JSON
  */
 public class JsonConfigurationLoader implements ConfigurationLoader {
 

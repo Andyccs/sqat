@@ -1,3 +1,9 @@
+[![Build Status](https://travis-ci.org/Andyccs/sqat.svg?branch=develop)](https://travis-ci.org/Andyccs/sqat)
+
+[![Coverage Status](https://coveralls.io/repos/Andyccs/sqat/badge.svg?branch=develop&service=github)](https://coveralls.io/github/Andyccs/sqat?branch=develop)
+
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Andyccs/sqat?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
 # Software Quality Analysis Tool
 
 Software Quality Analysis Tool (SQAT) allows you to:
@@ -8,48 +14,94 @@ Software Quality Analysis Tool (SQAT) allows you to:
 
 This tool is still under active development.
 
-# How To Run This Project
+# Project Organisation
 
 This project is organized as:
 
 ```
 root
 |
+|-- proxy
+|
 |-- stylechecker
 |
+|-- submit-code-service
+|
 |-- website
-|---- backend
-|---- frontend
 ```
 
-Stylechecker folder contains ANTLR and java codes to check and analyze your source code. 
+`proxy` folder contains an Nginx server that serves static contents and redirects requests to appropriate microservices.
 
-Backend folder contatins a Node.js server that communicate with Stylechecker service and provides an API for clients.
+`stylechecker` folder contains ANTLR and java codes to check and analyze your source code. 
 
-Frontend folder contains a React.js web application that communicate with Backend Node.js server and render webpage for users. 
+`submit-code-service` folder contains a microservice that communicate with stylechecker service and provides an API for clients.
 
-To run this project, first we need to run the stylechecker service:
+`website` folder contains a React.js web application that communicate with Backend Node.js server and render webpage for users. 
 
+# How to run this project locally?
+
+We recommended you to run this project using Docker. Please install [Docker](https://docs.docker.com) on [Ubuntu](https://docs.docker.com/engine/installation/ubuntulinux/), [Mac OS X](https://docs.docker.com/engine/installation/mac/), or [Windows](https://docs.docker.com/engine/installation/windows/). 
+
+## Use Docker Compose to run the project
+
+This is the easiest way to run this project:
+
+```Shell
+# Assume that you're in the root directory
+# This command will run a bunch of "npm build" commands,
+# and finally run "docker compose up" command
+sh fast-dc-up.sh
 ```
+
+## Use `docker` Command
+
+To run proxy:
+
+```Shell
+cd proxy
+docker build -t my-proxy .
+docker run --name proxy -p 80:80 443:443 --link web:web submit-code-service:submit-code-service my-proxy
+```
+
+To run stylechecker:
+
+```Shell
 cd stylechecker
-gradlew run
+docker build -t my-sqat-stylechecker .
+docker run --name stylechecker -p 50051:50051 my-sqat-stylechecker &
 ```
 
-Second, we need to run webpack dev server:
+To run submit-code-service:
 
+```Shell
+# You must be in root directory
+cp submit-code-service/Dockerfile . && \
+  docker build -t my-submit-code-service . && \
+  rm Dockerfile && \
+docker run --name submit-code-service --link stylechecker:stylechecker -p 50052:50052 my-submit-code-service &
 ```
+
+To run website:
+
+```Shell
 cd website
-npm run dev
+docker build -t my-sqat-website . 
+docker run --name web -p 8080:8080 my-sqat-website &
 ```
 
-Third, we need to run backend server:
+## Run it locally
 
-```
-cd webiste
-npm run serve
+We used to run this project locally until we switch our workflow to docker, but we don't stop you to run this project locally. The dockerfiles in this project and [sqat-docker-library](https://github.com/Andyccs/sqat-docker-library) serve as a step-by-step guide to install all dependencies locally in your Linux machines.
+
+## View the application running
+
+Next, check your docker machine ip address by using:
+
+```Shell
+docker-machine ip default
 ```
 
-Finally, open your browser and go to `http://localhost:8080`. You should see a nice React application in your browser. 
+Finally, open your browser and go to `http://<your-docker-machine-ip-address>`. You should see a nice React application in your browser. 
 
 # License
 

@@ -41,7 +41,7 @@
 grammar Java;
 
 @header {
-package com.sqatntu.stylechecker.api;
+package com.sqatntu.api;
 }
 
 // starting point for parsing a java file
@@ -414,7 +414,7 @@ statement
     |   'do' statement 'while' parExpression ';'
     |   'try' block (catchClause+ finallyBlock? | finallyBlock)
     |   'try' resourceSpecification block catchClause* finallyBlock?
-    |   'switch' parExpression '{' switchBlockStatementGroup* switchLabel* '}'
+    |   'switch' parExpression switchStatementBlock
     |   'synchronized' parExpression block
     |   'return' expression? ';'
     |   'throw' expression ';'
@@ -423,6 +423,10 @@ statement
     |   ';'
     |   statementExpression ';'
     |   Identifier ':' statement
+    ;
+
+switchStatementBlock
+    : '{' switchBlockStatementGroup* switchLabel* '}'
     ;
 
 catchClause

@@ -4,8 +4,10 @@ import Footer from './Footer';
 import InputArea from './InputArea';
 import ProgressBar from './ProgressBar';
 import SubmitButton from './SubmitButton';
+import ErrorMessage from './ErrorMessage';
 import Title from './Title';
 import StyleReport from './StyleReport';
+import MetricReport from './MetricReport';
 import SubmitSourceCodeStore from '../stores/SubmitSourceCodeStore';
 import SubmitSourceCodeAction from '../actions/SubmitSourceCodeAction';
 import SubmitSourceCodeState from '../constants/SubmitSourceCodeState';
@@ -46,6 +48,7 @@ export default class SubmitSourceCode extends React.Component {
     let renderInputArea = this.state.currentState == SubmitSourceCodeState.INITIAL;
     let renderProgressBar = this.state.currentState == SubmitSourceCodeState.SUBMITTING;
     let renderStyeReport = this.state.currentState == SubmitSourceCodeState.SUCCESS;
+    let renderErrorMessage = this.state.currentState == SubmitSourceCodeState.ERROR;
 
     return  <div>
 
@@ -56,6 +59,12 @@ export default class SubmitSourceCode extends React.Component {
                 <div className='row'>
                   <Title data={this.state}/>
                 </div>
+
+                { renderErrorMessage &&
+                <div className='row'>
+                  <ErrorMessage data={this.state}/>
+                </div>
+                }
 
                 { renderInputArea &&
                 <div className='row'>
@@ -70,6 +79,11 @@ export default class SubmitSourceCode extends React.Component {
                   <ProgressBar
                     data={this.state} />
                 </div>
+                }
+
+                { renderStyeReport &&
+                  <MetricReport
+                    data={this.state}/>
                 }
 
                 { renderStyeReport &&

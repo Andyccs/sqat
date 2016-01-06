@@ -22,18 +22,20 @@
 
 package com.sqatntu.stylechecker;
 
-import com.sqatntu.stylechecker.api.JavaLexer;
-import com.sqatntu.stylechecker.api.JavaParser;
+import com.sqatntu.ThrowingErrorListener;
+import com.sqatntu.api.JavaLexer;
+import com.sqatntu.api.JavaParser;
 import com.sqatntu.stylechecker.configuration.Configuration;
 import com.sqatntu.stylechecker.configuration.ConfigurationLoader;
-import com.sqatntu.stylechecker.injection.Dagger;
-import com.sqatntu.stylechecker.listener.MethodNameFormatListener;
-import com.sqatntu.stylechecker.listener.WildCardImportStatementListener;
+import com.sqatntu.stylechecker.injection.StyleCheckerModule;
+import com.sqatntu.stylechecker.listener.AllListeners;
 import com.sqatntu.stylechecker.report.StyleReport;
+import dagger.ObjectGraph;
 import org.antlr.v4.runtime.ANTLRFileStream;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.misc.ParseCancellationException;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 import java.io.IOException;
@@ -41,7 +43,9 @@ import java.io.IOException;
 import javax.inject.Inject;
 
 /**
- * Created by andyccs on 6/9/15.
+ * StyleChecker provides only one method, i.e. the {@link #checkSourceCode} method.
+ * The method accepts source code and style check configuration and performs style
+ * checking by using Visitor pattern.
  */
 public class StyleChecker {
 
@@ -51,10 +55,15 @@ public class StyleChecker {
   @Inject
   ConfigurationLoader configurationLoader;
 
+  @Inject
+  ThrowingErrorListener throwingErrorListener;
+
   public StyleChecker() {
-    Dagger.inject(this);
+    ObjectGraph objectGraph = ObjectGraph.create(new StyleCheckerModule());
+    objectGraph.inject(this);
   }
 
+  @Deprecated
   public StyleReport checkFile(String filePath, String configPath) throws IOException {
     // Set up configuration loader
     Configuration configuration = configurationLoader.loadFileConfiguration(configPath);
@@ -63,28 +72,36 @@ public class StyleChecker {
     return check(stream, configuration);
   }
 
-  public StyleReport checkSourceCode(String sourceCode, String jsonConfig) {
+  public StyleReport checkSourceCode(String sourceCode, String jsonConfig)
+      throws StyleCheckerException {
     // Set up configuration loader
     Configuration configuration = configurationLoader.loadJsonConfiguration(jsonConfig);
+
     ANTLRInputStream stream = new ANTLRInputStream(sourceCode);
 
-    return check(stream, configuration);
+    try {
+      return check(stream, configuration);
+    } catch (ParseCancellationException e) {
+      throw new StyleCheckerException(e.getMessage());
+    }
   }
 
   private StyleReport check(CharStream stream, Configuration config) {
     JavaLexer lexer = new JavaLexer(stream);
+    lexer.removeErrorListeners();
+    lexer.addErrorListener(throwingErrorListener);
+
     CommonTokenStream tokens = new CommonTokenStream(lexer);
+
     JavaParser parser = new JavaParser(tokens);
-    JavaParser.CompilationUnitContext tree = parser.compilationUnit(); // parse 
+    parser.removeErrorListeners();
+    parser.addErrorListener(throwingErrorListener);
 
-    MethodNameFormatListener methodNameFormatListener =
-        new MethodNameFormatListener(config, styleReport);
-    WildCardImportStatementListener wildCardImportStatementListener =
-        new WildCardImportStatementListener(config, styleReport);
+    JavaParser.CompilationUnitContext tree = parser.compilationUnit(); // parse
 
+    AllListeners allListeners = new AllListeners(config, styleReport);
     ParseTreeWalker walker = new ParseTreeWalker(); // create standard walker
-    walker.walk(wildCardImportStatementListener, tree);
-    walker.walk(methodNameFormatListener, tree); // initiate walk of tree with listener
+    walker.walk(allListeners, tree);
 
     return styleReport;
   }

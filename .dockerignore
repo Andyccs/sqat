@@ -1,0 +1,7 @@
+# This dockerignore is for submit-code-service
+
+*/proxy/
+*/website/
+.git*
+*/node_modules/
+*/submit-code-service/dist/

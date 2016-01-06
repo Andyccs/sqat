@@ -1,0 +1,12 @@
+{
+    "env": {
+        "es6": true,
+        "node": true,
+    },
+    "extends": "defaults/configurations/google",
+    "parser": "babel-eslint",
+    "rules": {
+        "strict": 0,
+        "max-len": [1, 100]
+    }
+}
