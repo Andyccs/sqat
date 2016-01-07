@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: stylechecker-service
+  labels:
+    role: stylechecker-service
+    usage: prod
+spec:
+  replicas: 3
+  selector:
+    role: stylechecker-service
+    usage: prod
+  template:
+    metadata:
+      labels:
+        role: stylechecker-service
+        usage: prod
+    spec:
+      containers:
+      - name: stylechecker-service-netty
+        image: andyccs/some-stylechecker-service-name:0.2.0
+        - containerPort: 50051

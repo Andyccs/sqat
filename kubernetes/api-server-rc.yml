@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: api-server
+  labels:
+    role: api-server
+    usage: prod
+spec:
+  replicas: 3
+  selector:
+    role: api-server
+    usage: prod
+  template:
+    metadata:
+      labels:
+        role: api-server
+        usage: prod
+    spec:
+      containers:
+      - name: api-server-nodejs
+        image: andyccs/some-api-server-name:0.2.0
+        env:
+        - name: GET_HOSTS_FROM
+          value: dns
+        ports:
+        - containerPort: 50052
