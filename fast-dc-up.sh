@@ -25,4 +25,3 @@ echo "                ||----w |"
 echo "                ||     ||"
 
 docker-compose up
-
