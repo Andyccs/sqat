@@ -17,7 +17,7 @@ export default function submitSourceCode(request, response) {
 
   let client = new styleCheckProto.StyleCheck(
     'stylechecker-service:50051',
-    grpc.Credentials.createInsecure());
+    grpc.credentials.createInsecure());
 
   let configuration =
     '{"methodNameFormat": "camelCase","wildCardImport": "noWildCard","braceStyle":"kr"}';

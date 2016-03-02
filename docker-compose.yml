@@ -38,11 +38,11 @@ submit-code-service:
   - NODE_ENV=development
   command: >
     sh -c '
-      if test -d node_modules; 
+      if test -d node_modules/grpc;
       then 
-        echo node_modules_exists ; 
+        echo node_modules_exists;
       else 
-        cp -a /tmp/node_modules /usr/src/app/submit-code-service; 
+        cp -a /tmp/node_modules/grpc /usr/src/app/submit-code-service/node_modules;
       fi && 
       npm run start
     '

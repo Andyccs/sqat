@@ -1,7 +1,16 @@
 # This dockerignore is for submit-code-service
-
+*/kubernetes/
 */proxy/
 */website/
 .git*
-*/node_modules/
 */submit-code-service/dist/
+.sonar*
+*/stylechecker/.gradle/
+*/stylechecker/.idea/
+*/stylechecker/.sonar/
+*/stylechecker/build/
+*/stylechecker/config/
+*/stylechecker/gradle/
+*/stylechecker/src/main/antlr/
+*/stylechecker/src/main/java/
+*/stylechecker/src/test/
