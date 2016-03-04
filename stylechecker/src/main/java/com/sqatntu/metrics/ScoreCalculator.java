@@ -32,7 +32,10 @@ public class ScoreCalculator {
   public static float calculateScore(int value, int benchmark) {
     if (value <= benchmark) {
       return 100f;
+    } else if (value <= 4f * benchmark) {
+      return (((-1f / (3f * benchmark)) * value) + (4f / 3f)) * 100f;
+    } else {
+      return 0;
     }
-    return (((-2f / (3f * benchmark)) * value) + (5f / 3f)) * 100f;
   }
 }
