@@ -2,8 +2,8 @@
   "name": "submit-source-code-service",
   "version": "0.1.1",
   "engines": {
-    "node": "0.12.7",
-    "npm": "2.11.3"
+    "node": "5.9.0",
+    "npm": "3.7.3"
   },
   "description": "microservice to submit source code from frontend to stylechecker service",
   "main": "index.js",

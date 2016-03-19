@@ -7,8 +7,16 @@ npm run clean
 npm run build
 cd ../
 
-printf "${GREEN}transpiling website${NC}\n"
+printf "${GREEN}Installing website dependencies${NC}\n"
 cd website
+if test -d node_modules; 
+then
+  printf "${GREEN}website node_modules exists, skipping npm install${NC}\n"
+else 
+  npm install
+fi && 
+
+printf "${GREEN}transpiling website${NC}\n"
 npm run clean-webpack
 npm run clean-server
 npm run build-server

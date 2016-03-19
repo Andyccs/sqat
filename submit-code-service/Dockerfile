@@ -1,11 +1,9 @@
 # You must be in the root directory of this project when building this image
-FROM node:0.12.7
+FROM node:5.9.0
 
 WORKDIR /tmp
 COPY submit-code-service/package.json /tmp/
-COPY submit-code-service/node_modules /temp/node_modules/
-RUN rm -rf submit-code-service/node_modules/grpc
-RUN npm install -q grpc
+RUN npm config set registry http://registry.npmjs.org/ && npm install -q --production
 
 WORKDIR /usr/src/app
 COPY stylechecker/src/main/proto/ /usr/src/app/stylechecker/src/main/proto/

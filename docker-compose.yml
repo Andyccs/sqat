@@ -14,16 +14,6 @@ web:
   - ./website:/usr/src/app/:rw
   environment:
   - NODE_ENV=development
-  command: >
-    sh -c '
-      if test -d node_modules; 
-      then 
-        echo node_modules_exists ; 
-      else 
-        cp -a /tmp/node_modules /usr/src/app/; 
-      fi && 
-      npm run start
-    '
 submit-code-service:
   build: .
   ports:
@@ -38,11 +28,11 @@ submit-code-service:
   - NODE_ENV=development
   command: >
     sh -c '
-      if test -d node_modules/grpc;
+      if test -d node_modules;
       then 
         echo node_modules_exists;
       else 
-        cp -a /tmp/node_modules/grpc /usr/src/app/submit-code-service/node_modules;
+        cp -a /tmp/node_modules /usr/src/app/submit-code-service;
       fi && 
       npm run start
     '

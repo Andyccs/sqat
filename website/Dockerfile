@@ -1,8 +1,8 @@
-FROM node:0.12.7
+FROM node:5.9.0
 
 WORKDIR /tmp
 COPY package.json /tmp/
-RUN npm config set registry http://registry.npmjs.org/ && npm install --production
+RUN npm config set registry http://registry.npmjs.org/ && npm install -q --production
 
 WORKDIR /usr/src/app
 COPY . /usr/src/app/
