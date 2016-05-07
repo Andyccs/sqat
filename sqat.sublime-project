@@ -1,0 +1,52 @@
+{
+  "folders":
+  [
+    {
+      "path": ".",
+      "folder_exclude_patterns": [
+        ".sonar",
+        "kubernetes",
+        "proxy",
+        "stylechecker",
+        "submit-code-service",
+        "website"
+      ],
+    },
+    {
+      "path": "kubernetes",
+      "file_exclude_patterns": []
+    },
+    {
+      "path": "proxy",
+      "file_exclude_patterns": []
+    },
+    {
+      "path": "stylechecker",
+      "file_exclude_patterns": [],
+      "folder_exclude_patterns": [
+        ".sonar",
+        ".gradle",
+        ".idea",
+      ]
+    },
+    {
+      "path": "submit-code-service",
+      "file_exclude_patterns": [],
+      "folder_exclude_patterns": [
+        ".sonar",
+      ]
+    },
+    {
+      "path": "website",
+      "file_exclude_patterns": [],
+      "folder_exclude_patterns": [
+        ".sonar",
+      ]
+    }
+
+  ],
+  "settings":
+  {
+    "tab_size": 2
+  },
+}
