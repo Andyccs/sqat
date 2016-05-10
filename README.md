@@ -103,9 +103,9 @@ docker-machine ip default
 
 Finally, open your browser and go to `http://<your-docker-machine-ip-address>`. You should see a nice React application in your browser. 
 
-# Project Report
+# Project Report and Presentation
 
-This project is my final year project for Computer Science degree at Nanyang Technological University. The report for this project can be found at [Sharelatex](https://www.sharelatex.com/project/56800082c2659588184ea5c1). 
+This project is my final year project for Computer Science degree at Nanyang Technological University. The report for this project can be found at [sqat-report](https://github.com/Andyccs/sqat-report) and presentation slides can be found at [sqat-presentation](https://github.com/Andyccs/sqat-presentation)
 
 # License
 
